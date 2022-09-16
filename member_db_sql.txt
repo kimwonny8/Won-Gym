@@ -1,0 +1,9 @@
+create table member (
+mb_id varchar(20) primary key,
+mb_pw varchar(20) not null,
+mb_pw2 varchar(20) not null,
+mb_name varchar(20) not null,
+mb_birthday datetime,
+mb_gender varchar(1),  
+mb_email varchar(20),
+mb_phone varchar(20) not null );
