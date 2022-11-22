@@ -4,9 +4,22 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>Insert title here</title>
+<title>login</title>
+<style>
+.bottom {
+	width: 70%;
+	height: 20vh;
+	background-image: url("../../image/login.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 50vh;
+	opacity: 0.6;
+	display: flex;
+	align-items: center;
+}
+</style>
 <link rel="stylesheet" href="../../css/style.css">
 </head>
+
 <body>
 	<%@ include file="../module/header.jsp"%>
 

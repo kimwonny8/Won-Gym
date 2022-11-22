@@ -11,11 +11,11 @@
 	<div class="footer">
 		<div class="footerTop">
 			<button>
-				<img src="../../image/github.png">
+				<img src="/kjw59_project/com/yju/2wda/team1/image/github.png">
 			</button>
 		</div>
 		<div class="footerBottom">
-			<img src="../../image/wonLogo.png" width="12%">
+			<img src="/kjw59_project/com/yju/2wda/team1/image/wonLogo.png" width="12%">
 			<div>
 				<p>
 					<b>CUSTOMER CENTER</b>

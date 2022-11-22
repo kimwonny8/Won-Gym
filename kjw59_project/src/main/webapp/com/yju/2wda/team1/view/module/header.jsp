@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ include file="/globalData.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../../css/style.css">
+
 </head>
 <body>
     <div class="top">
-        <button></button>
+        <button onclick="location.href='/kjw59_project/index.jsp"></button>
         <div class="topMenu">
             <button class="Btn topMenuBtn">회원가입</button>
             <button class="Btn topMenuBtn">로그인</button>
