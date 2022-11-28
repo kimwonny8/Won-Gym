@@ -1,5 +1,7 @@
 package kjw59_project.controller.won;
 
-public class Action {
+import javax.servlet.http.*;
 
+public interface Action {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }

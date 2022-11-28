@@ -1,11 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>sign-up</title>
 <style>
+a {
+	text-decoration-line: none;
+}
 .bottom {
 	width: 70%;
 	height: 20vh;
@@ -31,6 +34,7 @@
 }
 
 .gradeSelectBtn {
+	text-align: center;
 	width: 15vw;
 	border: none;
 	background-color: white;
@@ -41,7 +45,6 @@
 	padding: 1vh;
 	opacity: 0.7;
 }
-
 .gradeSelectBtn:hover {
 	opacity: 1;
 }
@@ -50,30 +53,31 @@
 	width: 10vw;
 	margin: 2vh;
 }
+
 </style>
-<link rel="stylesheet" href="../../css/style.css">
 
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
 
 	<div class="bottom">
-		<p class="menuTitle">È¸¿ø°¡ÀÔ</p>
+		<p class="menuTitle">íšŒì›ê°€ì…</p>
 	</div>
 
 	<div class="gradeContents">
 		<div class="gradeSelect">
-			<button class="gradeSelectBtn">
+		
+			<a href="<%=beerViewDir%>/signup_text.jsp?m_grade=client"  class="gradeSelectBtn">
 				<img class="gradeIcon"
 					src="https://cdn-icons-png.flaticon.com/512/456/456283.png">
-				<p>ÀÏ¹İ È¸¿ø</p>
-			</button>
-
-			<button class="gradeSelectBtn">
+				<p>ì¼ë°˜ íšŒì›</p>
+			</a>
+		
+			<a href="<%=beerViewDir%>/signup_text.jsp?m_grade=trainer"  class="gradeSelectBtn">
 				<img class="gradeIcon"
 					src="https://cdn-icons-png.flaticon.com/512/2235/2235532.png">
-				<p>Æ®·¹ÀÌ³Ê È¸¿ø</p>
-			</button>
+				<p>íŠ¸ë ˆì´ë„ˆ íšŒì›</p>
+			</a>
 		</div>
 	</div>
 

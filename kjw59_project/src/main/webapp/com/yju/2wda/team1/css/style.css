@@ -1,9 +1,8 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 * {
 	margin: 0 auto;
 }
-
 .top {
 	padding-top: 2vh;
 	width: 100%;
@@ -36,7 +35,8 @@
 }
 
 .topMenu {
-	width: 70%;
+	height: 3vh;
+	width: 80%;
 	margin-bottom: 2vh;
 }
 
@@ -73,11 +73,10 @@
 	align-items: center;
 	width: 25vw;
 	height: 40vh;
-	border: 0.1rem solid #72787F;
+	border: 0.01rem solid #72787F;
 }
 
-.FormInputLine {
-	margin: 1vh;
+.FormInputLine {	margin: 1vh;
 }
 
 .FormInputLine>p {
@@ -97,12 +96,14 @@
 
 .inputBtn {
 	width: 15vw;
-	height: 3.2vh;
+	height: 3.5vh;
 	background-color: #72787F;
 	color: white;
 	border: none;
 }
-
+.inputBtn > p {
+	font-size: 0.5rem;
+}
 .formLong {
 	width: 30vw;
 	height: 95vh;
@@ -180,4 +181,7 @@
 	flex-direction: row;
 	align-items: center;
 	font-size: 0.75rem;
+}
+a {
+	text-decoration-line: none;
 }

@@ -1,11 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>login</title>
 <style>
+.inputBtn > p {
+	font-size : 0.8rem;
+}
+a {
+	text-decoration-line: none;
+	color: black;
+}
 .bottom {
 	width: 70%;
 	height: 20vh;
@@ -17,32 +24,29 @@
 	align-items: center;
 }
 </style>
-<link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
 	<%@ include file="../module/header.jsp"%>
 
 	<div class="bottom">
-		<p class="menuTitle">·Î±×ÀÎ</p>
+		<p class="menuTitle">ë¡œê·¸ì¸</p>
 	</div>
 	
-	<div class="form">
+	<form method="post" action="./loginMember.won" class="form">
 		<div class="FormInputLine">
-			<p>¾ÆÀÌµğ</p>
-			<input type="text" class="inputBox">
+			<p>ì•„ì´ë””</p>
+			<input type="text" name="m_id" class="inputBox">
 		</div>
 		<div class="FormInputLine">
-			<p>ºñ¹Ğ¹øÈ£</p>
-			<input type="password" class="inputBox">
+			<p>ë¹„ë°€ë²ˆí˜¸</p>
+			<input type="password" name="m_pw" class="inputBox">
 		</div>
 		<div class="FormInputLine">
-			<button class="Btn inputBtn">·Î±×ÀÎ</button>
+			<button onclick="location.href='<%=rootDir%>/index.jsp'" class="Btn inputBtn"><p>ë¡œê·¸ì¸</p></button>
 		</div>
-		<div class="FormInputLine">
-			<button class="Btn">È¸¿ø°¡ÀÔ</button>
-		</div>
-	</div>
+		<a href="<%=beerViewDir%>/signup_grade.jsp">íšŒì›ê°€ì…</a>
+	</form>
 
 	<%@ include file="../module/footer.jsp"%>
 </body>

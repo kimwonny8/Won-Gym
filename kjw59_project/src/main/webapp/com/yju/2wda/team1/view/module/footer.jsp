@@ -1,11 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
 	<div class="footer">
@@ -20,13 +19,13 @@
 				<p>
 					<b>CUSTOMER CENTER</b>
 				</p>
-				<p>°øÈÞÀÏ ÈÞ¹« AM 09:00 ~ PM 18:00</p>
+				<p>ê³µíœ´ì¼ íœ´ë¬´ AM 09:00 ~ PM 18:00</p>
 				<br>
 			</div>
 			<div>
 				<p>
-					È¸»ç¸í. ÁÖ½ÄÈ¸»ç WON (ÁÖ¼Ò. ´ë±¸±¤¿ª½Ã ºÏ±¸ º¹Çö·Î 35, º¹Çöµ¿)<br> ´ëÇ¥.
-					±èÁ¤¿ø(@_kimwonny)<br> ÀüÈ­. 010-4082-9959<br>
+					íšŒì‚¬ëª…. ì£¼ì‹íšŒì‚¬ WON (ì£¼ì†Œ. ëŒ€êµ¬ê´‘ì—­ì‹œ ë¶êµ¬ ë³µí˜„ë¡œ 35, ë³µí˜„ë™)<br> ëŒ€í‘œ.
+					ê¹€ì •ì›(@_kimwonny)<br> ì „í™”. 010-4082-9959<br>
 				</p>
 			</div>
 		</div>

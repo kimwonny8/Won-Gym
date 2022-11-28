@@ -1,18 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Welcome WorkOutNow!</title>
 <style>
+a {
+	text-decoration-line: none;
+}
+
 .mainImage {
 	width: 70%;
 	height: 90%;
 }
 </style>
-<link rel="stylesheet" href="./com/yju/2wda/team1/css/style.css">
-<link
+<!-- <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
@@ -20,11 +23,11 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
 </head>
 <body>
 	<%@ include file="./com/yju/2wda/team1/view/module/header.jsp"%>
-
+	<!-- 메인이미지 캐러셀 코드 -->
 	<div class="mainImage">
 		<div id="carouselExampleInterval" class="carousel slide"
 			data-bs-ride="carousel">
