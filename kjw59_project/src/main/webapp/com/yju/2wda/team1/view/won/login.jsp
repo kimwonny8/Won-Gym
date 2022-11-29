@@ -45,7 +45,7 @@ a {
 		<div class="FormInputLine">
 			<button onclick="location.href='<%=rootDir%>/index.jsp'" class="Btn inputBtn"><p>로그인</p></button>
 		</div>
-		<a href="<%=beerViewDir%>/signup_grade.jsp">회원가입</a>
+		<a href="<%=wonViewDir%>/signup_grade.jsp">회원가입</a>
 	</form>
 
 	<%@ include file="../module/footer.jsp"%>

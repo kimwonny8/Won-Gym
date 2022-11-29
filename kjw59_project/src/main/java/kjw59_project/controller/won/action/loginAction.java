@@ -20,8 +20,9 @@ public class loginAction implements Action {
 		memberDTO member = new memberDTO();
 		cityDTO city = new cityDTO();
 
-		member.setM_id(request.getParameter("m_id"));
+		String m_id = request.getParameter("m_id");
 		String m_pw = request.getParameter("m_pw");
+		member.setM_id(m_id);
 		String Chk_m_pw = memberDAO.loginPwMember(member);
 
 		ActionForward forward = new ActionForward();
@@ -31,7 +32,16 @@ public class loginAction implements Action {
 			memberDAO = new memberDAO();
 			String m_name = memberDAO.loginNameMember(member);
 			
+			memberDAO = new memberDAO();
+			String c_code = memberDAO.getCityCode(member);
+			city.setC_code(c_code);
+			
+			memberDAO = new memberDAO();
+			String c_name = memberDAO.getCityName(city);
+			
+			session.setAttribute("m_id",m_id);
 			session.setAttribute("m_name",m_name);
+			session.setAttribute("c_name",c_name);
 			session.setAttribute("loginState","login");
 			
 			JOptionPane.showMessageDialog(null, "로그인 성공!");

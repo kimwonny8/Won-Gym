@@ -26,5 +26,17 @@
 		<p class="menuTitle">수업신청</p>
 	</div>
 	
+	<div class="form">
+		<!-- 검색하는 부분 -->
+	<div>
+	
+	</div>
+	
+	<!-- 글쓰기 -->
+	<button onclick="location.href='<%=wonViewDir%>/uploadPT.jsp'">글쓰기</button>
+	</div>
+	
+	
+	<%@ include file="../module/footer.jsp"%>
 </body>
 </html>

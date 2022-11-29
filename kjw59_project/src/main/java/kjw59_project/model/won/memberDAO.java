@@ -62,40 +62,12 @@ public class memberDAO {
 			}
 		}
 	}
-
 	
-	
-	// 도시 코드 받아오기
-	public String getCityCode(cityDTO city) {
-		String c_code = "";
-
-		String sql = "select * from city where c_name = ?";
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, city.getC_name());
-			ResultSet rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				c_code = rs.getString(1);
-				System.out.println("c_code: " + c_code);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			return c_code;
-		} finally {
-			disConnect();
-		}
-
-		return c_code;
-	}
-
-	// 회원가입 메서드 
+	// 회원가입 메서드 - 전체 회원
 	public boolean insertMember(memberDTO member) {
 		boolean success = false;
 
-		String sql = "insert into member (m_id, m_pw, m_name, m_birth, "
-				+ "m_gender, m_phone, m_grade, c_code) ";
+		String sql = "insert into member (m_id, m_pw, m_name, m_birth, " + "m_gender, m_phone, m_grade, c_code) ";
 		sql += "values(?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -108,7 +80,7 @@ public class memberDAO {
 			pstmt.setString(6, member.getM_phone());
 			pstmt.setString(7, member.getM_grade());
 			pstmt.setString(8, member.getC_code());
-			
+
 			pstmt.executeUpdate();
 			success = true;
 		} catch (SQLException e) {
@@ -120,10 +92,32 @@ public class memberDAO {
 		}
 		return success;
 	}
+
+	// 회원가입 메서드
+	public boolean insertTrainer(trainerDTO trainer) {
+		boolean success = false;
+
+		String sql = "insert into trainer (t_id) values (?)";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, trainer.getT_id());
 	
-	// 로그인 메서드 
+			pstmt.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+
+		}
+		return success;
+	}
+
+	// 로그인 메서드
 	public String loginPwMember(memberDTO member) {
-		String m_pw="";
+		String m_pw = "";
 		String sql = "select m_pw from member where m_id = ?";
 
 		try {
@@ -144,10 +138,10 @@ public class memberDAO {
 
 		return m_pw;
 	}
-	
-	// 이름 반환 메서드 
+
+	// 이름 반환 메서드
 	public String loginNameMember(memberDTO member) {
-		String m_name="";
+		String m_name = "";
 		String sql = "select m_name from member where m_id = ?";
 
 		try {
@@ -168,5 +162,78 @@ public class memberDAO {
 
 		return m_name;
 	}
+	
+	// 회원테이블에서 도시 코드 받아오기
+	public String getCityCode(memberDTO member) {
+		String c_code = "";
+
+		String sql = "select c_code from member where m_id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getM_id());
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				c_code = rs.getString(1);
+				System.out.println("c_code: " + c_code);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return c_code;
+		} finally {
+			disConnect();
+		}
+		return c_code;
+	}
+	
+	// city테이블에서 c_code 받아오기
+	public String getCityCode(cityDTO city) {
+		String c_code = "";
+
+		String sql = "select * from city where c_name = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, city.getC_name());
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				c_code = rs.getString(1);
+				System.out.println("c_code: " + c_code);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return c_code;
+		} finally {
+			disConnect();
+		}
+		return c_code;
+	}
+	
+	// city테이블에서 c_name 받아오기
+		public String getCityName(cityDTO city) {
+			String c_name = "";
+
+			String sql = "select c_name from city where c_code = ?";
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, city.getC_code());
+				ResultSet rs = pstmt.executeQuery();
+
+				if (rs.next()) {
+					c_name = rs.getString(1);
+					System.out.println("c_code: " + c_name);
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+				return c_name;
+			} finally {
+				disConnect();
+			}
+			return c_name;
+		}
+
 
 }

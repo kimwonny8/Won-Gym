@@ -19,7 +19,7 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		
 		command = command.substring(command.lastIndexOf("/"));
 		HttpSession session = request.getSession();
-		
+
 		ActionForward forward = null;
 		Action action = null;
 		
@@ -36,6 +36,10 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			
 		case "/logoutMember.won":
 			action = new logoutAction();
+			break;
+		
+		case "/uploadPT.won":
+			action = new uploadPTAction();
 			break;
 			
 		default:

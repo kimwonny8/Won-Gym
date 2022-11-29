@@ -25,6 +25,6 @@
 	<div class="bottom">
 		<p class="menuTitle">마이페이지</p>
 	</div>
-	
+	<%@ include file="../module/footer.jsp"%>
 </body>
 </html>

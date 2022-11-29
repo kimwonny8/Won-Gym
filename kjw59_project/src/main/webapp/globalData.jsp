@@ -8,9 +8,8 @@
 	static final String viewDir = workDir + "/view";
 	static final String contDir = workDir + "/controller";
 	
-	static final String beerModelDir = modelDir + "/won";
-	static final String beerViewDir = viewDir + "/won";
-	static final String beerContDir = contDir + "/won";
+	static final String wonModelDir = modelDir + "/won";
+	static final String wonViewDir = viewDir + "/won";
 	
 	static final String etcViewDir = viewDir + "/etc";
 	static final String moduleViewDir = viewDir + "/module";

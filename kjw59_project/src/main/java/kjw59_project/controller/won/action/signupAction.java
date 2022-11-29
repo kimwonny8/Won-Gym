@@ -16,15 +16,19 @@ public class signupAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		memberDAO memberDAO = new memberDAO();
 		memberDTO member = new memberDTO();
+		trainerDTO trainer = new trainerDTO();
 		cityDTO city = new cityDTO();
+		
+		String m_grade=request.getParameter("m_grade");
+		String m_id=request.getParameter("m_id");
 
 		member.setM_pw(request.getParameter("m_pw"));
-		member.setM_id(request.getParameter("m_id"));
+		member.setM_id(m_id);
 		member.setM_name(request.getParameter("m_name"));
 		member.setM_birth(request.getParameter("m_birth"));
 		member.setM_gender(request.getParameter("m_gender"));
 		member.setM_phone(request.getParameter("m_phone"));
-		member.setM_grade(request.getParameter("m_grade"));
+		member.setM_grade(m_grade);
 		member.setM_phone(request.getParameter("m_phone"));
 
 		city.setC_name(request.getParameter("c_name"));
@@ -32,6 +36,13 @@ public class signupAction implements Action {
 
 		memberDAO = new memberDAO();
 		boolean result = memberDAO.insertMember(member);
+		
+		if(m_grade.equals("trainer")) {
+			trainer.setT_id(m_id);
+			
+			memberDAO = new memberDAO();
+			boolean result2 = memberDAO.insertTrainer(trainer);
+		}
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);

@@ -67,13 +67,13 @@ a {
 	<div class="gradeContents">
 		<div class="gradeSelect">
 		
-			<a href="<%=beerViewDir%>/signup_text.jsp?m_grade=client"  class="gradeSelectBtn">
+			<a href="<%=wonViewDir%>/signup_text.jsp?m_grade=client"  class="gradeSelectBtn">
 				<img class="gradeIcon"
 					src="https://cdn-icons-png.flaticon.com/512/456/456283.png">
 				<p>일반 회원</p>
 			</a>
 		
-			<a href="<%=beerViewDir%>/signup_text.jsp?m_grade=trainer"  class="gradeSelectBtn">
+			<a href="<%=wonViewDir%>/signup_text.jsp?m_grade=trainer"  class="gradeSelectBtn">
 				<img class="gradeIcon"
 					src="https://cdn-icons-png.flaticon.com/512/2235/2235532.png">
 				<p>트레이너 회원</p>
