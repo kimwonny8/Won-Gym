@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+.myPageForm {
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	width: 45vw;
+	height: 80vh;
+	border: 0.01rem solid #72787F;
+}
+.myPageTop {
+    width: 45vw;
+    height: 100%;
+    display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.myPageLeft{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    width: 15vw;
+	height: 80%;
+}
+.myPageImage{
+    margin-top: 2vh 0;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    background-color: gray;
+}
+.myPageRight{
+    width: 30vw;
+    height: 80%;
+}
+.myPageClass{
+    width: 90%;
+    font-size: 0.75rem;
+    border-top: 0.01rem solid gray;
+    border-bottom: 0.01rem solid gray;
+    padding: 1vh 0;
+}
+.myPageClassStatus{
+    display:  flex;
+	justify-content: space-around;
+}
+.myPageClassStatusLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 2vw;
+}
+.mypageColumn {
+    display: flex;
+    flex-direction: row;
+}
+.myPageBottom {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    width: 45vw;
+}
+.bigText{
+    font-size: 1.1rem;
+}
+.mypageBtn {
+    font-size: 0.8rem;
+	width: 10vw;
+	height: 5vh;
+    margin-top: 2vh;
+    margin-right: 2vw;
+	background-color: #72787F;
+	color: white;
+	border: none;
+}
