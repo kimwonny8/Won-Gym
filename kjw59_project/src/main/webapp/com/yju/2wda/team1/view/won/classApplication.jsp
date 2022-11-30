@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,22 +21,25 @@
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
-	
+
 	<div class="bottom">
 		<p class="menuTitle">수업신청</p>
 	</div>
-	
+
 	<div class="form">
 		<!-- 검색하는 부분 -->
-	<div>
-	
-	</div>
-	
-	<!-- 글쓰기 -->
-	<button onclick="location.href='<%=wonViewDir%>/uploadPT.jsp'">글쓰기</button>
-	</div>
-	
-	
-	<%@ include file="../module/footer.jsp"%>
+		<div></div>
+
+		<!-- 글쓰기 -->
+		<%
+		if (m_grade.equals("트레이너")) {
+		%>
+		<button onclick="location.href='<%=wonViewDir%>/uploadPT.jsp'">글쓰기</button>
+		<%
+		}
+		%>
+</div>
+
+		<%@ include file="../module/footer.jsp"%>
 </body>
 </html>

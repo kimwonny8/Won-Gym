@@ -20,7 +20,8 @@ a {
 	String m_id = null;
 	String m_name = null;
 	String loginState = null;
-		
+	String m_grade = null;
+	
 	if(session.getAttribute("loginState")== null || session.getAttribute("loginState").equals("logout")){
 	%>
 	<div class="top">
@@ -36,6 +37,7 @@ a {
 	<% } else { 
 	m_id = (String)session.getAttribute("m_id");
 	m_name = (String)session.getAttribute("m_name");
+	m_grade = (String)session.getAttribute("m_grade");
 	%>
 	<div class="top">
 		<button onclick="location.href='<%=rootDir%>/index.jsp'"></button>
@@ -44,7 +46,7 @@ a {
 			<form method="post" action="./logoutMember.won">
 				
 				<button class="Btn topMenuBtn">로그아웃</button>
-				<p class="topMenuBtn"><%=m_name %>님 환영합니다!</p>
+				<p class="topMenuBtn">⭐<%=m_grade%>회원⭐ <%=m_name %>님 환영합니다!</p>
 			</form>
 		</div>
 	</div>

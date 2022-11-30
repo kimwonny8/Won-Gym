@@ -12,7 +12,6 @@ public class signupAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-		System.out.println("dd");
 		request.setCharacterEncoding("utf-8");
 		memberDAO memberDAO = new memberDAO();
 		memberDTO member = new memberDTO();
@@ -29,14 +28,15 @@ public class signupAction implements Action {
 		member.setM_gender(request.getParameter("m_gender"));
 		member.setM_phone(request.getParameter("m_phone"));
 		member.setM_grade(m_grade);
-		member.setM_phone(request.getParameter("m_phone"));
+		member.setC_code(request.getParameter("c_code"));
 
-		city.setC_name(request.getParameter("c_name"));
-		member.setC_code(memberDAO.getCityCode(city));
+//		city.setC_name(request.getParameter("c_name"));
+//		member.setC_code(memberDAO.getCityCode(city));
 
 		memberDAO = new memberDAO();
 		boolean result = memberDAO.insertMember(member);
 		
+		// trainer 테이블에도 추가
 		if(m_grade.equals("trainer")) {
 			trainer.setT_id(m_id);
 			

@@ -41,9 +41,9 @@ public class uploadPTAction implements Action {
 		memberDTO member = new memberDTO();
 		cityDTO city = new cityDTO();
 		ptDTO pt = new ptDTO();
-		
-		pt.setPt_title(multi.getParameter("pt_title"));
+
 		pt.setT_id((String)session.getAttribute("m_id"));
+		pt.setPt_title(multi.getParameter("pt_title"));
 		pt.setPt_one_c(Integer.parseInt(multi.getParameter("pt_one_c")));
 		pt.setPt_con_c(Integer.parseInt(multi.getParameter("pt_con_c")));
 		pt.setPt_content(multi.getParameter("pt_content"));

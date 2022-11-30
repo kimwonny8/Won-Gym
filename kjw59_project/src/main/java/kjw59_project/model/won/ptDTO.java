@@ -2,7 +2,7 @@ package kjw59_project.model.won;
 
 // 상품 게시글 테이블
 public class ptDTO {
-	private String pt_id;
+	private String pt_code;
 	private String t_id;
 	private String pt_title;
 	private int pt_one_c;
@@ -14,10 +14,10 @@ public class ptDTO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ptDTO(String pt_id, String t_id, String pt_title, int pt_one_c, int pt_con_c, String pt_content,
+	public ptDTO(String pt_code, String t_id, String pt_title, int pt_one_c, int pt_con_c, String pt_content,
 			int pt_like) {
 		super();
-		this.pt_id = pt_id;
+		this.pt_code = pt_code;
 		this.t_id = t_id;
 		this.pt_title = pt_title;
 		this.pt_one_c = pt_one_c;
@@ -26,11 +26,11 @@ public class ptDTO {
 		this.pt_like = pt_like;
 	}
 	
-	public String getPt_id() {
-		return pt_id;
+	public String getpt_code() {
+		return pt_code;
 	}
-	public void setPt_id(String pt_id) {
-		this.pt_id = pt_id;
+	public void setpt_code(String pt_code) {
+		this.pt_code = pt_code;
 	}
 	public String getT_id() {
 		return t_id;

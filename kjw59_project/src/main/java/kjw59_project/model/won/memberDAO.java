@@ -62,12 +62,12 @@ public class memberDAO {
 			}
 		}
 	}
-	
+
 	// 회원가입 메서드 - 전체 회원
 	public boolean insertMember(memberDTO member) {
 		boolean success = false;
 
-		String sql = "insert into member (m_id, m_pw, m_name, m_birth, " + "m_gender, m_phone, m_grade, c_code) ";
+		String sql = "insert into member (m_id, m_pw, m_name, m_birth, m_gender, m_phone, m_grade, c_code) ";
 		sql += "values(?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -102,7 +102,7 @@ public class memberDAO {
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, trainer.getT_id());
-	
+
 			pstmt.executeUpdate();
 			success = true;
 		} catch (SQLException e) {
@@ -162,12 +162,12 @@ public class memberDAO {
 
 		return m_name;
 	}
-	
-	// 회원테이블에서 도시 코드 받아오기
-	public String getCityCode(memberDTO member) {
-		String c_code = "";
 
+	// id로 동네찾기 반환 메서드
+	public String getC_codeMember(memberDTO member) {
+		String c_code = "";
 		String sql = "select c_code from member where m_id = ?";
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, member.getM_id());
@@ -177,63 +177,79 @@ public class memberDAO {
 				c_code = rs.getString(1);
 				System.out.println("c_code: " + c_code);
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return c_code;
 		} finally {
 			disConnect();
 		}
+
 		return c_code;
 	}
-	
-	// city테이블에서 c_code 받아오기
-	public String getCityCode(cityDTO city) {
-		String c_code = "";
 
-		String sql = "select * from city where c_name = ?";
+	// 트레이너인지 확인하는 메서드
+	public String loginChkGrade(memberDTO member) {
+		String m_grade = "";
+		String sql = "select m_grade from member where m_id = ?";
+
 		try {
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, city.getC_name());
+			pstmt.setString(1, member.getM_id());
 			ResultSet rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				c_code = rs.getString(1);
-				System.out.println("c_code: " + c_code);
+				m_grade = rs.getString(1);
+				System.out.println("m_grade: " + m_grade);
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
-			return c_code;
+			return m_grade;
 		} finally {
 			disConnect();
 		}
-		return c_code;
+
+		return m_grade;
 	}
-	
-	// city테이블에서 c_name 받아오기
-		public String getCityName(cityDTO city) {
-			String c_name = "";
 
-			String sql = "select c_name from city where c_code = ?";
-			try {
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, city.getC_code());
-				ResultSet rs = pstmt.executeQuery();
-
-				if (rs.next()) {
-					c_name = rs.getString(1);
-					System.out.println("c_code: " + c_name);
-				}
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				return c_name;
-			} finally {
-				disConnect();
-			}
-			return c_name;
-		}
-
+	/*
+	 * // 회원테이블에서 도시 코드 받아오기 public String getCityCode(memberDTO member) { String
+	 * c_code = "";
+	 * 
+	 * String sql = "select c_code from member where m_id = ?"; try { pstmt =
+	 * con.prepareStatement(sql); pstmt.setString(1, member.getM_id()); ResultSet rs
+	 * = pstmt.executeQuery();
+	 * 
+	 * if (rs.next()) { c_code = rs.getString(1); System.out.println("c_code: " +
+	 * c_code); }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); return c_code; } finally {
+	 * disConnect(); } return c_code; }
+	 * 
+	 * // city테이블에서 c_code 받아오기 public String getCityCode(cityDTO city) { String
+	 * c_code = "";
+	 * 
+	 * String sql = "select * from city where c_name = ?"; try { pstmt =
+	 * con.prepareStatement(sql); pstmt.setString(1, city.getC_name()); ResultSet rs
+	 * = pstmt.executeQuery();
+	 * 
+	 * if (rs.next()) { c_code = rs.getString(1); System.out.println("c_code: " +
+	 * c_code); }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); return c_code; } finally {
+	 * disConnect(); } return c_code; }
+	 * 
+	 * // city테이블에서 c_name 받아오기 public String getCityName(cityDTO city) { String
+	 * c_name = "";
+	 * 
+	 * String sql = "select c_name from city where c_code = ?"; try { pstmt =
+	 * con.prepareStatement(sql); pstmt.setString(1, city.getC_code()); ResultSet rs
+	 * = pstmt.executeQuery();
+	 * 
+	 * if (rs.next()) { c_name = rs.getString(1); System.out.println("c_code: " +
+	 * c_name); }
+	 * 
+	 * } catch (Exception e) { e.printStackTrace(); return c_name; } finally {
+	 * disConnect(); } return c_name; }
+	 */
 
 }

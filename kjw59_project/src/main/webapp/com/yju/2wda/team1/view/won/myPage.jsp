@@ -17,13 +17,16 @@
 	align-items: center;
 }
 </style>
-<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="<%=cssDir%>/wideform.css">
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
 	
 	<div class="bottom">
 		<p class="menuTitle">마이페이지</p>
+	</div>
+	<div class="writeTotalForm">
+		
 	</div>
 	<%@ include file="../module/footer.jsp"%>
 </body>

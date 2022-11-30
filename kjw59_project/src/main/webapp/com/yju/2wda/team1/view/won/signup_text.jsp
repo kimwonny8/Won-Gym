@@ -27,28 +27,28 @@
 	</div>
 	
 <%
-	String m_grade=request.getParameter("m_grade");
+	m_grade=request.getParameter("m_grade");
 %>
 
 	<form method="post" action="./signupMember.won" class="form formLong">
 		<div class="formInner">
 			<div class="formInputLineH">
 				<p>* 아이디</p>
-				<input type="text" name="m_id" class="inputBox">
+				<input type="text" name="m_id" required class="inputBox">
 			</div>
 <!-- 			<p class="inputCheck">아이디를 입력해주세요.</p> -->
 			<div class="formInputLineH">
 				<p>* 비밀번호</p>
-				<input type="password" name="m_pw" class="inputBox">
+				<input type="password" required name="m_pw" class="inputBox">
 			</div>
 			<div class="formInputLineH">
 				<p>* 비밀번호 확인</p>
-				<input type="password"  name="m_pw2" class="inputBox">
+				<input type="password" required name="m_pw2" class="inputBox">
 			</div>
 <!-- 			<p class="inputCheck">비밀번호가 일치하지 않습니다.</p> -->
 			<div class="formInputLineH">
 				<p>* 이름</p>
-				<input type="text" name="m_name" class="inputBox">
+				<input type="text" required name="m_name" class="inputBox">
 			</div>
 			<div class="formInputLineH">
 				<p>생년월일</p>
@@ -68,16 +68,16 @@
 				<input type="text" name="m_phone" class="inputBox" placeholder="ex) 01012345678">
 			</div>
 			<div class="formInputLineH">
-				<p>* 구(대구 기준) </p>
-				<select name="c_name" class="inputBox">
-					<option value="대구수성구">수성구</option>
-					<option value="대구중구">중구</option>
-					<option value="대구동구">동구</option>
-					<option value="대구서구">서구</option>
-					<option value="대구남구">남구</option>
-					<option value="대구북구">북구</option>
-					<option value="대구달서구">달서구</option>
-					<option value="대구달성군">달성군</option>
+				<p>* 구(대구만 시범 운영중) </p>
+				<select name="c_code" class="inputBox">
+					<option value="수성구">수성구</option>
+					<option value="중구">중구</option>
+					<option value="동구">동구</option>
+					<option value="서구">서구</option>
+					<option value="남구">남구</option>
+					<option value="북구">북구</option>
+					<option value="달서구">달서구</option>
+					<option value="달성군">달성군</option>
 				</select>
 		
 			</div>
