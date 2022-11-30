@@ -49,7 +49,7 @@
                         </div>
                     </div>
                     <div class="myPageClassStatusRight">
-                        <div class="mypageColumn"><p>현재 남은 수업은 <b class="bigText">30회</b>입니다.</p></div>
+                        <div class="mypageColumn"><p>현재 남은 수업 <b class="bigText">30회</b></p></div>
                         <div class="mypageColumn">
                             <p>완료된 수업 0</p>
                         </div>
