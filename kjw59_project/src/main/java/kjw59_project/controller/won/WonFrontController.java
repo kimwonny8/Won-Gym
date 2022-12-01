@@ -25,7 +25,12 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		
 		System.out.println("command = "+command);
 		
+		
 		switch(command) {
+		case "/chkId.won":
+			action = new chkIdAction();
+			break;
+		
 		case "/signupMember.won":
 			action = new signupAction();
 			break;
@@ -36,6 +41,18 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			
 		case "/logoutMember.won":
 			action = new logoutAction();
+			break;
+			
+		case "/updateMemberChkPw.won":
+			action = new updateMemberChkPwAction();
+			break;
+			
+		case "/deleteMemberChkPw.won":
+			action = new deleteMemberChkPwAction();
+			break;
+		
+		case "/updateMember.won":
+			action = new updateMemberAction();
 			break;
 		
 		case "/uploadPT.won":

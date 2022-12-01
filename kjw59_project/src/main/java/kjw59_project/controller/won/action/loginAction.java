@@ -47,15 +47,11 @@ public class loginAction implements Action {
 			session.setAttribute("loginState","login");
 			
 			forward.setPath("/index.jsp");
+			return forward;
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "아이디 또는 비밀번호 확인 후 다시 입력하세요");
-			forward.setPath("/com/yju/2wda/team1/view/won/login.jsp");
+			return null;
 		}
-		
-		
-		return forward;
-		
 		
 	}
 }

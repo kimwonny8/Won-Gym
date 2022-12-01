@@ -114,6 +114,28 @@ public class memberDAO {
 		}
 		return success;
 	}
+	
+	// 회원탈퇴 메서드
+		public boolean deleteMember(memberDTO member) {
+			boolean success = false;
+
+			String sql = "delete from member where m_id=?";
+
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member.getM_id());
+
+				pstmt.executeUpdate();
+				success = true;
+			} catch (SQLException e) {
+				e.printStackTrace();
+				return success;
+			} finally {
+				disConnect();
+
+			}
+			return success;
+		}
 
 	// 로그인 메서드
 	public String loginPwMember(memberDTO member) {
@@ -209,6 +231,84 @@ public class memberDAO {
 		}
 
 		return m_grade;
+	}
+	
+	// 아이디 중복 확인 메서드
+		public boolean chkId(memberDTO member) {
+			boolean result = false;
+			String sql = "select count(*) from member where m_id = ?";
+
+			try {
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, member.getM_id());
+				ResultSet rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					String tmp = rs.getString(1);
+					if(!(tmp.equals("1"))) result = true;
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+				return result;
+			} finally {
+				disConnect();
+			}
+
+			return result;
+		}
+	
+	
+	// 비밀번호 확인 메서드
+	public String updateMemberChkPw(memberDTO member) {
+		String m_pw = "";
+		String sql = "select m_pw from member where m_id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getM_id());
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				m_pw = rs.getString(1);
+				System.out.println("m_pw: " + m_pw);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return m_pw;
+		} finally {
+			disConnect();
+		}
+
+		return m_pw;
+	}
+	
+	
+	// 회원정보 수정 메서드
+	public boolean updateBeer(memberDTO member) {
+		boolean success = false;
+		String sql = "UPDATE member SET m_pw=?, m_name=?, m_birth=?, m_gender=?, m_phone=?, m_grade=?, c_code=? WHERE m_id=?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getM_pw());
+			pstmt.setString(2, member.getM_name());
+			pstmt.setString(3, member.getM_birth());
+			pstmt.setString(4, member.getM_gender());
+			pstmt.setString(5, member.getM_phone());
+			pstmt.setString(6, member.getM_grade());
+			pstmt.setString(7, member.getC_code());
+			pstmt.setString(8, member.getM_id());
+			
+			int result = pstmt.executeUpdate();
+			if (result == 1) success = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+		}
+		
+		return success;
 	}
 
 	/*

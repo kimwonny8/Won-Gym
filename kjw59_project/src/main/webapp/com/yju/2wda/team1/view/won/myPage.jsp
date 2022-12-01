@@ -22,18 +22,27 @@
 <body>
 	<%@ include file="../module/header.jsp"%>
 	
+	<% 
+	if(session.getAttribute("loginState")== null || session.getAttribute("loginState").equals("logout")){
+	%>
+		<script>
+			alert("로그인 후 이용해 주세요!");
+			window.location.href = '/kjw59_project/index.jsp';
+		</script>
+	<% } else { 
+	m_name = (String)session.getAttribute("m_name"); %>
 	<div class="bottom">
 		<p class="menuTitle">마이페이지</p>
 	</div>
 	
-	<form class="myPageForm">
+	<div class="myPageForm">
         <div class="myPageTop">
             <div class="myPageLeft">
                 <div class="myPageImage"><input type="file"></div>
             </div>
         <!-- 마이페이지 수업 현황 부분 -->
         <div class="myPageRight">
-            <div class="mypageColumn"><p><b class="bigText">김정원</b>님</p></div>
+            <div class="mypageColumn"><p><b class="bigText"><%=m_name %></b>님</p></div>
             <div class="myPageClass">
                 <h3>👉수업현황</h3>
                 <div class="myPageClassStatus">
@@ -60,11 +69,12 @@
     </div>
     <!-- 마이페이지 버튼 -->
         <div class="myPageBottom">
-            <button class="mypageBtn">회원정보수정/탈퇴</button>
-            <button class="mypageBtn">게시글관리</button>
-            <button class="mypageBtn">스케줄관리</button>
+            <button onclick="location.href='<%=wonViewDir%>/mypageChkPw.jsp'" class="mypageBtn">회원정보수정/탈퇴</button>
+            <!-- <button class="mypageBtn">게시글관리</button> -->
+<!--             <button class="mypageBtn">스케줄관리</button> -->
         </div>
-    </form>
+    </div>
+    <% } %>
 	
 	<%@ include file="../module/footer.jsp"%>
 </body>

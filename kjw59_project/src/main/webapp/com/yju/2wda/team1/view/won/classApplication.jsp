@@ -21,6 +21,7 @@
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
+<% m_grade = (String)session.getAttribute("m_grade"); %>
 
 	<div class="bottom">
 		<p class="menuTitle">수업신청</p>
@@ -32,12 +33,11 @@
 
 		<!-- 글쓰기 -->
 		<%
-		if (m_grade.equals("트레이너")) {
+		if (session.getAttribute("m_grade")== null || m_grade.equals("일반")) {}
+		else {
 		%>
 		<button onclick="location.href='<%=wonViewDir%>/uploadPT.jsp'">글쓰기</button>
-		<%
-		}
-		%>
+		<%} %>
 </div>
 
 		<%@ include file="../module/footer.jsp"%>

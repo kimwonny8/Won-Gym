@@ -98,3 +98,6 @@
 	color: white;
 	border: none;
 }
+.mypageBtn:hover {
+	opacity: 0.7;
+}
