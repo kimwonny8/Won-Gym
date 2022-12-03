@@ -37,9 +37,14 @@
 	
 	<div class="myPageForm">
         <div class="myPageTop">
-            <div class="myPageLeft">
-                <div class="myPageImage"><input type="file"></div>
-            </div>
+            <form method="post" action="./updateMemberPhoto.won" enctype="multipart/form-data" class="myPageLeft">
+                <div class="myPageImage"></div>
+	            <input type="file" name="file">
+	            <div> 
+	            	<button>추가</button> 
+	            </div>
+            </form>
+            
         <!-- 마이페이지 수업 현황 부분 -->
         <div class="myPageRight">
             <div class="mypageColumn"><p><b class="bigText"><%=m_name %></b>님</p></div>

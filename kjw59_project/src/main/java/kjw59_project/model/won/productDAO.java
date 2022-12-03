@@ -62,6 +62,7 @@ public class productDAO {
 			}
 		}
 	}
+	
 
 	// pt 상품 게시글 업로드
 	public boolean insertProduct(ptDTO pt) {
@@ -89,4 +90,5 @@ public class productDAO {
 		
 		return success;
 	}
+	
 }

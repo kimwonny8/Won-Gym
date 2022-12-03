@@ -34,7 +34,7 @@
 	<form method="post" action="./uploadPT.won" enctype="multipart/form-data" class="writeTotalForm">
 		<div class="writeForm">
 			<div class="wirteFormLeft">
-				<input type="file" placeholder="업로드할 프로필 사진을 선택해주세요.">
+				<input type="file" name ="file" placeholder="업로드할 프로필 사진을 선택해주세요.">
 			</div>
 			<div class="wirteFormRight">
 				<p>제목</p>

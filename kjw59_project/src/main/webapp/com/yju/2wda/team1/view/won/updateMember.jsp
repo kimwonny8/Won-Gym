@@ -21,7 +21,7 @@
 	align-items: center;
 }
 </style>
-<link rel="stylesheet" href="../../css/style.css">
+<link rel="stylesheet" href="<%=cssDir%>/style.css">
 <script>
 function checkPw() {
 	var m_pw = $('#m_pw').val();

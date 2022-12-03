@@ -47,6 +47,10 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			action = new updateMemberChkPwAction();
 			break;
 			
+		case "/updateMemberPhoto.won":
+			action = new updateMemberPhotoAction();
+			break;
+			
 		case "/deleteMemberChkPw.won":
 			action = new deleteMemberChkPwAction();
 			break;
