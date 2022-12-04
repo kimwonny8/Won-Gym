@@ -26,10 +26,10 @@ public class ptDTO {
 		this.pt_like = pt_like;
 	}
 	
-	public int getpt_code() {
+	public int getPt_code() {
 		return pt_code;
 	}
-	public void setpt_code(int pt_code) {
+	public void setPt_code(int pt_code) {
 		this.pt_code = pt_code;
 	}
 	public String getT_id() {

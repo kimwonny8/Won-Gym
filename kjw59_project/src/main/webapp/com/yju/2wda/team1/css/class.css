@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+
+.classTotalForm {
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	width: 70%;
+	height: 100vh;
+}
+	
+.classMenu{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	width: 70%;
+	height: 15%;
+}
+
+.classContent{
+	overflow-y: scroll;
+	width: 70%;
+	height: 85%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	align-items: center;
+}
+.classContent::-webkit-scrollbar {
+    display: none; 
+ }
+
+.classContentOne{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 15vw;
+	width: 15vw;
+	margin-top: 1vw;
+	margin-bottom: 2vw;
+	border: none;
+	background-color: white;
+}
+.classContentOne:hover {
+	opacity: 0.7;
+}
+
+.classContentImg{
+	width: 10vw;
+	height: 10vw;
+	margin-bottom: 1vw;
+	border-radius: 50%;
+}

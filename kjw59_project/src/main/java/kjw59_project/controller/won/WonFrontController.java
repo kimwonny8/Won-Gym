@@ -72,6 +72,10 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			action = new uploadPTAction();
 			break;
 			
+		case "/selectPt.won":
+			action = new selectPtAction();
+			break;
+			
 		default:
 			action = new DefaultAction();
 			break;
