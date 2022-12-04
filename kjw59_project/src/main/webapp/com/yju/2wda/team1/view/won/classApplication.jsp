@@ -66,7 +66,7 @@
 			<!-- 글쓰기 -->
 			<div class="classMenuWrite">
 			<%	if (session.getAttribute("m_grade") == null || m_grade.equals("일반")) {
-			} else { %> <button onclick="location.href='<%=wonViewDir%>/uploadPT.jsp'">글쓰기</button> <%	}%>
+			} else { %> <button class="Btn" onclick="location.href='<%=wonViewDir%>/uploadClass.jsp'">글쓰기</button> <%	}%>
 			</div>
 		</div>
 

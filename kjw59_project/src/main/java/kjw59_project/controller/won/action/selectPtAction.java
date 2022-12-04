@@ -36,7 +36,7 @@ public class selectPtAction implements Action {
 	
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/readPT.jsp");
+		forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
 		
 		return forward;
 	}
