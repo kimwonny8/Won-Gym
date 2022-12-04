@@ -17,6 +17,7 @@ public class logoutAction implements Action {
 		session.setAttribute("m_grade", null);
 		session.setAttribute("m_id", null);
 		session.setAttribute("loginState","logout");
+		session.setAttribute("mi_thum_name", null);
 		
 		
 		ActionForward forward = new ActionForward();

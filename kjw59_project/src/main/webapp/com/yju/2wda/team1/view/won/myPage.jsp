@@ -23,14 +23,20 @@
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 <script type="text/javascript">
-$(document).ready(function(){
-	
-});  
+function chkFile(){
+	var file = $('#file').val();
+	console.log(file);
+	if(file == ""){
+		$('#inputCheck').text("파일을 선택해주세요!");
+	} else {
+		$('#inputCheck').text("제출버튼을 눌러 저장을 완료해주세요.");
+		$('#submitBtn').show();
+	}
+} 
 </script>
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
-	
 	<% 
 	if(session.getAttribute("loginState")== null || session.getAttribute("loginState").equals("logout")){
 	%>
@@ -38,8 +44,11 @@ $(document).ready(function(){
 			alert("로그인 후 이용해 주세요!");
 			window.location.href = '/kjw59_project/index.jsp';
 		</script>
-	<% } else { 
-	m_name = (String)session.getAttribute("m_name"); %>
+	<% } 
+	else { 
+		m_name = (String)session.getAttribute("m_name"); 
+		mi_thum_name = (String)session.getAttribute("mi_thum_name"); 
+	%>
 	<div class="bottom">
 		<p class="menuTitle">마이페이지</p>
 	</div>
@@ -47,10 +56,18 @@ $(document).ready(function(){
 	<div class="myPageForm">
         <div class="myPageTop">
             <form method="post" action="./updateMemberPhoto.won" enctype="multipart/form-data" class="myPageLeft">
-                <div class="myPageImage"></div>
-	            <input type="file" name="file">
-	            <div> 
-	            	<button>추가</button> 
+                <div class="myPageImage">
+               <% if(mi_thum_name == null) { %>
+                	<img class="myPageImageInner" src="<%=imgDir%>/user.png" width="150"/>
+               <% } else {  %>
+               		<img class="myPageImageInner" src="<%=memberThumbDir%>/<%=mi_thum_name%>" width="150"/>  
+               <% } %>
+                </div>
+                <div class="addMyPageImage">
+	            <input type="file" id="file" name="file"> 
+	            <p id="inputCheck" class="inputCheck"></p>
+	            <input type="button" value="저장" onclick="chkFile()">
+	            <button id="submitBtn" style="display:none;">제출</button> 
 	            </div>
             </form>
             

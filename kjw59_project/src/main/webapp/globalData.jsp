@@ -15,5 +15,6 @@
 	static final String moduleViewDir = viewDir + "/module";
 	
 	static final String imgDir = workDir +"/image";
+	static final String memberThumbDir = imgDir +"/memberImage/memberThumb";
 	static final String cssDir = workDir +"/css";
 %>

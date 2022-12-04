@@ -18,7 +18,7 @@ public class loginAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		memberDAO memberDAO = new memberDAO();
 		memberDTO member = new memberDTO();
-		cityDTO city = new cityDTO();
+		mImageDTO mImage = new mImageDTO();
 
 		String m_id = request.getParameter("m_id");
 		String m_pw = request.getParameter("m_pw");
@@ -40,11 +40,17 @@ public class loginAction implements Action {
 			if(m_grade.equals("trainer")) m_grade = "트레이너"; 
 			else if (m_grade.equals("client")) m_grade = "일반";
 			
+			// 썸네일 이름 가져와서 미리 저장해둠 -> 있으면 파일명, 없으면 null
+			memberDAO = new memberDAO();
+			mImage.setM_id(m_id);
+			String mi_thum_name= memberDAO.chkMemberPhoto(mImage);
+			
 			session.setAttribute("m_id",m_id);
 			session.setAttribute("m_name",m_name);
 			session.setAttribute("c_code",c_code);
 			session.setAttribute("m_grade",m_grade);
 			session.setAttribute("loginState","login");
+			session.setAttribute("mi_thum_name", mi_thum_name);
 			
 			forward.setPath("/index.jsp");
 			return forward;

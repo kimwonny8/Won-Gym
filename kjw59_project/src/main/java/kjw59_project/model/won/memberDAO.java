@@ -317,29 +317,29 @@ public class memberDAO {
 		return success;
 	}
 
-	// 회원이 사진 갖고있는 지 체크
-	public boolean chkMemberPhoto(mImageDTO mImage) {
-		boolean result = false;
-		String sql = "select count(*) from mImage where m_id = ?";
+	// 회원이 사진 갖고있는 지 체크, 파일 이름 가져오기
+	public String chkMemberPhoto(mImageDTO mImage) {
+		String mi_thum_name = "";
+		String sql = "select mi_thum_name from m_image where m_id = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, mImage.getM_id());
 			ResultSet rs = pstmt.executeQuery();
 
-			if (rs.next()) {
-				String tmp = rs.getString(1);
-				if (!(tmp.equals("1")))
-					result = true;
+			if (rs.next()) { // 사진 있으면 썸네일 이름 
+				mi_thum_name = rs.getString(1);
 			}
+			// 사진 없으면 null
+			else mi_thum_name = null;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return result;
+			return mi_thum_name;
 		} finally {
 			disConnect();
 		}
 
-		return result;
+		return mi_thum_name;
 	}
 
 	// pt 상품, 회원 사진 업로드
@@ -402,7 +402,7 @@ public class memberDAO {
 		int index = oPath.lastIndexOf(".");
 		String ext = oPath.substring(index + 1); // 파일 확장자
 
-		String tPath = thumbImageDir + "sm_" + originalFileName; // 썸네일저장 경로
+		String tPath = thumbImageDir + "t_" + originalFileName; // 썸네일저장 경로
 		File tFile = new File(tPath);
 
 		double ratio = zoom; // 이미지 축소 비율

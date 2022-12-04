@@ -49,7 +49,7 @@ public class updateMemberPhotoAction implements Action {
 		String i_file_type = "";
 		long i_length = 0;
 		
-		if(files.hasMoreElements()) {
+		if (files.hasMoreElements()) {
 			element = (String) files.nextElement();
 			i_file_name = multi.getFilesystemName(element);
 			i_original_name = multi.getOriginalFileName(element);
@@ -62,13 +62,14 @@ public class updateMemberPhotoAction implements Action {
 			mImage.setMi_size(i_length);
 			
 			// 회원이 사진있는지 체크
-			boolean chkPhoto = memberDAO.chkMemberPhoto(mImage);
-			System.out.println(chkPhoto);
-			if(chkPhoto==false) { // 사진 이미 있으면 update
+			String chkPhoto = memberDAO.chkMemberPhoto(mImage);
+
+			if(chkPhoto != null) { // 사진 이미 있으면 update
 				memberDAO = new memberDAO();
 				result = memberDAO.updateMemberPhoto(mImage);
 				memberDAO = new memberDAO();
 				memberDAO.createImageThumb(imgDirPath, thumbImageDir, i_file_name, 5);
+			
 			}
 			else { // 사진 없으면 insert
 				memberDAO = new memberDAO();
@@ -77,14 +78,17 @@ public class updateMemberPhotoAction implements Action {
 				memberDAO.createImageThumb(imgDirPath, thumbImageDir, i_file_name, 5);
 			}
 			
-		}
-	
+			// 썸네일 추가 후 이름 알아와서 세션에 저장
+			memberDAO = new memberDAO();
+			String mi_thum_name= memberDAO.chkMemberPhoto(mImage);
+			session.setAttribute("mi_thum_name", mi_thum_name);
+		} 
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		
 		if(result == true) {
-			forward.setPath("/com/yju/2wda/team1/view/won/classApplication.jsp");
+			forward.setPath("/index.jsp");
 		}
 		else {
 			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
