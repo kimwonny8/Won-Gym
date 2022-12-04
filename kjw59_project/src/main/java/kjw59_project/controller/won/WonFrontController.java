@@ -27,6 +27,8 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		
 		
 		switch(command) {
+		
+		/* 로그인, 회원가입 부분 */
 		case "/chkId.won":
 			action = new chkIdAction();
 			break;
@@ -42,13 +44,15 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/logoutMember.won":
 			action = new logoutAction();
 			break;
-			
-		case "/updateMemberChkPw.won":
-			action = new updateMemberChkPwAction();
-			break;
-			
+		
+		/* 사진 업데이트 부분 */	
 		case "/updateMemberPhoto.won":
 			action = new updateMemberPhotoAction();
+			break;
+		
+		/* 회원정보 수정, 탈퇴 부분 */
+		case "/updateMemberChkPw.won":
+			action = new updateMemberChkPwAction();
 			break;
 			
 		case "/deleteMemberChkPw.won":
@@ -58,7 +62,12 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/updateMember.won":
 			action = new updateMemberAction();
 			break;
-		
+			
+		/* 상품 글 부분 */
+		case "/getClassList.won":
+			action = new getClassListAction();
+			break;
+			
 		case "/uploadPT.won":
 			action = new uploadPTAction();
 			break;

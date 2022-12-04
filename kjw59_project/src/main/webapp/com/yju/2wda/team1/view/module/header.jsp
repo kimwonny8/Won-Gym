@@ -62,8 +62,10 @@ a {
 	
 	<div class="middle">
 		<div class="middleMenu">
-			<a href="<%=wonViewDir%>/classApplication.jsp"
-				class="Btn middleMenuBtn">수업신청</a>
+			<%-- <a href="<%=wonViewDir%>/classApplication.jsp"
+				class="Btn middleMenuBtn">수업신청</a> --%>
+			<a href="<%=wonViewDir%>/getClassList.won"
+				class="Btn middleMenuBtn">수업신청</a> 
 			<p class="menuDiv">|</p>
 			<button onclick="alert('준비 중인 기능입니다.')" class="Btn middleMenuBtn">트레이너채널</button>
 			<p class="menuDiv">|</p>
