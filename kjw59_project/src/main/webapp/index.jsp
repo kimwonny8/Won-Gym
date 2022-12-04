@@ -94,12 +94,12 @@ a {
 	<div class="container">
 		<div class="slideContainer">
 			<ul class="slideWrap">
-				<li class="slide slide4"><img src="<%=imgDir%>/s4.jpg"></li>
-				<li class="slide slide1"><img src="<%=imgDir%>/s1.jpg"></li>
+				<li class="slide slide4"><img src="<%=imgDir%>/s1.jpg"></li>
+				<li class="slide slide1"><img src="<%=imgDir%>/s0.jpg"></li>
 				<li class="slide slide2"><img src="<%=imgDir%>/s2.jpg"></li>
 				<li class="slide slide3"><img src="<%=imgDir%>/s3.jpg"></li>
-				<li class="slide slide4"><img src="<%=imgDir%>/s4.jpg"></li>
-				<li class="slide slide1"><img src="<%=imgDir%>/s1.jpg"></li>
+				<li class="slide slide4"><img src="<%=imgDir%>/s1.jpg"></li>
+				<li class="slide slide1"><img src="<%=imgDir%>/s0.jpg"></li>
 			</ul>
 			<ul class="pageBtWrap">
 				<li><a href="#" class="pageBt addPageBt"></a></li>

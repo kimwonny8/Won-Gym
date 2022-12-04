@@ -39,7 +39,9 @@ a {
 	m_grade = (String)session.getAttribute("m_grade");
 	%>
 	<div class="top">
-		<button onclick="location.href='<%=rootDir%>/index.jsp'"></button>
+		<div class="topLogo">
+			<button onclick="location.href='<%=rootDir%>/index.jsp'"></button>
+		</div>
 		<div class="topMenu">
 			<button onclick="location.href='<%=wonViewDir%>/cart.jsp'" class="Btn topMenuBtn">장바구니</button>
 			<form method="post" action="./logoutMember.won">

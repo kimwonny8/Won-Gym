@@ -4,7 +4,7 @@
 	margin: 0 auto;
 }
 .top {
-	padding-top: 2vh;
+	margin: 1vw 0;
 	width: 90%;
 	height: 16vh;
 	display: flex;
@@ -12,15 +12,24 @@
 	justify-content: center;
 	flex-direction: column;
 }
+.topLogo {
+	width: 30%;
+	height: 80%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+}
 
-.top>button {
-	width: 100%;
+
+.topLogo >button {
+	width: 50%;
 	height: 100%;
 	background-color: white;
 	border: none;
 	background-image: url("../image/wonLogo.png");
 	background-position: center center;
-	background-size: contain;
+	background-size: cover;
 	background-repeat: no-repeat;
 }
 
@@ -35,9 +44,8 @@
 }
 
 .topMenu {
-	height: 3vh;
+	height: 20%;
 	width: 80%;
-	margin-bottom: 2vh;
 }
 
 .topMenuBtn {
@@ -47,6 +55,7 @@
 }
 
 .middle {
+	width: 70%;
 	height: 7vh;
 	border-top: 0.1rem solid rgb(236, 236, 236);
 	display: flex;

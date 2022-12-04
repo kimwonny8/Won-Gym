@@ -5,6 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>MyPage</title>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
 <style>
 .bottom {
 	width: 70%;
@@ -18,6 +22,11 @@
 }
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
+<script type="text/javascript">
+$(document).ready(function(){
+	
+});  
+</script>
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
