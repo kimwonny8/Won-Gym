@@ -49,7 +49,7 @@ a {
 			<button onclick="location.href='<%=rootDir%>/index.jsp'"></button>
 		</div>
 		<div class="topMenu">
-			<button onclick="location.href='<%=wonViewDir%>/cart.jsp'" class="Btn topMenuBtn">장바구니</button>
+			<button onclick="location.href='./getCartList.won'" class="Btn topMenuBtn">장바구니</button>
 			<form method="post" action="./logoutMember.won">
 				
 				<button class="Btn topMenuBtn">로그아웃</button>

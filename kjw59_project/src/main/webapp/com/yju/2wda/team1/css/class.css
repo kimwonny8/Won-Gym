@@ -5,7 +5,6 @@
 	margin-top: 10vh;
 	margin-bottom: 10vh;
 	width: 70%;
-	height: 100vh;
 }
 	
 .classMenu{
@@ -14,10 +13,11 @@
 	justify-content: space-around;
 	width: 70%;
 	height: 15%;
+	margin-bottom: 5vw;
 }
 
 .classContent{
-	overflow-y: scroll;
+	/* overflow-y: scroll; */
 	width: 70%;
 	height: 85%;
 	display: flex;
@@ -25,10 +25,10 @@
 	justify-content: space-around;
 	align-items: center;
 }
-.classContent::-webkit-scrollbar {
+/* .classContent::-webkit-scrollbar {
     display: none; 
  }
-
+ */
 .classContentOne{
 	display: flex;
 	flex-direction: column;

@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+
+.readTotalForm {
+	margin-top: 10vh;
+	margin-bottom: 10vh;
+	width: 70%;
+	height: 30vw;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.readFormLeft{
+	height: 70%;
+	width: 40%;
+	display: flex;
+	justify-content : space-around;
+	align-items: center;
+}
+
+.classContentImg{
+	width: 15vw;
+	height: 15vw;
+	margin-bottom: 1vw;
+	border-radius: 50%;
+}
+.readFormRight {
+	height: 70%;
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	justify-content : space-around;
+	align-items: center;
+}
+.readFormBottom{
+	border-top : 1px solid gray;
+	width: 80%;
+	height: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content : center;
+	align-items: center;
+}

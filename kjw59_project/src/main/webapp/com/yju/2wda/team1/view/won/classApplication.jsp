@@ -71,25 +71,23 @@
 		</div>
 
 		<!-- 상품 리스트 -->
-		<form method="post" action="./selectPt.won" class="classContent">
+		<div class="classContent">
 			<% if(classList.size()==0){ %> 
 				<p>존재하는 상품이 없습니다.</p>
 			<% } else { 
 			for (int i = 0; i < classList.size(); i++) {
 				allVO = classList.get(i);
 				String thumbsnail = allVO.getMi_thum_name();
-				int pt_code = allVO.getPt_code();
 			%>
-			<input type="hidden" name="pt_code" value="<%=pt_code%>">
-			<button class="classContentOne">
+			<a href="./selectPt.won?pt_code=<%=allVO.getPt_code() %>" class="classContentOne">
 				<div>
 				<img class="classContentImg" src="<%=memberThumbDir%>/<%=thumbsnail%>">
 				</div>
 				<p><%=allVO.getM_name()%></p>
 				<p>" <%=allVO.getPt_title()%> "</p>
-			</button>
 			<% } }%>
-			</form>
+			</a>
+		</div>
 	</div>
 
 	<%@ include file="../module/footer.jsp"%>

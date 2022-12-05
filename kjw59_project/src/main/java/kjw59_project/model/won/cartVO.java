@@ -1,7 +1,7 @@
 package kjw59_project.model.won;
 
-// 회원-상품 매핑테이블
-public class memberPtDTO {
+public class cartVO {
+	// memberPt 테이블 + member 테이블 + mImage 테이블
 	private int mp_code;
 	private String m_id; // 회원 아이디
 	private int pt_code;
@@ -14,12 +14,24 @@ public class memberPtDTO {
 	private String mp_weight;
 	private String mp_detail;
 	
-	public memberPtDTO() {
+	private String m_name;
+	private String m_birth;
+	private String m_gender;
+	private String m_phone;
+	private String c_code;
+	private int m_coin;
+	private String t_name;
+	
+	private String mi_thum_name;
+	
+	public cartVO() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
-	public memberPtDTO(int mp_code, String m_id, int pt_code, String t_id, String mp_state, String mp_date,
-			int mp_coin, int mp_cnt, String mp_tall, String mp_weight, String mp_detail) {
+	public cartVO(int mp_code, String m_id, int pt_code, String t_id, String mp_state, String mp_date, int mp_coin,
+			int mp_cnt, String mp_tall, String mp_weight, String mp_detail, String m_name, String m_birth,
+			String m_gender, String m_phone, String c_code, int m_coin, String t_name, String mi_thum_name) {
 		super();
 		this.mp_code = mp_code;
 		this.m_id = m_id;
@@ -32,6 +44,21 @@ public class memberPtDTO {
 		this.mp_tall = mp_tall;
 		this.mp_weight = mp_weight;
 		this.mp_detail = mp_detail;
+		this.m_name = m_name;
+		this.m_birth = m_birth;
+		this.m_gender = m_gender;
+		this.m_phone = m_phone;
+		this.c_code = c_code;
+		this.m_coin = m_coin;
+		this.mi_thum_name = mi_thum_name;
+	}
+
+	public String getT_name() {
+		return t_name;
+	}
+
+	public void setT_name(String t_name) {
+		this.t_name = t_name;
 	}
 
 	public int getMp_code() {
@@ -122,5 +149,62 @@ public class memberPtDTO {
 		this.mp_detail = mp_detail;
 	}
 
+	public String getM_name() {
+		return m_name;
+	}
+
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+
+	public String getM_birth() {
+		return m_birth;
+	}
+
+	public void setM_birth(String m_birth) {
+		this.m_birth = m_birth;
+	}
+
+	public String getM_gender() {
+		return m_gender;
+	}
+
+	public void setM_gender(String m_gender) {
+		this.m_gender = m_gender;
+	}
+
+	public String getM_phone() {
+		return m_phone;
+	}
+
+	public void setM_phone(String m_phone) {
+		this.m_phone = m_phone;
+	}
+
+	public String getC_code() {
+		return c_code;
+	}
+
+	public void setC_code(String c_code) {
+		this.c_code = c_code;
+	}
+
+	public int getM_coin() {
+		return m_coin;
+	}
+
+	public void setM_coin(int m_coin) {
+		this.m_coin = m_coin;
+	}
+
+	public String getMi_thum_name() {
+		return mi_thum_name;
+	}
+
+	public void setMi_thum_name(String mi_thum_name) {
+		this.mi_thum_name = mi_thum_name;
+	}
+	
+	
 	
 }

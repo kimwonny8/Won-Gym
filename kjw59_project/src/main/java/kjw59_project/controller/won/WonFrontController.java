@@ -75,6 +75,15 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/selectPt.won":
 			action = new selectPtAction();
 			break;
+		
+		/* 장바구니 */
+		case "/addToCart.won":
+			action = new addToCartAction();
+			break;		
+			
+		case "/getCartList.won":
+			action = new getCartListAction();
+			break;	
 			
 		default:
 			action = new DefaultAction();

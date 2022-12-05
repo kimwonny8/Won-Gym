@@ -30,9 +30,9 @@ public class productDAO {
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc_mariadb");
 			con = ds.getConnection();
 
-			System.out.println("DB연결 성공!!");
+			System.out.println("DB연결 성공");
 		} catch (Exception e) {
-			System.out.println("DB연결 실패!!");
+			System.out.println("DB연결 실패");
 			e.printStackTrace();
 		}
 	}
@@ -178,7 +178,7 @@ public class productDAO {
 			pstmt.setInt(1, pt.getPt_code());
 			ResultSet rs = pstmt.executeQuery();
 
-			while(rs.next()) {
+			while (rs.next()) {
 				allClassVO allClass = new allClassVO();
 				allClass.setPt_title(rs.getString("pt_title"));
 				allClass.setPt_one_c(rs.getInt("pt_one_c"));
@@ -201,4 +201,96 @@ public class productDAO {
 		return classList;
 	}
 
+	// 트레이너 아이디, 가격 가져오기
+	public void getTidPrice(ptDTO pt) {
+		ArrayList<ptDTO> list = new ArrayList<ptDTO>();
+		String sql = "select t_id, pt_one_c, pt_con_c from pt where pt_code = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pt.getPt_code());
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				pt.setT_id(rs.getString("t_id"));
+				pt.setPt_con_c(rs.getInt("pt_con_c"));
+				pt.setPt_one_c(rs.getInt("pt_one_c"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+	}
+
+	// 장바구니에 담는 메서드
+	public boolean insertCart(memberPtDTO memberPt) {
+		boolean success = false;
+
+		String sql = "insert into member_pt (m_id, pt_code, t_id, mp_state, mp_coin, mp_cnt) "
+				+ "values (?, ?, ?, ?, ?, ?)";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberPt.getM_id());
+			pstmt.setInt(2, memberPt.getPt_code());
+			pstmt.setString(3, memberPt.getT_id());
+			pstmt.setString(4, memberPt.getMp_state());
+			pstmt.setInt(5, memberPt.getMp_coin());
+			pstmt.setInt(6, memberPt.getMp_cnt());
+
+			pstmt.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+
+		}
+		return success;
+	}
+
+	// 장바구니 리스트
+	public ArrayList<cartVO> getCartList(memberPtDTO memberPt, memberDTO member, mImageDTO mImage) {
+		ArrayList<cartVO> classList = new ArrayList<>();
+
+		String sql = "select p.mp_code, p.pt_code, p.t_id, p.mp_coin, p.mp_cnt, m.c_code, "
+				+ "IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name "
+				+ "from member_pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.m_id = m.m_id) "
+				+ "where p.m_id = ? and p.mp_state='CR' order by p.mp_code";
+	
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberPt.getM_id());
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {	
+				cartVO cart = new cartVO();
+				cart.setMp_code(rs.getInt("mp_code"));
+				cart.setPt_code(rs.getInt("pt_code"));
+				String t_id = rs.getString("t_id");
+				cart.setT_id(t_id);
+				cart.setMp_coin(rs.getInt("mp_coin"));
+				cart.setMp_cnt(rs.getInt("mp_cnt"));
+				cart.setC_code(rs.getString("c_code"));
+				cart.setMi_thum_name(rs.getString("mi_thum_name"));
+				
+				// 트레이너 아이디로 이름 가져오기
+				member.setM_id(t_id);
+				memberDAO memberDAO = new memberDAO();
+				String t_name = memberDAO.loginNameMember(member);
+				cart.setT_name(t_name);
+				
+				classList.add(cart);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return classList;
+	}
 }

@@ -50,10 +50,10 @@
 					<p>동네</p> <input type="text" name="c_code" value=<%=c_code%> disabled class="inputBox">
 				</div>
 				<div class="wirteFormRightOne">
-					<p>상담 가격</p> <input type="number" min="0" name="pt_one_c" required class="inputBox">
+					<p>상담 가격</p> <input type="number" min="0" name="pt_con_c" required class="inputBox">
 				</div>
 				<div class="wirteFormRightOne">
-					<p>회당 가격</p> <input type="number" min="0" name="pt_con_c" required class="inputBox">
+					<p>회당 가격</p> <input type="number" min="0" name="pt_one_c" required class="inputBox">
 				</div>
 			</div>
 		</div>

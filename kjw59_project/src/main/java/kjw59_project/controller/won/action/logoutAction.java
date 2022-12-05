@@ -13,12 +13,12 @@ public class logoutAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		HttpSession session = request.getSession();
-		session.setAttribute("m_name",null);
-		session.setAttribute("m_grade", null);
-		session.setAttribute("m_id", null);
-		session.setAttribute("loginState","logout");
-		session.setAttribute("mi_thum_name", null);
-		
+//		session.setAttribute("m_name",null);
+//		session.setAttribute("m_grade", null);
+//		session.setAttribute("m_id", null);
+//		session.setAttribute("loginState","logout");
+//		session.setAttribute("mi_thum_name", null);
+		session.invalidate();
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
