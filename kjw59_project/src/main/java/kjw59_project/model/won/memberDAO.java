@@ -138,7 +138,6 @@ public class memberDAO {
 			return success;
 		} finally {
 			disConnect();
-
 		}
 		return success;
 	}

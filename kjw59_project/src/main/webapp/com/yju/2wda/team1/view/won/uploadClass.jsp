@@ -9,7 +9,7 @@
 .bottom {
 	width: 70%;
 	height: 20vh;
-	background-image: url("../../image/class.jpg");
+	background-image: url("<%=imgDir%>/class.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 50vh;
 	opacity: 0.8;

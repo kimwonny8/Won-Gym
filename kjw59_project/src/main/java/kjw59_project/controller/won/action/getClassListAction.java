@@ -28,13 +28,13 @@ public class getClassListAction implements Action {
 		String c_code = request.getParameter("c_code");
 		if(c_code == null || c_code.equals("전체")) { 
 			classList = productDAO.getClassList(pt, member, mImage);
-			request.setAttribute("classList", classList);	
+			session.setAttribute("classList", classList);	
 		}
 		// 동네 선택 했을 때
 		else {
 			member.setC_code(c_code);
 			classList = productDAO.getClassSearchList(pt, member, mImage);
-			request.setAttribute("classList", classList);
+			session.setAttribute("classList", classList);
 		}
 		
 		session.setAttribute("c_code", c_code);

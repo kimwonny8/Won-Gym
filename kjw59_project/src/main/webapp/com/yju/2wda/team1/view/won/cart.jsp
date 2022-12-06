@@ -7,89 +7,133 @@
 <head>
 <meta charset="UTF-8">
 <title>cart - Buy Now!</title>
+<script src="http://code.jquery.com/jquery-3.5.1.js"
+	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" href="<%=cssDir%>/cart.css">
 <style>
 .bottom {
 	width: 70%;
 	height: 20vh;
-	background-image: url("../../image/cart.jpg");
+	background-image: url("<%=imgDir%>/cart.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 30vh;
 	opacity: 0.8;
 	display: flex;
 	align-items: center;
 }
-
-.cartForm {
-	text-align: center;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-}
-
-.tableForm {
-	width: 50vw;
-	border-collapse: collapse;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-}
-
-input[type="checkbox"] {
-	display: none;
-}
-
-input[type="checkbox"]+label {
-	display: inline-block;
-	width: 1.2vw;
-	height: 1.2vw;
-	border: 0.1vw solid #707070;
-	position: relative;
-}
-
-input[id="check1"]:checked+label::after {
-	content: '✔️';
-	font-size: 0.8vw;
-	width: 1.2vw;
-	height: 1.2vw;
-	text-align: center;
-	position: absolute;
-	left: 0;
-	top: 0;
-}
-
-th {
-	background-color: gray;
-	color: white;
-	padding: 1vw 0.5vw;
-	font-size: 0.9vw;
-}
-
-td {
-	padding: 1vw 0.5vw;
-	font-size: 0.8vw;
-	border-bottom: 0.05vw solid #DCDCDC;
-}
-
-.view, .delete {
-	border: 0.1vw solid gray;
-	padding: 0.2vw 0.5vw;
-	font-size: 0.7vw;
-}
-
-.view {
-	background-color: gray;
-	color: white;
-}
-
-.delete {
-	background-color: white;
-}
 </style>
-<link rel="stylesheet" href="<%=cssDir%>/class.css">
+<script type="text/javascript">
+$(document).ready(function() {
+	var rowData = [];
+	var chkMpCode = []; // 상품코드 담고 있는 배열
+	var chkMpCoin = [0]; // 상품가격 담고 있는 배열
+	
+	// 전체 선택
+	$("#allChk").click(function(){ 
+		if($("#allChk").prop("checked")) {
+		 	$("input[name='check']").prop("checked",true);
+
+			// 전체 선택 -> 수정해야함..
+			if($(this).is(":checked")) {
+				$('input[name=check]:checked').each(function(i) {
+					const tr = $('input[name=check]:checked').parent().parent().eq(i);
+					const td = tr.children();
+					rowData.push(tr.text());
+					
+					const coin = td.eq(3).text(); // 금액 가져오기
+					chkMpCoin.push(coin);
+					
+					const tmp = chkMpCoin.map((i) => Number(i)); // 숫자형 배열로 변환
+					const sumChkMpCoin = tmp.reduce(function add(sum, currValue){
+						return sum+currValue; // 코인 합계
+					})
+					chkMpCode.push($(this).val());
+					$('#chkCnt').text(chkMpCode.length);
+					$('#chkCoin').text(sumChkMpCoin);
+					$('#totalCoin').text(sumChkMpCoin);
+				});
+			}
+	
+	  	}else {
+		 	$("input[name='check']").prop("checked",false);
+		 	rowData = [];
+		 	chkMpCode = [];
+		 	chkMpCoin = [0];
+		 	$('#chkCnt').text(chkMpCode.length);
+		 	$('#chkCoin').text(0);
+			$('#totalCoin').text(0);
+	  	}
+	});
+	 
+	$("input[name=check]").change(function() {		
+		rowData = [];
+		chkMpCode = []; // 상품코드 담고 있는 배열
+		chkMpCoin = [0]; // 상품가격 담고 있는 배열
+		
+		if($(this).is(":checked")) {
+			$('input[name=check]:checked').each(function(i) {
+				const tr = $('input[name=check]:checked').parent().parent().eq(i);
+				const td = tr.children();
+				rowData.push(tr.text());
+				
+				const coin = td.eq(3).text(); // 금액 가져오기
+				chkMpCoin.push(coin);
+				const tmp = chkMpCoin.map((i) => Number(i)); // 숫자형 배열로 변환
+				const sumChkMpCoin = tmp.reduce(function add(sum, currValue){
+					return sum+currValue; // 코인 합계
+				})
+				
+				chkMpCode.push($(this).val());
+				$('#chkCnt').text(chkMpCode.length);
+				$('#chkCoin').text(sumChkMpCoin);
+				$('#totalCoin').text(sumChkMpCoin);
+			});
+		}
+		else {
+			const tmp = chkMpCoin.map((i) => Number(i)); // 숫자형 배열로 변환
+			const sumChkMpCoin = tmp.reduce(function add(sum, currValue){
+				return sum+currValue; // 코인 합계
+			})
+			$('#chkCnt').text(chkMpCode.length);
+			$('#chkCoin').text(sumChkMpCoin);
+			$('#totalCoin').text(sumChkMpCoin);
+		}
+	});
+	
+ 	$("#orderBtn").click(function(){
+		const value = $('#chkCnt').text();
+		if(value == 0) {
+			alert("수업 선택 후 진행해 주세요.");
+			return;
+		}
+		else {
+			$.ajax({
+				type: "post",
+				traditional : true,
+				data: { "chkMpCode" : chkMpCode },
+				url: "./paymentProgress.won",
+				success:function(value) {
+					if(value=="" || value == null) {
+						alert("[오류] 잠시 후 다시 시도해주세요.");
+						history.go();
+					}
+					else {
+						location.href="/kjw59_project/com/yju/2wda/team1/view/won/paymentProgress.jsp";
+					}
+				}
+			});
+		}
+			
+	});  
+});
+</script>
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
 	<%
 	ArrayList<cartVO> cartList;
-	cartList = (ArrayList<cartVO>) request.getAttribute("cartList");
+	cartList = (ArrayList<cartVO>) session.getAttribute("cartList");
 	cartVO cart;
 	%>
 	<div class="bottom">
@@ -100,7 +144,7 @@ td {
 		<table class="tableForm">
 			<thead>
 				<tr>
-					<th>선택</th>
+					<th><input type="checkbox" class="check" id="allChk" name="allChk"></th>
 					<th>트레이너정보</th>
 					<th>신청분류</th>
 					<th>결제금액</th>
@@ -119,7 +163,6 @@ td {
 					String thumbsnail = cart.getMi_thum_name();
 					int mp_cnt = cart.getMp_cnt();
 					String select;
-
 					if (mp_cnt == 0)
 						select = "상담요청";
 					else
@@ -127,13 +170,15 @@ td {
 				%>
 
 				<tr>
-					<td><input type="checkbox" class="cntChkBtn" id="check1">
-						<label for="check1"></label></td>
+					<td><input type="checkbox" class="check"
+						value="<%=cart.getMp_code()%>" name="check"></td>
 					<td><img src="<%=memberThumbDir%>/<%=thumbsnail%>" width=100>
 						<br><%=cart.getT_name()%> 트레이너 <br>대구시 <%=cart.getC_code()%></td>
 					<td><%=select%></td>
 					<td><%=cart.getMp_coin()%></td>
-					<td><a href="#" class="view">수정</a> <a href="#" class="delete">삭제</a></td>
+					<td><a href="#" class="view">수정</a><a
+						href="./deleteCartList.won?mp_code=<%=cart.getMp_code()%>"
+						class="delete">삭제</a></td>
 				<tr>
 					<%
 					}
@@ -150,23 +195,23 @@ td {
 			<div class="orderListRight">
 				<div class="orderListH">
 					<p>주문상품 수</p>
-					<p></p>
+					<p id="chkCnt">0</p>
 				</div>
 				<div class="orderListH">
 					<p>주문 금액</p>
-					<p></p>
+					<p id="chkCoin">0</p>
 				</div>
 				<div class="orderListH">
 					<p>할인 금액</p>
-					<p></p>
+					<p>0</p>
 				</div>
-				<div class="orderListH">
+				<div class="orderListH lastH">
 					<p>최종 결제 금액</p>
-					<p></p>
+					<p id="totalCoin">0</p>
 				</div>
 			</div>
 		</div>
-		<button>주문하기</button>
+		<input type="button" class="Btn inputBtn" value="주문하기" id="orderBtn">
 	</div>
 	<%@ include file="../module/footer.jsp"%>
 </body>

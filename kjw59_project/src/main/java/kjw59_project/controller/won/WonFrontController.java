@@ -83,6 +83,15 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			
 		case "/getCartList.won":
 			action = new getCartListAction();
+			break;
+			
+		case "/deleteCartList.won":
+			action = new deleteCartListAction();
+			break;
+			
+		/* 결제 */
+		case "/paymentProgress.won":
+			action = new paymentProgressAction();
 			break;	
 			
 		default:

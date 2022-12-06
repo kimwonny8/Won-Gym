@@ -13,7 +13,7 @@
 .bottom {
 	width: 70%;
 	height: 20vh;
-	background-image: url("../../image/mypage.jpg");
+	background-image: url("<%=imgDir%>/mypage.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 60vh;
 	opacity: 0.8;

@@ -81,14 +81,14 @@
 	align-items: center;
 	width: 25vw;
 	height: 40vh;
-	border: 0.01rem solid #72787F;
+	border: 0.05vw solid #DCDCDC;
 }
 
 .FormInputLine {	margin: 1vh;
 }
 
 .FormInputLine>p {
-	font-size: 0.8rem;
+	font-size: 0.8vw;
 }
 
 .inputBox {
@@ -108,6 +108,7 @@
 	background-color: #72787F;
 	color: white;
 	border: none;
+	font-size: 1vw;
 }
 .inputBtn > p {
 	font-size: 0.5rem;
@@ -132,7 +133,7 @@
 .formInputLineH>p {
 	margin: 0;
 	width: 30%;
-	font-size: 0.9rem;
+	font-size: 0.8vw;
 }
 
 .inputCheck {

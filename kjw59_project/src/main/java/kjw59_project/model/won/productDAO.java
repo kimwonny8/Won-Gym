@@ -259,13 +259,13 @@ public class productDAO {
 				+ "IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name "
 				+ "from member_pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.m_id = m.m_id) "
 				+ "where p.m_id = ? and p.mp_state='CR' order by p.mp_code";
-	
+
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberPt.getM_id());
 			ResultSet rs = pstmt.executeQuery();
 
-			while (rs.next()) {	
+			while (rs.next()) {
 				cartVO cart = new cartVO();
 				cart.setMp_code(rs.getInt("mp_code"));
 				cart.setPt_code(rs.getInt("pt_code"));
@@ -275,13 +275,13 @@ public class productDAO {
 				cart.setMp_cnt(rs.getInt("mp_cnt"));
 				cart.setC_code(rs.getString("c_code"));
 				cart.setMi_thum_name(rs.getString("mi_thum_name"));
-				
+
 				// 트레이너 아이디로 이름 가져오기
 				member.setM_id(t_id);
 				memberDAO memberDAO = new memberDAO();
 				String t_name = memberDAO.loginNameMember(member);
 				cart.setT_name(t_name);
-				
+
 				classList.add(cart);
 			}
 			rs.close();
@@ -293,4 +293,90 @@ public class productDAO {
 
 		return classList;
 	}
+
+	// 장바구니에서 삭제
+	public boolean deleteCart(memberPtDTO memberPt) {
+		boolean success = false;
+
+		String sql = "delete from member_pt where mp_code = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, memberPt.getMp_code());
+
+			pstmt.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+
+		}
+		return success;
+	}
+
+	// 장바구니에서 결제진행으로 CR -> PP
+	public boolean paymentProgressCart(memberPtDTO memberPt) {
+		boolean success = false;
+
+		String sql = "update member_pt set mp_state = 'PP' where mp_code = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, memberPt.getMp_code());
+
+			pstmt.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+
+		}
+		return success;
+	}
+
+	// 결제 진행중(PP) 리스트
+	public ArrayList<cartVO> getPPList(memberPtDTO memberPt, memberDTO member, mImageDTO mImage) {
+		ArrayList<cartVO> classList = new ArrayList<>();
+
+		String sql = "select p.mp_code, p.pt_code, p.t_id, p.mp_coin, p.mp_cnt, m.c_code, "
+				+ "IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name "
+				+ "from member_pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.m_id = m.m_id) "
+				+ "where p.m_id = ? and p.mp_state='PP' order by p.mp_code";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, memberPt.getM_id());
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				cartVO cart = new cartVO();
+				cart.setMp_code(rs.getInt("mp_code"));
+				cart.setPt_code(rs.getInt("pt_code"));
+				String t_id = rs.getString("t_id");
+				cart.setT_id(t_id);
+				cart.setMp_coin(rs.getInt("mp_coin"));
+				cart.setMp_cnt(rs.getInt("mp_cnt"));
+				cart.setC_code(rs.getString("c_code"));
+				cart.setMi_thum_name(rs.getString("mi_thum_name"));
+
+				// 트레이너 아이디로 이름 가져오기
+				member.setM_id(t_id);
+				memberDAO memberDAO = new memberDAO();
+				String t_name = memberDAO.loginNameMember(member);
+				cart.setT_name(t_name);
+
+				classList.add(cart);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return classList;
+	}
+
 }
