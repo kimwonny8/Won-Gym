@@ -23,10 +23,26 @@ public class AdminMemberAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		MemberDAO memberDAO = new MemberDAO(); // 상품 내용
 		MemberDTO member = new MemberDTO();
-		
+		String search = request.getParameter("search");
+	
 		ArrayList<MemberDTO> memberList;
-		memberList = memberDAO.selectAllMemberList(member);
-		session.setAttribute("memberList", memberList);
+		if(search == null || search.equals("전체")) {
+			String searchContent = request.getParameter("searchContent");
+			if(searchContent != null && searchContent != "") {
+				memberList = memberDAO.selectAllMemberList(searchContent);
+				session.setAttribute("memberList", memberList);
+			}
+			else {
+				memberList = memberDAO.selectAllMemberList();
+				session.setAttribute("memberList", memberList);
+			}
+			
+		}
+		else { 
+			String searchContent = request.getParameter("searchContent");
+			memberList = memberDAO.selectAllMemberList(search, searchContent);
+			session.setAttribute("memberList", memberList);
+		}
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);

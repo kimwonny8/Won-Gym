@@ -56,6 +56,14 @@
 					<option value="달서구">달서구</option>
 					<option value="달성군">달성군</option>
 				</select>
+<!-- 				<br>
+				<select name="search">
+					<option value="전체" selected>전체</option>
+					<option value="t_id">아이디</option>
+					<option value="pt_title">제목</option>
+					<option value="pt_content">내용</option>
+				</select>
+				<input type="text" name="searchContent"> -->
 				<button>검색</button>
 			</form>
 			<!-- 현재 __ 검색 중 -->

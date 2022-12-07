@@ -435,7 +435,7 @@ public class MemberDAO {
 	}
 
 	// 관리자 - 회원관리 시 모든 회원 조회
-	public ArrayList<MemberDTO> selectAllMemberList(MemberDTO member) {
+	public ArrayList<MemberDTO> selectAllMemberList() {
 		ArrayList<MemberDTO> memberList = new ArrayList<>();
 
 		String sql = "select * from member";
@@ -445,18 +445,89 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				MemberDTO mb = new MemberDTO();
-				
-				mb.setM_id(rs.getString("m_id"));
-				mb.setM_name(rs.getString("m_name"));
-				mb.setM_birth(rs.getString("m_birth"));
-				mb.setM_gender(rs.getString("m_gender"));
-				mb.setM_phone(rs.getString("m_phone"));
-				mb.setM_coin(rs.getInt("m_coin"));
-				mb.setC_code(rs.getString("c_code"));
-				mb.setM_grade(rs.getString("m_grade"));
-				memberList.add(mb);
-//				System.out.println(member);
+				MemberDTO member = new MemberDTO();
+
+				member.setM_id(rs.getString("m_id"));
+				member.setM_name(rs.getString("m_name"));
+				member.setM_birth(rs.getString("m_birth"));
+				member.setM_gender(rs.getString("m_gender"));
+				member.setM_phone(rs.getString("m_phone"));
+				member.setM_coin(rs.getInt("m_coin"));
+				member.setC_code(rs.getString("c_code"));
+				member.setM_grade(rs.getString("m_grade"));
+				memberList.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return memberList;
+	}
+
+	// 관리자 - 회원관리 시 조건 검색
+	public ArrayList<MemberDTO> selectAllMemberList(String search, String searchContent) {
+		ArrayList<MemberDTO> memberList = new ArrayList<>();
+
+		String sql = "select * from member where " + search + " like ? ";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchContent + "%");
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MemberDTO member = new MemberDTO();
+				member.setM_id(rs.getString("m_id"));
+				member.setM_name(rs.getString("m_name"));
+				member.setM_birth(rs.getString("m_birth"));
+				member.setM_gender(rs.getString("m_gender"));
+				member.setM_phone(rs.getString("m_phone"));
+				member.setM_coin(rs.getInt("m_coin"));
+				member.setC_code(rs.getString("c_code"));
+				member.setM_grade(rs.getString("m_grade"));
+				memberList.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return memberList;
+	}
+
+	// 관리자 - 회원관리 시 전체에서 검색
+	public ArrayList<MemberDTO> selectAllMemberList(String searchContent) {
+		ArrayList<MemberDTO> memberList = new ArrayList<>();
+
+		String sql = "select * from member where (m_id like ?) or (m_name like ?) or (m_birth like ?) or (m_gender like ?)"
+				+ " or (m_phone like ?) or (m_coin like ?) or (m_grade like ?) or (c_code like ?)";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchContent + "%");
+			pstmt.setString(2, "%" + searchContent + "%");
+			pstmt.setString(3, "%" + searchContent + "%");
+			pstmt.setString(4, "%" + searchContent + "%");
+			pstmt.setString(5, "%" + searchContent + "%");
+			pstmt.setString(6, "%" + searchContent + "%");
+			pstmt.setString(7, "%" + searchContent + "%");
+			pstmt.setString(8, "%" + searchContent + "%");
+			
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MemberDTO member = new MemberDTO();
+				member.setM_id(rs.getString("m_id"));
+				member.setM_name(rs.getString("m_name"));
+				member.setM_birth(rs.getString("m_birth"));
+				member.setM_gender(rs.getString("m_gender"));
+				member.setM_phone(rs.getString("m_phone"));
+				member.setM_coin(rs.getInt("m_coin"));
+				member.setC_code(rs.getString("c_code"));
+				member.setM_grade(rs.getString("m_grade"));
+				memberList.add(member);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -56,6 +56,20 @@ ArrayList<MemberDTO> memberList;
 </div>
 
 <div class="cartForm">
+	<form method="post" action="./adminMember.won">
+		<select name="search">
+			<option value="전체" selected>전체</option>
+			<option value="m_id">아이디</option>
+			<option value="m_name">이름</option>
+			<option value="m_birth">생년월일</option>
+			<option value="m_gender">성별</option>
+			<option value="m_phone">휴대폰번호</option>
+			<option value="c_code">동네</option>
+			<option value="m_grade">회원 등급</option>
+		</select>
+		<input type="text" name="searchContent">
+		<button>검색</button>
+	</form>
 		<%
 		if (memberList.size() == 0) {
 		%>
@@ -87,6 +101,7 @@ ArrayList<MemberDTO> memberList;
 				<%
 				for (int i = 0; i < memberList.size(); i++) {
 					member = memberList.get(i);
+					if(member.getM_id().equals("admin")) continue;
 				%>
 				<tr>
 					<td><%=member.getM_id() %></td>
@@ -97,7 +112,7 @@ ArrayList<MemberDTO> memberList;
 					<td><%=member.getM_coin() %></td>
 					<td><%=member.getC_code() %></td>
 					<td><%=member.getM_grade() %></td>
-					<td><button>추방</button></td>
+					<td><a href="./expulsionMember.won?m_id=<%=member.getM_id() %>">추방</a></td>
 				<tr>	
 			</tbody>
 				<% } }%>

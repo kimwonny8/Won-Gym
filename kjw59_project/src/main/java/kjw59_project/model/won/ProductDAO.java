@@ -565,4 +565,100 @@ public class ProductDAO {
 		return classList;
 	}
 
+	// 관리자 - 게시물관리 시 모든 게시물 조회
+	public ArrayList<PtDTO> selectAllPostList() {
+		ArrayList<PtDTO> postList = new ArrayList<>();
+
+		String sql = "select * from pt";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				PtDTO pt = new PtDTO();
+
+				pt.setPt_code(rs.getInt("pt_code"));
+				pt.setT_id(rs.getString("t_id"));
+				pt.setPt_title(rs.getString("pt_title"));
+				pt.setPt_con_c(rs.getInt("pt_con_c"));
+				pt.setPt_one_c(rs.getInt("pt_one_c"));
+				pt.setPt_content(rs.getString("pt_content"));
+				pt.setPt_like(rs.getInt("pt_like"));
+				postList.add(pt);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return postList;
+	}
+
+	// 관리자 - 게시물관리 시 전체에서 조건 검색
+	public ArrayList<PtDTO> selectAllPostList(String searchContent) {
+		ArrayList<PtDTO> postList = new ArrayList<>();
+
+		String sql = "select * from pt where (t_id like ?) or (pt_title like ?) or (pt_content like ?) ";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchContent + "%");
+			pstmt.setString(2, "%" + searchContent + "%");
+			pstmt.setString(3, "%" + searchContent + "%");
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				PtDTO pt = new PtDTO();
+
+				pt.setPt_code(rs.getInt("pt_code"));
+				pt.setT_id(rs.getString("t_id"));
+				pt.setPt_title(rs.getString("pt_title"));
+				pt.setPt_con_c(rs.getInt("pt_con_c"));
+				pt.setPt_one_c(rs.getInt("pt_one_c"));
+				pt.setPt_content(rs.getString("pt_content"));
+				pt.setPt_like(rs.getInt("pt_like"));
+				postList.add(pt);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return postList;
+	}
+
+	// 관리자 - 게시물관리 시 조건 검색
+	public ArrayList<PtDTO> selectAllPostList(String search, String searchContent) {
+		ArrayList<PtDTO> postList = new ArrayList<>();
+
+		String sql = "select * from pt where " + search + " like ? ";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, "%" + searchContent + "%");
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				PtDTO pt = new PtDTO();
+
+				pt.setPt_code(rs.getInt("pt_code"));
+				pt.setT_id(rs.getString("t_id"));
+				pt.setPt_title(rs.getString("pt_title"));
+				pt.setPt_con_c(rs.getInt("pt_con_c"));
+				pt.setPt_one_c(rs.getInt("pt_one_c"));
+				pt.setPt_content(rs.getString("pt_content"));
+				pt.setPt_like(rs.getInt("pt_like"));
+				postList.add(pt);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return postList;
+	}
 }

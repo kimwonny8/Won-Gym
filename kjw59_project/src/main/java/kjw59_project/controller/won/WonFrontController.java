@@ -127,7 +127,14 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/adminPost.won":
 			action = new AdminPostAction();
 			break;	
+		
+		case "/expulsionMember.won":
+			action = new ExpulsionMemberAction();
+			break;	
 			
+		case "/expulsionPost.won":
+			action = new ExpulsionPostAction();
+			break;		
 			
 		default:
 			action = new DefaultAction();
