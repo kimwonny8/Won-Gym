@@ -35,9 +35,9 @@ public class memberDAO {
 			DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc_mariadb");
 			con = ds.getConnection();
 
-			System.out.println("DB연결 성공!!");
+			System.out.println("DB연결 성공");
 		} catch (Exception e) {
-			System.out.println("DB연결 실패!!");
+			System.out.println("DB연결 실패");
 			e.printStackTrace();
 		}
 	}
@@ -154,7 +154,6 @@ public class memberDAO {
 
 			if (rs.next()) {
 				m_pw = rs.getString(1);
-				System.out.println("m_pw: " + m_pw);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,7 +177,6 @@ public class memberDAO {
 
 			if (rs.next()) {
 				m_name = rs.getString(1);
-				System.out.println("m_name: " + m_name);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -188,6 +186,29 @@ public class memberDAO {
 		}
 
 		return m_name;
+	}
+
+	// 코인 반환 메서드
+	public int getCoinMember(memberDTO member) {
+		int m_coin = 0;
+		String sql = "select m_coin from member where m_id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getM_id());
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				m_coin = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return m_coin;
+		} finally {
+			disConnect();
+		}
+
+		return m_coin;
 	}
 
 	// id로 동네찾기 반환 메서드
@@ -202,7 +223,6 @@ public class memberDAO {
 
 			if (rs.next()) {
 				c_code = rs.getString(1);
-				System.out.println("c_code: " + c_code);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -226,7 +246,6 @@ public class memberDAO {
 
 			if (rs.next()) {
 				m_grade = rs.getString(1);
-				System.out.println("m_grade: " + m_grade);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -275,7 +294,6 @@ public class memberDAO {
 
 			if (rs.next()) {
 				m_pw = rs.getString(1);
-				System.out.println("m_pw: " + m_pw);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -288,9 +306,9 @@ public class memberDAO {
 	}
 
 	// 회원정보 수정 메서드
-	public boolean updateBeer(memberDTO member) {
+	public boolean updateMember(memberDTO member) {
 		boolean success = false;
-		String sql = "UPDATE member SET m_pw=?, m_name=?, m_birth=?, m_gender=?, m_phone=?, m_grade=?, c_code=? WHERE m_id=?";
+		String sql = "update member set m_pw=?, m_name=?, m_birth=?, m_gender=?, m_phone=?, m_grade=?, c_code=? WHERE m_id=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -316,6 +334,29 @@ public class memberDAO {
 		return success;
 	}
 
+	// 코인 수정 메서드
+	public boolean updateCoin(memberDTO member) {
+		boolean success = false;
+		String sql = "update member set m_coin=? WHERE m_id=?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, member.getM_coin());
+			pstmt.setString(2, member.getM_id());
+
+			int result = pstmt.executeUpdate();
+			if (result == 1)
+				success = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+		}
+
+		return success;
+	}
+
 	// 회원이 사진 갖고있는 지 체크, 파일 이름 가져오기
 	public String chkMemberPhoto(mImageDTO mImage) {
 		String mi_thum_name = "";
@@ -326,11 +367,12 @@ public class memberDAO {
 			pstmt.setString(1, mImage.getM_id());
 			ResultSet rs = pstmt.executeQuery();
 
-			if (rs.next()) { // 사진 있으면 썸네일 이름 
+			if (rs.next()) { // 사진 있으면 썸네일 이름
 				mi_thum_name = rs.getString(1);
 			}
 			// 사진 없으면 null
-			else mi_thum_name = null;
+			else
+				mi_thum_name = null;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return mi_thum_name;

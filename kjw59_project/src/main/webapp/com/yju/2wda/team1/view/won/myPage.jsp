@@ -20,20 +20,9 @@
 	display: flex;
 	align-items: center;
 }
+
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
-<script type="text/javascript">
-function chkFile(){
-	var file = $('#file').val();
-	console.log(file);
-	if(file == ""){
-		$('#inputCheck').text("파일을 선택해주세요!");
-	} else {
-		$('#inputCheck').text("제출버튼을 눌러 저장을 완료해주세요.");
-		$('#submitBtn').show();
-	}
-} 
-</script>
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
@@ -46,6 +35,7 @@ function chkFile(){
 		</script>
 	<% } 
 	else { 
+		m_coin = (Integer)session.getAttribute("m_coin"); 
 		m_name = (String)session.getAttribute("m_name"); 
 		mi_thum_name = (String)session.getAttribute("mi_thum_name"); 
 	%>
@@ -54,6 +44,11 @@ function chkFile(){
 	</div>
 	
 	<div class="myPageForm">
+		<div class="coinMenu">
+			<p><%=m_coin%> 코인</p>
+			<a href="<%=wonViewDir%>/chargeCoin.jsp" class="btn">코인충전</a>
+		</div>
+		
         <div class="myPageTop">
             <form method="post" action="./updateMemberPhoto.won" enctype="multipart/form-data" class="myPageLeft">
                 <div class="myPageImage">
@@ -108,5 +103,18 @@ function chkFile(){
     <% } %>
 	
 	<%@ include file="../module/footer.jsp"%>
+	
+<script type="text/javascript">
+function chkFile(){
+	var file = $('#file').val();
+	console.log(file);
+	if(file == ""){
+		$('#inputCheck').text("파일을 선택해주세요!");
+	} else {
+		$('#inputCheck').text("제출버튼을 눌러 저장을 완료해주세요.");
+		$('#submitBtn').show();
+	}
+} 
+</script>
 </body>
 </html>

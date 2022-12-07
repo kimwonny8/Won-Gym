@@ -14,11 +14,10 @@ import kjw59_project.model.won.memberDTO;
 import kjw59_project.model.won.productDAO;
 import kjw59_project.model.won.ptDTO;
 
-public class selectPtAction implements Action {
+public class updatePtAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("utf-8");
@@ -32,14 +31,14 @@ public class selectPtAction implements Action {
 		session.setAttribute("pt_code", pt_code);
 		pt.setPt_code(pt_code);
 		
-		ArrayList<allClassVO> classList;
+		ArrayList<ptDTO> ptList;
 		
-		classList = productDAO.selectClassList(pt, member, mImage);
-		session.setAttribute("classList", classList);
-	
+		ptList = productDAO.updateGetPtList(pt);
+		session.setAttribute("ptList", ptList);
+		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
+		forward.setPath("/com/yju/2wda/team1/view/won/uploadClass.jsp");
 		
 		return forward;
 	}

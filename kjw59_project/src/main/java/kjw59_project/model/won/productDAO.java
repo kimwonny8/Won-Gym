@@ -87,7 +87,81 @@ public class productDAO {
 		} finally {
 			disConnect();
 		}
+		return success;
+	}
 
+	// 글 수정시 내용 불러오기
+	public ArrayList<ptDTO> updateGetPtList(ptDTO pt) {
+		ArrayList<ptDTO> classList = new ArrayList<ptDTO>();
+
+		String sql = "select pt_title, pt_one_c, pt_con_c, pt_content, pt_like from pt where pt_code = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pt.getPt_code());
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				pt.setPt_title(rs.getString("pt_title"));
+				pt.setPt_one_c(rs.getInt("pt_one_c"));
+				pt.setPt_con_c(rs.getInt("pt_con_c"));
+				pt.setPt_content(rs.getString("pt_content"));
+				pt.setPt_like(rs.getInt("pt_like"));
+
+				classList.add(pt);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return classList;
+	}
+
+	// pt 상품 게시글 수정
+	public boolean updateProduct(ptDTO pt) {
+		boolean success = false;
+
+		String sql = "update pt set pt_title=?, pt_one_c=?, pt_con_c=?, pt_content=? where t_id=?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pt.getPt_title());
+			pstmt.setInt(2, pt.getPt_one_c());
+			pstmt.setInt(3, pt.getPt_con_c());
+			pstmt.setString(4, pt.getPt_content());
+			pstmt.setString(5, pt.getT_id());
+
+			pstmt.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+		}
+		return success;
+	}
+
+	// pt 상품 게시글 삭제
+	public boolean deleteProduct(ptDTO pt) {
+		boolean success = false;
+
+		String sql = "delete from pt where pt_code = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pt.getPt_code());
+
+			pstmt.executeUpdate();
+			success = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+		}
 		return success;
 	}
 
@@ -169,7 +243,7 @@ public class productDAO {
 	public ArrayList<allClassVO> selectClassList(ptDTO pt, memberDTO member, mImageDTO mImage) {
 		ArrayList<allClassVO> classList = new ArrayList<allClassVO>();
 
-		String sql = "select  p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like, "
+		String sql = "select  p.t_id, p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like, "
 				+ "m.m_name, m.c_code, IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name "
 				+ "from pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.t_id = m.m_id) "
 				+ "where p.pt_code = ?";
@@ -180,6 +254,7 @@ public class productDAO {
 
 			while (rs.next()) {
 				allClassVO allClass = new allClassVO();
+				allClass.setT_id(rs.getString("t_id"));
 				allClass.setPt_title(rs.getString("pt_title"));
 				allClass.setPt_one_c(rs.getInt("pt_one_c"));
 				allClass.setPt_con_c(rs.getInt("pt_con_c"));

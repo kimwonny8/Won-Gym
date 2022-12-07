@@ -1,16 +1,37 @@
 @charset "UTF-8";
 
 .myPageForm {
-	padding: 1vw;
+	padding: 3vw 1vw;
 	display: flex;
 	margin-top: 5vw;
 	margin-bottom: 5vw;
-	width: 45vw;
-	height: 30vw;
+	width: 50%;
 	flex-direction:column;
 	justify-content: center;
 	align-items: center;
 	border: 0.05vw solid #DCDCDC;
+}
+.coinMenu {
+	width: 90%;
+	text-align: right;
+	font-size:0.9vw;
+}
+.coinMenu > p {
+	margin-bottom: 1vw;
+}
+.btn {
+	padding: 0.5vw;
+	width: 7vw;
+	height: 1.5vw;
+	margin: 2vw 0;
+	background-color: red;
+	border-radius : 5px;
+	color: white;
+	border: none;
+	font-size: 0.9vw;
+}
+.btn:hover {
+	opacity: 0.7;
 }
 .myPageTop {
     width: 95%;

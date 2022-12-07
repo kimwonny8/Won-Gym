@@ -1,45 +1,37 @@
 package kjw59_project.controller.won.action;
 
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kjw59_project.controller.won.Action;
 import kjw59_project.controller.won.ActionForward;
-import kjw59_project.model.won.allClassVO;
-import kjw59_project.model.won.mImageDTO;
-import kjw59_project.model.won.memberDTO;
 import kjw59_project.model.won.productDAO;
 import kjw59_project.model.won.ptDTO;
 
-public class selectPtAction implements Action {
+public class deletePtAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
 		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("utf-8");
-		productDAO productDAO = new productDAO(); // 상품 내용
-		memberDTO member = new memberDTO();
-		mImageDTO mImage = new mImageDTO();
+		productDAO productDAO = new productDAO();
 		ptDTO pt = new ptDTO();
 		
-		int pt_code=Integer.parseInt(request.getParameter("pt_code"));
-		
-		session.setAttribute("pt_code", pt_code);
+		int pt_code = Integer.parseInt(request.getParameter("pt_code"));
 		pt.setPt_code(pt_code);
 		
-		ArrayList<allClassVO> classList;
-		
-		classList = productDAO.selectClassList(pt, member, mImage);
-		session.setAttribute("classList", classList);
-	
+		boolean result = productDAO.deleteProduct(pt);
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
+		
+		if(result == true) {
+			forward.setPath("/getClassList.won");
+		}
+		else {
+			forward.setPath("/error.jsp");
+		}
 		
 		return forward;
 	}

@@ -25,8 +25,8 @@
 <body>
 	<%@ include file="../module/header.jsp"%>
 	<%
-	String c_code=(String) session.getAttribute("c_code");
-	if(c_code == null) c_code="전체";
+	String s_c_code=(String)session.getAttribute("select_c_code");
+	if(s_c_code == null) s_c_code="전체";
 	
 	m_grade = (String) session.getAttribute("m_grade");
 	allClassVO allVO;
@@ -60,7 +60,7 @@
 			</form>
 			<!-- 현재 __ 검색 중 -->
 			<div class="classMenuMsg">
-			<p>현재 대구시 <%=c_code %> 검색 중</p>
+			<p>현재 대구시 <%=s_c_code %> 검색 중</p>
 			<p style="width: 5vw; border-bottom: 1px solid gray; margin-top: 0.5vw"></p>
 			</div>
 			<!-- 글쓰기 -->

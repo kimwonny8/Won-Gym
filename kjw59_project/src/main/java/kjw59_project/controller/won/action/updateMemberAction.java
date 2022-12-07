@@ -38,7 +38,7 @@ public class updateMemberAction implements Action {
 		member.setC_code(request.getParameter("c_code"));
 
 		memberDAO = new memberDAO();
-		boolean result = memberDAO.updateBeer(member);
+		boolean result = memberDAO.updateMember(member);
 			
 		if(result == true) {
 			forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");

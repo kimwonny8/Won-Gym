@@ -24,6 +24,7 @@ a {
 	String loginState = null;
 	String m_grade = null;
 	String mi_thum_name = null;
+	int m_coin = 0;
 	
 	if(session.getAttribute("loginState")== null || session.getAttribute("loginState").equals("logout")){
 	%>

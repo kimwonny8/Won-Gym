@@ -37,7 +37,7 @@ public class getClassListAction implements Action {
 			session.setAttribute("classList", classList);
 		}
 		
-		session.setAttribute("c_code", c_code);
+		session.setAttribute("select_c_code", c_code);
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("/com/yju/2wda/team1/view/won/classApplication.jsp");

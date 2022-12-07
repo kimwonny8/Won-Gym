@@ -75,7 +75,25 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/selectPt.won":
 			action = new selectPtAction();
 			break;
+			
+		case "/updatePt.won":
+			action = new updatePtAction();
+			break;
+			
+		case "/updatePtContent.won":
+			action = new updatePtContentAction();
+			break;
 		
+		case "/deletePt.won":
+			action = new deletePtAction();
+			break;
+			
+		/* 코인 업데이트*/
+		case "/updateCoin.won":
+			action = new updateCoinAction();
+			break;	
+			
+			
 		/* 장바구니 */
 		case "/addToCart.won":
 			action = new addToCartAction();

@@ -68,14 +68,14 @@ public class updateMemberPhotoAction implements Action {
 				memberDAO = new memberDAO();
 				result = memberDAO.updateMemberPhoto(mImage);
 				memberDAO = new memberDAO();
-				memberDAO.createImageThumb(imgDirPath, thumbImageDir, i_file_name, 5);
+				memberDAO.createImageThumb(imgDirPath, thumbImageDir, i_file_name, 2);
 			
 			}
 			else { // 사진 없으면 insert
 				memberDAO = new memberDAO();
 				result = memberDAO.insertMemberPhoto(mImage);
 				memberDAO = new memberDAO();
-				memberDAO.createImageThumb(imgDirPath, thumbImageDir, i_file_name, 5);
+				memberDAO.createImageThumb(imgDirPath, thumbImageDir, i_file_name, 2);
 			}
 			
 			// 썸네일 추가 후 이름 알아와서 세션에 저장

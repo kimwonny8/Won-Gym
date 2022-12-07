@@ -45,10 +45,14 @@ public class loginAction implements Action {
 			mImage.setM_id(m_id);
 			String mi_thum_name= memberDAO.chkMemberPhoto(mImage);
 			
+			memberDAO = new memberDAO();
+			int m_coin = memberDAO.getCoinMember(member);
+			
 			session.setAttribute("m_id",m_id);
 			session.setAttribute("m_name",m_name);
 			session.setAttribute("c_code",c_code);
 			session.setAttribute("m_grade",m_grade);
+			session.setAttribute("m_coin", m_coin);
 			session.setAttribute("loginState","login");
 			session.setAttribute("mi_thum_name", mi_thum_name);
 			
