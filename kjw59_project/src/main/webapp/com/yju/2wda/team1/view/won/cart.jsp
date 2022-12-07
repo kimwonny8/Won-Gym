@@ -22,8 +22,121 @@
 	display: flex;
 	align-items: center;
 }
+
+.basicForm {
+	width: 60%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+	text-align: center;
+	margin-bottom: 2vw;
+}
+
+.basicFormInner {
+	margin-top: 1vw;
+	padding: 1.5vw 0;
+	border-top: 0.05vw solid #DCDCDC;
+	border-bottom: 0.05vw solid #DCDCDC;
+	width: 70%;
+	height: 20vw;
+	display: flex;
+	align-items: center;
+}
 </style>
-<script type="text/javascript">
+</head>
+<body>
+	<%@ include file="../module/header.jsp"%>
+	<%
+	ArrayList<CartVO> cartList;
+			cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
+			CartVO cart;
+	%>
+	<div class="bottom">
+		<p class="menuTitle">장바구니</p>
+	</div>
+
+	<div class="cartForm">
+		<%
+		if (cartList.size() == 0) {
+		%>
+		<div class="basicForm">
+
+			<div class="basicFormInner">
+				<p>장바구니에 담긴 상품이 없습니다.</p>
+			</div>
+		</div>
+
+		<%
+		} else {
+		%>
+		<table class="tableForm">
+			<thead>
+				<tr>
+					<th><input type="checkbox" class="check" id="allChk"
+						name="allChk"></th>
+					<th>트레이너정보</th>
+					<th>신청분류</th>
+					<th>결제금액</th>
+					<th>옵션</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%
+				for (int i = 0; i < cartList.size(); i++) {
+					cart = cartList.get(i);
+					String thumbsnail = cart.getMi_thum_name();
+					int mp_cnt = cart.getMp_cnt();
+					String select;
+					if (mp_cnt == 0)
+						select = "상담요청";
+					else
+						select = "수업 " + mp_cnt + "회";
+				%>
+
+				<tr>
+					<td><input type="checkbox" class="check"
+						value="<%=cart.getMp_code()%>" name="check"></td>
+					<td><img src="<%=memberThumbDir%>/<%=thumbsnail%>" width=100>
+						<br><%=cart.getT_name()%> 트레이너 <br>대구시 <%=cart.getC_code()%></td>
+					<td><%=select%></td>
+					<td><%=cart.getMp_coin()%></td>
+					<td><a href="./buyRightNow.won?mp_code=<%=cart.getMp_code()%>"
+						class="view">바로구매</a> <a
+						href="./deleteCartList.won?mp_code=<%=cart.getMp_code()%>"
+						class="delete">삭제</a></td>
+				<tr>
+			</tbody>
+		</table>
+
+		<div class="orderList">
+			<div class="orderListLeft">
+				<p>총 주문 금액</p>
+			</div>
+			<div class="orderListRight">
+				<div class="orderListH">
+					<p>주문상품 수</p>
+					<p id="chkCnt">0</p>
+				</div>
+				<div class="orderListH">
+					<p>주문 금액</p>
+					<p id="chkCoin">0</p>
+				</div>
+				<div class="orderListH">
+					<p>할인 금액</p>
+					<p>0</p>
+				</div>
+				<div class="orderListH lastH">
+					<p>최종 결제 금액</p>
+					<p id="totalCoin">0</p>
+				</div>
+			</div>
+		</div>
+		<input type="button" class="Btn inputBtn" value="주문하기" id="orderBtn">
+		<%
+		} 	}
+		%>
+	</div>
+	<%@ include file="../module/footer.jsp"%>
+	<script type="text/javascript">
 $(document).ready(function() {
 	var rowData = [];
 	var chkMpCode = []; // 상품코드 담고 있는 배열
@@ -128,91 +241,5 @@ $(document).ready(function() {
 	});  
 });
 </script>
-</head>
-<body>
-	<%@ include file="../module/header.jsp"%>
-	<%
-	ArrayList<cartVO> cartList;
-	cartList = (ArrayList<cartVO>) session.getAttribute("cartList");
-	cartVO cart;
-	%>
-	<div class="bottom">
-		<p class="menuTitle">장바구니</p>
-	</div>
-
-	<div class="cartForm">
-		<table class="tableForm">
-			<thead>
-				<tr>
-					<th><input type="checkbox" class="check" id="allChk" name="allChk"></th>
-					<th>트레이너정보</th>
-					<th>신청분류</th>
-					<th>결제금액</th>
-					<th>옵션</th>
-				</tr>
-			</thead>
-			<tbody>
-				<%
-				if (cartList.size() == 0) {
-				%>
-				<p>장바구니에 담긴 상품이 없습니다.</p>
-				<%
-				} else {
-				for (int i = 0; i < cartList.size(); i++) {
-					cart = cartList.get(i);
-					String thumbsnail = cart.getMi_thum_name();
-					int mp_cnt = cart.getMp_cnt();
-					String select;
-					if (mp_cnt == 0)
-						select = "상담요청";
-					else
-						select = "수업 " + mp_cnt + "회";
-				%>
-
-				<tr>
-					<td><input type="checkbox" class="check"
-						value="<%=cart.getMp_code()%>" name="check"></td>
-					<td><img src="<%=memberThumbDir%>/<%=thumbsnail%>" width=100>
-						<br><%=cart.getT_name()%> 트레이너 <br>대구시 <%=cart.getC_code()%></td>
-					<td><%=select%></td>
-					<td><%=cart.getMp_coin()%></td>
-					<td><a href="#" class="view">수정</a><a
-						href="./deleteCartList.won?mp_code=<%=cart.getMp_code()%>"
-						class="delete">삭제</a></td>
-				<tr>
-					<%
-					}
-					}
-					%>
-				
-			</tbody>
-		</table>
-
-		<div class="orderList">
-			<div class="orderListLeft">
-				<p>총 주문 금액</p>
-			</div>
-			<div class="orderListRight">
-				<div class="orderListH">
-					<p>주문상품 수</p>
-					<p id="chkCnt">0</p>
-				</div>
-				<div class="orderListH">
-					<p>주문 금액</p>
-					<p id="chkCoin">0</p>
-				</div>
-				<div class="orderListH">
-					<p>할인 금액</p>
-					<p>0</p>
-				</div>
-				<div class="orderListH lastH">
-					<p>최종 결제 금액</p>
-					<p id="totalCoin">0</p>
-				</div>
-			</div>
-		</div>
-		<input type="button" class="Btn inputBtn" value="주문하기" id="orderBtn">
-	</div>
-	<%@ include file="../module/footer.jsp"%>
 </body>
 </html>

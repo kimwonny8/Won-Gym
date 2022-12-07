@@ -30,87 +30,104 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		
 		/* 로그인, 회원가입 부분 */
 		case "/chkId.won":
-			action = new chkIdAction();
+			action = new ChkIdAction();
 			break;
 		
 		case "/signupMember.won":
-			action = new signupAction();
+			action = new SignupAction();
 			break;
 			
 		case "/loginMember.won":
-			action = new loginAction();
+			action = new LoginAction();
 			break;
 			
 		case "/logoutMember.won":
-			action = new logoutAction();
+			action = new LogoutAction();
 			break;
 		
 		/* 사진 업데이트 부분 */	
 		case "/updateMemberPhoto.won":
-			action = new updateMemberPhotoAction();
+			action = new UpdateMemberPhotoAction();
 			break;
 		
 		/* 회원정보 수정, 탈퇴 부분 */
 		case "/updateMemberChkPw.won":
-			action = new updateMemberChkPwAction();
+			action = new UpdateMemberChkPwAction();
 			break;
 			
 		case "/deleteMemberChkPw.won":
-			action = new deleteMemberChkPwAction();
+			action = new DeleteMemberChkPwAction();
 			break;
 		
 		case "/updateMember.won":
-			action = new updateMemberAction();
+			action = new UpdateMemberAction();
 			break;
 			
 		/* 상품 글 부분 */
 		case "/getClassList.won":
-			action = new getClassListAction();
+			action = new GetClassListAction();
 			break;
 			
 		case "/uploadPT.won":
-			action = new uploadPTAction();
+			action = new UploadPTAction();
 			break;
 			
 		case "/selectPt.won":
-			action = new selectPtAction();
+			action = new SelectPtAction();
 			break;
 			
 		case "/updatePt.won":
-			action = new updatePtAction();
+			action = new UpdatePtAction();
 			break;
 			
 		case "/updatePtContent.won":
-			action = new updatePtContentAction();
+			action = new UpdatePtContentAction();
 			break;
 		
 		case "/deletePt.won":
-			action = new deletePtAction();
+			action = new DeletePtAction();
 			break;
 			
 		/* 코인 업데이트*/
 		case "/updateCoin.won":
-			action = new updateCoinAction();
+			action = new UpdateCoinAction();
 			break;	
-			
 			
 		/* 장바구니 */
 		case "/addToCart.won":
-			action = new addToCartAction();
+			action = new AddToCartAction();
 			break;		
 			
 		case "/getCartList.won":
-			action = new getCartListAction();
+			action = new GetCartListAction();
 			break;
 			
 		case "/deleteCartList.won":
-			action = new deleteCartListAction();
+			action = new DeleteCartListAction();
+			break;
+		
+		case "/buyRightNow.won":
+			action = new BuyRightNowAction();
 			break;
 			
 		/* 결제 */
 		case "/paymentProgress.won":
-			action = new paymentProgressAction();
+			action = new PaymentProgressAction();
 			break;	
+			
+		case "/paymentComplete.won":
+			action = new PaymentCompleteAction();
+			break;	
+		
+		/* 관리자 */
+		case "/adminMember.won":
+			action = new AdminMemberAction();
+			break;	
+			
+		case "/adminPost.won":
+			action = new AdminPostAction();
+			break;	
+			
 			
 		default:
 			action = new DefaultAction();

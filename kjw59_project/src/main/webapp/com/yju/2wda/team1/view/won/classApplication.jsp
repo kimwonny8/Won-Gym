@@ -26,13 +26,13 @@
 	<%@ include file="../module/header.jsp"%>
 	<%
 	String s_c_code=(String)session.getAttribute("select_c_code");
-	if(s_c_code == null) s_c_code="전체";
-	
-	m_grade = (String) session.getAttribute("m_grade");
-	allClassVO allVO;
-	ArrayList<allClassVO> classList;
+		if(s_c_code == null) s_c_code="전체";
+		
+		m_grade = (String) session.getAttribute("m_grade");
+		AllClassVO allVO;
+		ArrayList<AllClassVO> classList;
 
-	classList = (ArrayList<allClassVO>) session.getAttribute("classList");
+		classList = (ArrayList<AllClassVO>) session.getAttribute("classList");
 	%>
 
 	<div class="bottom">

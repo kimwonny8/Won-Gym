@@ -56,12 +56,13 @@ img {
 <body>
 	<%@ include file="../module/header.jsp"%>
 	<%
-	ArrayList<cartVO> cartList;
-	cartList = (ArrayList<cartVO>) session.getAttribute("cartList");
-	cartVO cart;
-	
-	int totalCnt=cartList.size();
-	int totalCoin=0;
+	ArrayList<CartVO> cartList;
+			cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
+			CartVO cart;
+			
+			m_coin = (Integer)session.getAttribute("m_coin");
+			int totalCnt=cartList.size();
+			int totalCoin=0;
 	%>
 	<div class="bottom">
 		<p class="menuTitle">결제 진행</p>
@@ -84,8 +85,9 @@ img {
 				<p>결제할 상품이 없습니다.</p>
 				<%
 				} else {
-				for (int i = 0; i < cartList.size(); i++) {
+				for (int i = 0; i < cartList.size(); i++) {					
 					cart = cartList.get(i);
+					
 					totalCoin += cart.getMp_coin(); // 전체 금액
 					String thumbsnail = cart.getMi_thum_name();
 					int mp_cnt = cart.getMp_cnt();
@@ -114,47 +116,26 @@ img {
 			</tbody>
 		</table>
 
+		<form method="post" action="./paymentComplete.won" onsubmit="return chkCoin()">
 		<div class="paymentForm">
-			<p class="onTheFormP">신청자 정보</p>
+			<p class="onTheFormP">신청자 추가 정보</p>
 			<div class="paymentFormInner">
 				<div class="formInputLineH">
-					<p>* 이름</p>
-					<input type="text" id="m_name" name="m_name" oninput="checkName()"
-						class="inputBox">
-				</div>
-				<div class="formInputLineH">
-					<p>휴대폰번호</p>
-					<input type="text" name="m_phone" id="m_phone" class="inputBox"
-						placeholder="ex) 01012345678">
-				</div>
-				<div class="formInputLineH">
-					<p>생년월일</p>
-					<input type="text" id="m_birth" name="m_birth" class="inputBox"
-						placeholder="ex) 19970117">
-				</div>
-				<div class="formInputLineH">
-					<p>성별</p>
-					<select name="m_gender" class="inputBox">
-						<option value="남">남</option>
-						<option value="여">여</option>
-					</select>
-				</div>
-				<div class="formInputLineH">
 					<p>키</p>
-					<input type="text" name="mp_tall" id="mp_tall" class="inputBox">
+					<input type="number" min=0 max=200 required name="mp_tall" id="mp_tall" class="inputBox">
 				</div>
 				<div class="formInputLineH">
 					<p>체중</p>
-					<input type="text" name="mp_weight" id="mp_weight" class="inputBox">
+					<input type="number"  min=0 max=200 required name="mp_weight" id="mp_weight" class="inputBox">
 				</div>
 				<div class="formInputLineH">
 					<p>상세정보</p>
-					<input type="text" name="mp_detail" id="mp_detail" class="inputBox"
+					<input type="text" name="mp_detail" id="mp_detail" required class="inputBox"
 						placeholder="ex) 허리가 좋지 않습니다. ">
 				</div>
 			</div>
 		</div>
-		
+		<% int afterCoin = m_coin - totalCoin; %>
 		<div class="orderList">
 			<div class="orderListLeft">
 				<p>총 주문 금액</p>
@@ -170,17 +151,32 @@ img {
 				</div>
 				<div class="orderListH">
 					<p>현재 잔액 금액</p>
-					<p>0 코인</p>
+					<p><%=m_coin%> 코인</p>
 				</div>
 				<div class="orderListH lastH">
 					<p>결제 후 잔액 금액</p>
-					<p style="color: red; font-size: 1vw">0 코인</p>
+					<p style="color: red; font-size: 1vw"><%=afterCoin %> 코인</p>
 				</div>
 			</div>
 		</div>
-		<input type="button" class="Btn inputBtn" value="주문하기" id="orderBtn">
-		
+		<input type="hidden" name="afterCoin" value="<%=afterCoin%>">
+		<input type="submit" class="Btn inputBtn" value="신청하기" id="orderBtn">
+		</form>
 	</div>
 	<%@ include file="../module/footer.jsp"%>
+	
+<script>
+function chkCoin() {
+	const afterCoin = <%=afterCoin%>;
+	if(afterCoin < 0 ){
+		alert("결제할 금액이 없습니다. 코인 충전 후 이용해주세요!");
+		return false;
+	}
+	else {
+		return true;
+	}
+	
+}
+</script>
 </body>
 </html>

@@ -12,6 +12,7 @@ a {
 	text-decoration-line: none;
 	color: black;
 }
+
 .menuDiv {
 	opacity: 0.3;
 }
@@ -25,8 +26,8 @@ a {
 	String m_grade = null;
 	String mi_thum_name = null;
 	int m_coin = 0;
-	
-	if(session.getAttribute("loginState")== null || session.getAttribute("loginState").equals("logout")){
+
+	if (session.getAttribute("loginState") == null || session.getAttribute("loginState").equals("logout")) {
 	%>
 	<div class="top">
 		<div class="topLogo">
@@ -39,34 +40,54 @@ a {
 				class="Btn topMenuBtn">로그인</button>
 		</div>
 	</div>
-	
-	<% } else { 
-	m_id = (String)session.getAttribute("m_id");
-	m_name = (String)session.getAttribute("m_name");
-	m_grade = (String)session.getAttribute("m_grade");
+
+	<%
+	} else {
+	m_id = (String) session.getAttribute("m_id");
+	m_name = (String) session.getAttribute("m_name");
+	m_grade = (String) session.getAttribute("m_grade");
 	%>
 	<div class="top">
 		<div class="topLogo">
 			<button onclick="location.href='<%=rootDir%>/index.jsp'"></button>
 		</div>
 		<div class="topMenu">
-			<button onclick="location.href='./getCartList.won'" class="Btn topMenuBtn">장바구니</button>
+			<button onclick="location.href='./getCartList.won'"
+				class="Btn topMenuBtn">
+				<img src="<%=imgDir%>/shopping-cart.png" width=20>
+			</button>
 			<form method="post" action="./logoutMember.won">
-				
 				<button class="Btn topMenuBtn">로그아웃</button>
-				<p class="topMenuBtn">⭐<%=m_grade%>회원⭐ <%=m_name %>님 환영합니다!</p>
+				<p class="topMenuBtn">
+					⭐<%=m_grade%>회원⭐
+					<%=m_name%>님 환영합니다!
+				</p>
 			</form>
 		</div>
 	</div>
-	
-	<% } %>
-	
+
+	<%}	
+	if (m_grade != null && m_grade.equals("관리자")) {
+	%>
 	<div class="middle">
 		<div class="middleMenu">
-			<%-- <a href="<%=wonViewDir%>/classApplication.jsp"
-				class="Btn middleMenuBtn">수업신청</a> --%>
-			<a href="<%=wonViewDir%>/getClassList.won"
-				class="Btn middleMenuBtn">수업신청</a> 
+			<a href="<%=wonViewDir%>/getClassList.won" class="Btn middleMenuBtn">수업신청</a>
+			<p class="menuDiv">|</p>
+			<button onclick="alert('준비 중인 기능입니다.')" class="Btn middleMenuBtn">트레이너채널</button>
+			<p class="menuDiv">|</p>
+			<button onclick="alert('준비 중인 기능입니다.')" class="Btn middleMenuBtn">자유게시판</button>
+			<p class="menuDiv">|</p>
+			<a href="<%=wonViewDir%>/admin.jsp" class="Btn middleMenuBtn">관리페이지</a>
+			<p class="menuDiv">|</p>
+			<button onclick="alert('준비 중인 기능입니다.')" class="Btn middleMenuBtn">고객센터</button>
+		</div>
+	</div>
+	<%
+	} else {
+	%>
+	<div class="middle">
+		<div class="middleMenu">
+			<a href="<%=wonViewDir%>/getClassList.won" class="Btn middleMenuBtn">수업신청</a>
 			<p class="menuDiv">|</p>
 			<button onclick="alert('준비 중인 기능입니다.')" class="Btn middleMenuBtn">트레이너채널</button>
 			<p class="menuDiv">|</p>
@@ -77,5 +98,8 @@ a {
 			<button onclick="alert('준비 중인 기능입니다.')" class="Btn middleMenuBtn">고객센터</button>
 		</div>
 	</div>
+	<%
+	}
+	%>
 </body>
 </html>

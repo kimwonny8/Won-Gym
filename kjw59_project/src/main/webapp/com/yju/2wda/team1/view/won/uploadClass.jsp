@@ -24,18 +24,18 @@
 
 <body>
 	<%@ include file="../module/header.jsp"%>
-<% 
-	String t_name = (String)session.getAttribute("m_name");
+<%
+String t_name = (String)session.getAttribute("m_name");
 	String c_code = (String)session.getAttribute("c_code");
 	
-	ptDTO pt;
+	PtDTO pt;
 	String pt_title ="";
 	int pt_con_c=0;
 	int pt_one_c=0;
 	String pt_content="";
 	boolean update = false; // true면 글 수정중, false면 글 작성중
 	
-	ArrayList<ptDTO> ptList=(ArrayList<ptDTO>)session.getAttribute("ptList");
+	ArrayList<PtDTO> ptList=(ArrayList<PtDTO>)session.getAttribute("ptList");
 	
 	if(ptList != null ){
 		update = true; 
@@ -44,7 +44,7 @@
 		pt_con_c = pt.getPt_con_c();
 		pt_one_c = pt.getPt_one_c();
 		pt_content = pt.getPt_content();
-	} 
+	}
 %>
 
 	<div class="bottom">

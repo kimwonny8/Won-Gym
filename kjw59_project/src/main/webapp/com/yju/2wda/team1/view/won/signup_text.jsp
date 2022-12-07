@@ -20,7 +20,86 @@
 	display: flex;
 	align-items: center;
 }
+.inputCheckRight{
+	color: red;
+	font-size: 0.8vw;
+	float: right;
+	width: 65%;
+}
 </style>
+</head>
+<body>
+	<%@ include file="../module/header.jsp"%>
+	
+	<div class="bottom">
+		<p class="menuTitle">회원가입</p>
+	</div>
+	
+<%
+	m_grade=request.getParameter("m_grade");
+%>
+
+	<div class="form formLong">
+		<div class="formInner">
+			<div class="formInputLineH">
+				<p>* 아이디</p>
+				<input type="text" id="m_id" name="m_id" oninput="checkId()" class="inputBox">
+			</div>
+			<p id="inputCheckId" class="inputCheckRight"></p>
+			<div class="formInputLineH">
+				<p>* 비밀번호</p>
+				<input type="password" id="m_pw" name="m_pw" oninput="checkPw()" class="inputBox">
+			</div>
+			<div class="formInputLineH">
+				<p>* 비밀번호 확인</p>
+				<input type="password" id="m_pw2" name="m_pw2" oninput="checkPw()" class="inputBox">
+			</div>
+	 		<p id="inputCheckPw" class="inputCheckRight"></p>
+			<div class="formInputLineH">
+				<p>* 이름</p>
+				<input type="text" id="m_name" name="m_name" oninput="checkName()" class="inputBox">	
+			</div>
+			<p id="inputCheckName" class="inputCheckRight"></p> 
+			<div class="formInputLineH">
+				<p>* 생년월일</p>
+				<input type="text" id="m_birth" name="m_birth" class="inputBox" oninput="checkBirth()" placeholder="ex) 19970117">
+			</div>
+			<p id="inputCheckBirth" class="inputCheckRight"></p> 
+			<div class="formInputLineH">
+				<p>* 성별</p>
+				<select name="m_gender" class="inputBox">
+						<option value="남">남</option>
+						<option value="여">여</option>
+				</select>
+			</div>
+			<div class="formInputLineH">
+				<p>* 휴대폰번호</p>
+				<input type="text" name="m_phone" id="m_phone" class="inputBox" oninput="checkPhone()" placeholder="ex) 01012345678">
+			</div>
+			<p id="inputCheckPhone" class="inputCheckRight"></p> 
+			<div class="formInputLineH">
+				<p>* 구(대구 시범 운영중) </p>
+				<select id="c_code" name="c_code" class="inputBox">
+					<option value="수성구">수성구</option>
+					<option value="중구">중구</option>
+					<option value="동구">동구</option>
+					<option value="서구">서구</option>
+					<option value="남구">남구</option>
+					<option value="북구">북구</option>
+					<option value="달서구">달서구</option>
+					<option value="달성군">달성군</option>
+				</select>
+			</div>
+
+		</div>
+		<div class="FormInputLine">
+		<input type="hidden" id="m_grade" name="m_grade" value="<%=m_grade%>">
+			<input type="button" id="submitBtn" value="회원가입" class="Btn inputBtn inputBtnSmall">
+		</div>
+	</div>
+
+
+	<%@ include file="../module/footer.jsp"%>
 <script type="text/javascript">
 
 function checkId() {
@@ -75,13 +154,41 @@ function checkName() {
 	}
 }
 
+function checkBirth() {
+	var m_birth = $('#m_birth').val();
+	
+	if (m_birth == "") {
+		$('#inputCheckBirth').text("생년월일을 입력해주세요.");
+	}
+	else {
+		$('#inputCheckBirth').text("");
+	}
+}
+
+function checkPhone() {
+	var m_phone = $('#m_phone').val();
+	
+	if (m_phone == "") {
+		$('#inputCheckPhone').text("이름을 입력해주세요.");
+	}
+	else {
+		$('#inputCheckPhone').text("");
+	}
+}
+
 
 $(document).ready(function() {
 	$("#submitBtn").click(function() {
-		var m_id = $("#m_id").val();
-		var m_pw = $("#m_pw").val();
-		var m_pw2 = $("#m_pw").val();
-		var m_name = $("#m_name").val();
+		const m_id = $("#m_id").val();
+		const m_pw = $("#m_pw").val();
+		const m_pw2 = $("#m_pw").val();
+		const m_name = $("#m_name").val();
+		const m_birth = $('#m_birth').val();
+		const m_phone = $('#m_phone').val();
+		const regBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		const regPhone = /(\d{3})(\d{4})(\d{4})/
+		var birthChk = regBirth.test(m_birth) ? true : false;
+		var phoneChk = regPhone.test(m_phone) ? true : false;
 		
 		if (m_id == "") {
 			$('#inputCheckId').text("아이디를 입력해주세요.");
@@ -108,12 +215,24 @@ $(document).ready(function() {
 			return;
 		}
 		
-		
 		if (m_name == "") {
 			$('#inputCheckName').text("이름을 입력해주세요.");
 			$("#m_name").focus();
 			return;
 		}
+		
+		if(birthChk == false) {
+			$('#inputCheckBirth').text("생년월일을 다시 입력해주세요.");
+			$("#m_birth").focus();
+			return;
+		}
+		
+		if(phoneChk == false) {
+			$('#inputCheckPhone').text("휴대폰 번호를 다시 입력해주세요.");
+			$("#m_phone").focus();
+			return;
+		}
+		
 			
  	 	$.ajax({
 			type : "post",
@@ -139,78 +258,5 @@ $(document).ready(function() {
 
 }); 
 </script>
-</head>
-<body>
-	<%@ include file="../module/header.jsp"%>
-	
-	<div class="bottom">
-		<p class="menuTitle">회원가입</p>
-	</div>
-	
-<%
-	m_grade=request.getParameter("m_grade");
-%>
-
-	<div class="form formLong">
-		<div class="formInner">
-			<div class="formInputLineH">
-				<p>* 아이디</p>
-				<input type="text" id="m_id" name="m_id" oninput="checkId()" class="inputBox">
-			</div>
-			<p id="inputCheckId" class="inputCheck"></p>
-			<div class="formInputLineH">
-				<p>* 비밀번호</p>
-				<input type="password" id="m_pw" name="m_pw" oninput="checkPw()" class="inputBox">
-			</div>
-			<div class="formInputLineH">
-				<p>* 비밀번호 확인</p>
-				<input type="password" id="m_pw2" name="m_pw2" oninput="checkPw()" class="inputBox">
-			</div>
-	 		<p id="inputCheckPw" class="inputCheck"></p>
-			<div class="formInputLineH">
-				<p>* 이름</p>
-				<input type="text" id="m_name" name="m_name" oninput="checkName()" class="inputBox">	
-			</div>
-			<p id="inputCheckName" class="inputCheck"></p> 
-			<div class="formInputLineH">
-				<p>생년월일</p>
-				<input type="text" id="m_birth" name="m_birth" class="inputBox" placeholder="ex) 19970117">
-			</div>
-			<div class="formInputLineH">
-				<p>성별</p>
-				<input type="radio" name="m_gender" id="man" value="남" style="margin-left: 0;">
-				<label for="man" style="font-size: 0.8rem; margin-left: 0;">남</label>
-				<input type="radio" name="m_gender" id="woman" value="여"> 
-				<label for="woman"  style="font-size: 0.8rem; margin-left: 0;">여</label> 
-				<input type="radio" name="m_gender" id="noGender" checked value="선택안함"> 
-				<label for="noGender" style="font-size: 0.8rem; margin-left: 0;">선택안함</label>
-			</div>
-			<div class="formInputLineH">
-				<p>휴대폰번호</p>
-				<input type="text" name="m_phone" id="m_phone" class="inputBox" placeholder="ex) 01012345678">
-			</div>
-			<div class="formInputLineH">
-				<p>* 구(대구만 시범 운영중) </p>
-				<select id="c_code" name="c_code" class="inputBox">
-					<option value="수성구">수성구</option>
-					<option value="중구">중구</option>
-					<option value="동구">동구</option>
-					<option value="서구">서구</option>
-					<option value="남구">남구</option>
-					<option value="북구">북구</option>
-					<option value="달서구">달서구</option>
-					<option value="달성군">달성군</option>
-				</select>
-			</div>
-
-		</div>
-		<div class="FormInputLine">
-		<input type="hidden" id="m_grade" name="m_grade" value="<%=m_grade%>">
-			<input type="button" id="submitBtn" value="회원가입" class="Btn inputBtn inputBtnSmall">
-		</div>
-	</div>
-
-
-	<%@ include file="../module/footer.jsp"%>
 </body>
 </html>

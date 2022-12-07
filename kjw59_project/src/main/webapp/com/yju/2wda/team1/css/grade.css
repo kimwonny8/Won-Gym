@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+
+.gradeContents {
+	width: 50%;
+	margin: auto;
+}
+
+.gradeSelect {
+	margin-bottom: 5vh;
+	margin-top: 10vh;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.gradeSelectBtn {
+	text-align: center;
+	width: 15vw;
+	border: none;
+	background-color: white;
+	padding-top: 3vh;
+	margin-bottom: 6vh;
+	font-size: 1rem;
+	border-radius: 10px;
+	padding: 1vh;
+	opacity: 0.7;
+}
+.gradeSelectBtn:hover {
+	opacity: 1;
+}
+
+.gradeIcon {
+	width: 10vw;
+	margin: 2vh;
+}

@@ -103,7 +103,6 @@ $(document).ready(function() {
 				<p>* 아이디</p>
 				<input type="text" name="m_id" value="<%=m_id %>" disabled required class="inputBox">
 			</div>
-<!-- 			<p class="inputCheck">아이디를 입력해주세요.</p> -->
 			<div class="formInputLineH">
 				<p>* 비밀번호</p>
 				<input type="password" id="m_pw" name="m_pw" oninput="checkPw()" class="inputBox">
