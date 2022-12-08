@@ -7,6 +7,10 @@
 <head>
 <meta charset="UTF-8">
 <title>WorkOutNow Class Open</title>
+<script
+  src="http://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
 <style>
 .bottom {
 	width: 70%;
@@ -25,8 +29,8 @@
 <body>
 	<%@ include file="../module/header.jsp"%>
 	<%
-	String s_c_code=(String)session.getAttribute("select_c_code");
-		if(s_c_code == null) s_c_code="전체";
+		String searchContent=(String)session.getAttribute("searchContent");
+		if(searchContent == null) searchContent="전체";
 		
 		m_grade = (String) session.getAttribute("m_grade");
 		AllClassVO allVO;
@@ -44,9 +48,17 @@
 		<div class="classMenu">
 			<!-- 검색하는 부분 -->
 			<form method="post" action="./getClassList.won" class="classMenuSearch">
-				동네
-				<select id="c_code" name="c_code">
-					<option value="전체">전체</option>
+				
+				<select name="search">
+					<option value="전체" selected>전체</option>
+					<option value="c_code">동네</option>
+					<option value="t_id">아이디</option>
+					<option value="pt_title">제목</option>
+					<option value="pt_content">내용</option>
+				</select>
+				<input type="text" name="searchContent" id="text" class="inputBox"> 
+				
+				<select id="city" name="citySearchContent" style="display:none">
 					<option value="수성구">수성구</option>
 					<option value="중구">중구</option>
 					<option value="동구">동구</option>
@@ -56,19 +68,12 @@
 					<option value="달서구">달서구</option>
 					<option value="달성군">달성군</option>
 				</select>
-<!-- 				<br>
-				<select name="search">
-					<option value="전체" selected>전체</option>
-					<option value="t_id">아이디</option>
-					<option value="pt_title">제목</option>
-					<option value="pt_content">내용</option>
-				</select>
-				<input type="text" name="searchContent"> -->
-				<button>검색</button>
+				<button class="smallBtn">검색</button>
+				
 			</form>
 			<!-- 현재 __ 검색 중 -->
 			<div class="classMenuMsg">
-			<p>현재 대구시 <%=s_c_code %> 검색 중</p>
+			<p>현재 <%=searchContent %> 검색 중</p> 
 			<p style="width: 5vw; border-bottom: 1px solid gray; margin-top: 0.5vw"></p>
 			</div>
 			<!-- 글쓰기 -->
@@ -79,7 +84,7 @@
 		</div>
 
 		<!-- 상품 리스트 -->
-		<div class="classContent">
+		<div class="classContent" id="classContent">
 			<% if(classList.size()==0){ %> 
 				<p>존재하는 상품이 없습니다.</p>
 			<% } else { 
@@ -99,5 +104,40 @@
 	</div>
 
 	<%@ include file="../module/footer.jsp"%>
+<script>
+$(document).ready(function() {
+	  $('select[name=search]').change(function() {
+	    var result = $('select[name=search]').val();
+	    if (result == 'c_code') {
+	      $('#city').show();
+	      $('#text').hide();
+	    } else {
+		     $('#city').hide();
+		     $('#text').show();
+	    }
+	  }); 
+	}); 
+
+var page = 0;
+
+	function getList() {
+		$.ajax({
+			type : "post",
+			data : page,
+			url : "./getClassList.won",
+			success : function(value) {
+				console.log(value);
+			}
+		});
+	};
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+          console.log(++page);
+          $("#classContent").append('<h1>Page ' + page + '</h1>');
+
+        }
+    });
+  </script>
 </body>
 </html>

@@ -47,8 +47,8 @@
 	<%@ include file="../module/header.jsp"%>
 	<%
 	ArrayList<CartVO> cartList;
-			cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
-			CartVO cart;
+	cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
+	CartVO cart;
 	%>
 	<div class="bottom">
 		<p class="menuTitle">장바구니</p>
@@ -103,8 +103,8 @@
 						class="view">바로구매</a> <a
 						href="./deleteCartList.won?mp_code=<%=cart.getMp_code()%>"
 						class="delete">삭제</a></td>
-				<tr>
-			</tbody>
+				</tr> <% } %>
+			</tbody> 
 		</table>
 
 		<div class="orderList">
@@ -132,7 +132,7 @@
 		</div>
 		<input type="button" class="Btn inputBtn" value="주문하기" id="orderBtn">
 		<%
-		} 	}
+		} 
 		%>
 	</div>
 	<%@ include file="../module/footer.jsp"%>

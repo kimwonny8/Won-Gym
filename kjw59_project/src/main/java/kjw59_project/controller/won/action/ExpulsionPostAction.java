@@ -13,7 +13,7 @@ public class ExpulsionPostAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
 		
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();

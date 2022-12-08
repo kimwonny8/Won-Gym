@@ -191,6 +191,18 @@
 	align-items: center;
 	font-size: 0.75rem;
 }
+.smallBtn {
+	margin: 5px;
+	padding: 5px;
+	height: 3.5vh;
+	background-color: #72787F;
+	color: white;
+	border: none;
+	font-size: 0.8vw;
+}
+.smallBtn:hover {
+	opacity: 0.7;
+}
 a {
 	text-decoration-line: none;
 }

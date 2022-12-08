@@ -61,8 +61,8 @@
                 <div class="addMyPageImage">
 	            <input type="file" id="file" name="file"> 
 	            <p id="inputCheck" class="inputCheck"></p>
-	            <input type="button" value="저장" onclick="chkFile()">
-	            <button id="submitBtn" style="display:none;">제출</button> 
+	            <input type="button" class="smallBtn" value="저장" onclick="chkFile()">
+	            <button id="submitBtn" class="smallBtn" style="display:none;">제출</button> 
 	            </div>
             </form>
             

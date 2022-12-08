@@ -22,6 +22,7 @@
 	display: flex;
 	align-items: center;
 }
+
 </style>
 </head>
 <body>
@@ -80,9 +81,9 @@
 					<option value="100">100회</option>
 				</select>
 				<p id="inputCheck"></p>
-				<input type="button" onclick="addPt()" value="추가">
+				<input type="button" onclick="addPt()" value="추가" class="smallBtn">
 				<br>
-				<input type="button" onclick="addToCart()" id="submitBtn" style="display: none;" value="장바구니">
+				<input type="button" onclick="addToCart()"  class="smallBtn" id="submitBtn" style="display: none;" value="장바구니">
 				<!--  <input type="submit" onclick="buyRightNow()" id="submitBtn2" style="display: none;" value="바로구매">-->
 			</form>
 		</div>

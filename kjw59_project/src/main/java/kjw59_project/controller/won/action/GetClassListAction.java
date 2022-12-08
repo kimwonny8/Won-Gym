@@ -23,21 +23,34 @@ public class GetClassListAction implements Action {
 		PtDTO pt = new PtDTO();
 		
 		ArrayList<AllClassVO> classList;
+		String search = request.getParameter("search");
+		String searchContent;
 		
-		// 동네 선택 안 했을 때 => 전체
-		String c_code = request.getParameter("c_code");
-		if(c_code == null || c_code.equals("전체")) { 
-			classList = productDAO.getClassList(pt, member, mImage);
-			session.setAttribute("classList", classList);	
+		if(search == null || search.equals("전체")) {
+			searchContent = request.getParameter("searchContent");
+			if(searchContent != null && searchContent != "") {
+				classList = productDAO.getClassSearchList(pt, member, mImage, searchContent);
+				session.setAttribute("classList", classList);
+			}
+			else {
+				classList = productDAO.getClassSearchList(pt, member, mImage);
+				session.setAttribute("classList", classList);
+			}
+			
 		}
-		// 동네 선택 했을 때
-		else {
-			member.setC_code(c_code);
-			classList = productDAO.getClassSearchList(pt, member, mImage);
+		else { 
+			if(search.equals("c_code")) { // 동네면 citySearchContent
+				searchContent = request.getParameter("citySearchContent");
+			}
+			else {
+				searchContent = request.getParameter("searchContent");
+			}
+			classList = productDAO.getClassSearchList(pt, member, mImage, search, searchContent);
 			session.setAttribute("classList", classList);
 		}
 		
-		session.setAttribute("select_c_code", c_code);
+		session.setAttribute("searchContent", searchContent);
+		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("/com/yju/2wda/team1/view/won/classApplication.jsp");
