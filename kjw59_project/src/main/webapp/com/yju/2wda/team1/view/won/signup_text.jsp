@@ -101,7 +101,12 @@
 
 	<%@ include file="../module/footer.jsp"%>
 <script type="text/javascript">
-
+window.onpageshow = function(event) {
+    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+    alert("잘못된 접근입니다.");
+    location.href="/kjw59_project/index.jsp";
+  }
+}
 function checkId() {
 	var m_id = $('#m_id').val();
 	

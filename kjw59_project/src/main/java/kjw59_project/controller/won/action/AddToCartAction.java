@@ -47,6 +47,7 @@ public class AddToCartAction implements Action {
 
 		// 같은 제품 있는 지 확인
 		String cnt = productDAO.chkSamePt(memberPt);
+		System.out.println(cnt);
 		if(cnt.equals("0")) {
 			// 장바구니에 추가하기
 			productDAO = new ProductDAO();

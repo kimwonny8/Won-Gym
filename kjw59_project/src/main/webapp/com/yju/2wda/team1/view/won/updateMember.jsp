@@ -22,71 +22,7 @@
 }
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/style.css">
-<script>
-function checkPw() {
-	var m_pw = $('#m_pw').val();
-	var m_pw2 = $('#m_pw2').val();
-	
-	if (m_pw == "") {
-		$('#inputCheckPw').text("비밀번호를 입력해주세요.");
-	}
-	else if (m_pw2 == "") {
-		$('#inputCheckPw').text("비밀번호를 입력해주세요.");
-	}
-	
-	else if(m_pw != m_pw2) {
-		 $('#inputCheckPw').text("비밀번호가 일치하지 않습니다.");
-	}
-	else {
-		 $('#inputCheckPw').text("비밀번호가 일치합니다.");
-	}
-}
 
-$(document).ready(function() {
-	$("#submitBtn").click(function() {
-		var m_pw = $("#m_pw").val();
-		var m_pw2 = $("#m_pw2").val();
-		
-		if (m_pw == "") {
-			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
-			$("#m_pw").focus();
-			return;
-		}
-		if (m_pw2 == "") {
-			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
-			$("#m_pw2").focus();
-			return;
-		}
-		if(m_pw2 != m_pw){
-			 $('#inputCheckPw').text("비밀번호가 일치하지 않습니다.");
-			 $("#m_pw").val("");
-			 $("#m_pw2").val("");
-			return;
-		}
-			
- 	 	$.ajax({
-			type : "post",
-			data : {m_pw : $("#m_pw").val(), m_birth : $("#m_birth").val(),
-					m_gender : $('[name=m_gender]:checked').val(), m_phone : $("#m_phone").val(),
-					c_code : $("#c_code").val()},
-			url : "./updateMember.won",
-			success : function(value) {
-				console.log(value);
-				if(value=="" || value == null) {
-					alert("회원 정보 수정에 실패했습니다.");
-					location.href="/kjw59_project/com/yju/2wda/team1/view/won/updateMember.jsp";
-				}
-				else {
-					alert("회원 정보가 수정되었습니다.");
-					location.href="/kjw59_project/com/yju/2wda/team1/view/won/myPage.jsp";
-				}
-			}
-
-		}); 
-	});
-
-}); 
-</script>
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
@@ -155,5 +91,77 @@ $(document).ready(function() {
 	</div>
 	
 <%@ include file="../module/footer.jsp"%>
+<script>
+window.onpageshow = function(event) {
+    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+    alert("잘못된 접근입니다.");
+    location.href="/kjw59_project/index.jsp";
+  }
+}
+
+function checkPw() {
+	var m_pw = $('#m_pw').val();
+	var m_pw2 = $('#m_pw2').val();
+	
+	if (m_pw == "") {
+		$('#inputCheckPw').text("비밀번호를 입력해주세요.");
+	}
+	else if (m_pw2 == "") {
+		$('#inputCheckPw').text("비밀번호를 입력해주세요.");
+	}
+	
+	else if(m_pw != m_pw2) {
+		 $('#inputCheckPw').text("비밀번호가 일치하지 않습니다.");
+	}
+	else {
+		 $('#inputCheckPw').text("비밀번호가 일치합니다.");
+	}
+}
+
+$(document).ready(function() {
+	$("#submitBtn").click(function() {
+		var m_pw = $("#m_pw").val();
+		var m_pw2 = $("#m_pw2").val();
+		
+		if (m_pw == "") {
+			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
+			$("#m_pw").focus();
+			return;
+		}
+		if (m_pw2 == "") {
+			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
+			$("#m_pw2").focus();
+			return;
+		}
+		if(m_pw2 != m_pw){
+			 $('#inputCheckPw').text("비밀번호가 일치하지 않습니다.");
+			 $("#m_pw").val("");
+			 $("#m_pw2").val("");
+			return;
+		}
+			
+ 	 	$.ajax({
+			type : "post",
+			data : {m_pw : $("#m_pw").val(), m_birth : $("#m_birth").val(),
+					m_gender : $('[name=m_gender]:checked').val(), m_phone : $("#m_phone").val(),
+					c_code : $("#c_code").val()},
+			url : "./updateMember.won",
+			success : function(value) {
+				console.log(value);
+				if(value=="" || value == null) {
+					alert("회원 정보 수정에 실패했습니다.");
+					location.href="/kjw59_project/com/yju/2wda/team1/view/won/updateMember.jsp";
+				}
+				else {
+					alert("회원 정보가 수정되었습니다.");
+					location.href="/kjw59_project/com/yju/2wda/team1/view/won/myPage.jsp";
+				}
+			}
+
+		}); 
+	});
+
+}); 
+</script>
 </body>
 </html>

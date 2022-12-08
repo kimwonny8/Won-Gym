@@ -117,7 +117,7 @@ ArrayList<MemberDTO> memberList;
 			</tbody>
 				<% } }%>
 		</table>
-
+</div>
 <%@ include file="../module/footer.jsp"%>
 </body>
 </html>

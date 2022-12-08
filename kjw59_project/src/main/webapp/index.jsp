@@ -11,16 +11,38 @@
 
 </head>
 <style>
-a {
-	text-decoration-line: none;
-}
-
 .mainImage {
 	width: 70%;
 	height: 90%;
 }
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/slide.css">
+
+</head>
+<body style="overflow-x:hidden; overflow-y:auto;" >
+	<%@ include file="./com/yju/2wda/team1/view/module/header.jsp"%>
+	<!-- 메인이미지 캐러셀 코드 -->
+	<div class="container">
+		<div class="slideContainer">
+			<ul class="slideWrap">
+				<li class="slide slide4"><img src="<%=imgDir%>/s1.jpg"></li>
+				<li class="slide slide1"><img src="<%=imgDir%>/s0.jpg"></li>
+				<li class="slide slide2"><img src="<%=imgDir%>/s2.jpg"></li>
+				<li class="slide slide3"><img src="<%=imgDir%>/s3.jpg"></li>
+				<li class="slide slide4"><img src="<%=imgDir%>/s1.jpg"></li>
+				<li class="slide slide1"><img src="<%=imgDir%>/s0.jpg"></li>
+			</ul>
+			<ul class="pageBtWrap">
+				<li><a href="#" class="pageBt addPageBt"></a></li>
+				<li><a href="#" class="pageBt"></a></li>
+				<li><a href="#" class="pageBt"></a></li>
+				<li><a href="#" class="pageBt"></a></li>
+			</ul>
+		</div>
+	</div>
+	
+
+	<%@ include file="./com/yju/2wda/team1/view/module/footer.jsp"%>
 <script>
 	$(function() {
 		var winW = cnt = setId = 0;
@@ -86,31 +108,6 @@ a {
 		//count 변경시마다 버튼색깔 변경됨
 
 	});
-</script>
-</head>
-<body style="overflow-x:hidden; overflow-y:auto;">
-	<%@ include file="./com/yju/2wda/team1/view/module/header.jsp"%>
-	<!-- 메인이미지 캐러셀 코드 -->
-	<div class="container">
-		<div class="slideContainer">
-			<ul class="slideWrap">
-				<li class="slide slide4"><img src="<%=imgDir%>/s1.jpg"></li>
-				<li class="slide slide1"><img src="<%=imgDir%>/s0.jpg"></li>
-				<li class="slide slide2"><img src="<%=imgDir%>/s2.jpg"></li>
-				<li class="slide slide3"><img src="<%=imgDir%>/s3.jpg"></li>
-				<li class="slide slide4"><img src="<%=imgDir%>/s1.jpg"></li>
-				<li class="slide slide1"><img src="<%=imgDir%>/s0.jpg"></li>
-			</ul>
-			<ul class="pageBtWrap">
-				<li><a href="#" class="pageBt addPageBt"></a></li>
-				<li><a href="#" class="pageBt"></a></li>
-				<li><a href="#" class="pageBt"></a></li>
-				<li><a href="#" class="pageBt"></a></li>
-			</ul>
-		</div>
-	</div>
-	
-
-	<%@ include file="./com/yju/2wda/team1/view/module/footer.jsp"%>
+</script>	
 </body>
 </html>

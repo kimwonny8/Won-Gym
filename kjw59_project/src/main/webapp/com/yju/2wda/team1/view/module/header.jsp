@@ -6,8 +6,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="<%=cssDir%>/style.css">
 <style>
+* { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
 a {
 	text-decoration-line: none;
 	color: black;

@@ -57,7 +57,7 @@ img {
 	<%@ include file="../module/header.jsp"%>
 	<%
 	ArrayList<CartVO> cartList;
-			cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
+	cartList = (ArrayList<CartVO>) session.getAttribute("cartList");
 			CartVO cart;
 			
 			m_coin = (Integer)session.getAttribute("m_coin");

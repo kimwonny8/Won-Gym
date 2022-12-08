@@ -95,16 +95,19 @@
 				<tr>
 					<td><input type="checkbox" class="check"
 						value="<%=cart.getMp_code()%>" name="check"></td>
-					<td><img src="<%=memberThumbDir%>/<%=thumbsnail%>" width=100>
+					<td><img src="<%=memberThumbDir%>/<%=thumbsnail%>" width=100 height=100>
 						<br><%=cart.getT_name()%> 트레이너 <br>대구시 <%=cart.getC_code()%></td>
 					<td><%=select%></td>
 					<td><%=cart.getMp_coin()%></td>
 					<td><a href="./buyRightNow.won?mp_code=<%=cart.getMp_code()%>"
-						class="view">바로구매</a> <a
-						href="./deleteCartList.won?mp_code=<%=cart.getMp_code()%>"
-						class="delete">삭제</a></td>
-				</tr> <% } %>
-			</tbody> 
+						class="view">바로구매</a> 
+						<a href="./deleteCartList.won?mp_code=<%=cart.getMp_code()%>"
+						class="delete" onclick="return chk()">삭제</a></td>
+				</tr>
+				<%
+				}
+				%>
+			</tbody>
 		</table>
 
 		<div class="orderList">
@@ -132,11 +135,16 @@
 		</div>
 		<input type="button" class="Btn inputBtn" value="주문하기" id="orderBtn">
 		<%
-		} 
+		}
 		%>
 	</div>
 	<%@ include file="../module/footer.jsp"%>
 	<script type="text/javascript">
+function chk(){
+	var chk = confirm("정말 삭제하시겠습니까?");
+ 	return chk;
+}	
+	
 $(document).ready(function() {
 	var rowData = [];
 	var chkMpCode = []; // 상품코드 담고 있는 배열

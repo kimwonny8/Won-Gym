@@ -42,6 +42,10 @@ td {
 	color: white;
 }
 
+img {
+border-radius : 50%;
+}
+
 .orderList {
 	font-size: 0.8vw;
 	display: flex;

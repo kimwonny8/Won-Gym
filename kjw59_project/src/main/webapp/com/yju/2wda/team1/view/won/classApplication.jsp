@@ -22,7 +22,15 @@
 	display: flex;
 	align-items: center;
 }
-
+select {
+	width: 7vw;
+	padding: 3px;
+	border: 0.01rem solid #D9D9D9;
+}
+select option {
+  background:  #D9D9D9;
+  padding: 3px;
+}
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/class.css">
 </head>
@@ -78,8 +86,9 @@
 			</div>
 			<!-- 글쓰기 -->
 			<div class="classMenuWrite">
-			<%	if (session.getAttribute("m_grade") == null || m_grade.equals("일반")) {
-			} else { %> <button class="Btn" onclick="location.href='<%=wonViewDir%>/uploadClass.jsp'">글쓰기</button> <%	}%>
+			<%	if (session.getAttribute("m_grade") == null || m_grade.equals("일반") || m_grade.equals("관리자")) {
+			} else { 
+			%> <button class="Btn" onclick="location.href='<%=wonViewDir%>/uploadClass.jsp'">글쓰기</button> <%	}%>
 			</div>
 		</div>
 
@@ -118,7 +127,8 @@ $(document).ready(function() {
 	  }); 
 	}); 
 
-var page = 0;
+/* 스크롤 페이징 진행할 예정
+ var page = 0;
 
 	function getList() {
 		$.ajax({
@@ -137,7 +147,7 @@ var page = 0;
           $("#classContent").append('<h1>Page ' + page + '</h1>');
 
         }
-    });
+    }); */
   </script>
 </body>
 </html>

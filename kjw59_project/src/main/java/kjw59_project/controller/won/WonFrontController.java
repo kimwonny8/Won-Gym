@@ -50,7 +50,7 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			action = new UpdateMemberPhotoAction();
 			break;
 		
-		/* 회원정보 수정, 탈퇴 부분 */
+		/* 회원정보 수정, 탈퇴 부분 */			
 		case "/updateMemberChkPw.won":
 			action = new UpdateMemberChkPwAction();
 			break;
@@ -62,6 +62,28 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/updateMember.won":
 			action = new UpdateMemberAction();
 			break;
+		
+		/* 신청 내역 관리 */
+		case "/manageApplication.won":
+			action = new ManageApplicationAction();
+			break;
+		
+		case "/manageClient.won":
+			action = new ManageClientAction();
+			break;	
+			
+		case "/manageClientDetail.won":
+			action = new ManageClientDetailAction();
+			break;		
+			
+		case "/updateState.won":
+			action = new UpdateStateAction();
+			break;	
+			
+		case "/refuseState.won":
+			action = new RefuseStateAction();
+			break;		
+			
 			
 		/* 상품 글 부분 */
 		case "/getClassList.won":
