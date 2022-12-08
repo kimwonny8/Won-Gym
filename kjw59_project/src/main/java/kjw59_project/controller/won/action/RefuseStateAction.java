@@ -1,17 +1,44 @@
 package kjw59_project.controller.won.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kjw59_project.controller.won.Action;
 import kjw59_project.controller.won.ActionForward;
+import kjw59_project.model.won.CartVO;
+import kjw59_project.model.won.MImageDTO;
+import kjw59_project.model.won.MemberDTO;
+import kjw59_project.model.won.MemberPtDTO;
+import kjw59_project.model.won.ProductDAO;
 
 public class RefuseStateAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		HttpSession session = request.getSession();
+
+		request.setCharacterEncoding("utf-8");
+		ProductDAO productDAO = new ProductDAO();
+		MemberPtDTO memberPt = new MemberPtDTO();
+
+		int mp_code = Integer.parseInt(request.getParameter("mp_code"));
+		memberPt.setMp_code(mp_code);
+		productDAO.changeMpCode(memberPt,"RE");
+		
+		productDAO = new ProductDAO();
+		ArrayList<MemberPtDTO> classList;
+		memberPt.setM_id((String)session.getAttribute("m_id"));
+		classList = productDAO.getMyClientList(memberPt);
+		session.setAttribute("classList", classList);
+		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		forward.setPath("/com/yju/2wda/team1/view/won/manageClient.jsp");
+		
+		return forward;
 	}
 
 }

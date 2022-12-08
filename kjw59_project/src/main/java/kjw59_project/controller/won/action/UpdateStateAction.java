@@ -29,12 +29,12 @@ public class UpdateStateAction implements Action {
 		
 		// 대기 PC -> 진행 CP
 		if(mp_state.equals("PC")) {
-			productDAO.PCtoCP(memberPt, "CP");
+			productDAO.changeMpCode(memberPt, "CP");
 		}
 		
 		// 진행 CP -> 완료 CC
 		else if(mp_state.equals("CP")) {
-			productDAO.PCtoCP(memberPt, "CC");
+			productDAO.changeMpCode(memberPt, "CC");
 		}
 		
 		productDAO = new ProductDAO();

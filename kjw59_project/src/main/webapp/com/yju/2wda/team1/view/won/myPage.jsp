@@ -33,6 +33,30 @@
  	margin-top: 1vw;
  	margin-bottom: 3vw;
 }
+.filebox label {
+  display: inline-block;
+  padding: .5em .75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: .25em;
+}
+
+.filebox input[type="file"] {  /* 파일 필드 숨기기 */
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip:rect(0,0,0,0);
+  border: 0;
+}
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 </head>
@@ -73,10 +97,16 @@
                <% } %>
                 </div>
                 <div class="addMyPageImage">
-	            <input type="file" id="file" name="file"> 
+                <div class="filebox">
+		             <label for="file">사진선택</label>
+	  				<input type="file" id="file">  
+	            </div>
+	            <p id="fileName" class="inputCheck" style="color:gray;"></p>
 	            <p id="inputCheck" class="inputCheck"></p>
+	            <div style="display:flex;">
 	            <input type="button" class="smallBtn" value="저장" onclick="chkFile()">
 	            <button id="submitBtn" class="smallBtn" style="display:none;">제출</button> 
+	            </div>
 	            </div>
             </form>
             
@@ -103,6 +133,11 @@
 	<%@ include file="../module/footer.jsp"%>
 	
 <script type="text/javascript">
+$("#file").on('change',function(){
+	  var fileName = $("#file").val();
+	  $("#fileName").text(fileName);
+	});
+	
 function chkFile(){
 	var file = $('#file').val();
 	console.log(file);

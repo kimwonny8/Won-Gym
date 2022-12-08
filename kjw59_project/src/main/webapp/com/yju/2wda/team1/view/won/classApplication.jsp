@@ -22,15 +22,7 @@
 	display: flex;
 	align-items: center;
 }
-select {
-	width: 7vw;
-	padding: 3px;
-	border: 0.01rem solid #D9D9D9;
-}
-select option {
-  background:  #D9D9D9;
-  padding: 3px;
-}
+
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/class.css">
 </head>
@@ -81,6 +73,7 @@ select option {
 			</form>
 			<!-- 현재 __ 검색 중 -->
 			<div class="classMenuMsg">
+			<br>
 			<p>현재 <%=searchContent %> 검색 중</p> 
 			<p style="width: 5vw; border-bottom: 1px solid gray; margin-top: 0.5vw"></p>
 			</div>

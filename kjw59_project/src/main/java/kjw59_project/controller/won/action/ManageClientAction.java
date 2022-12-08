@@ -36,8 +36,6 @@ public class ManageClientAction implements Action {
 			session.setAttribute("classList", classList);
 		}
 		
-		
-		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("/com/yju/2wda/team1/view/won/manageClient.jsp");

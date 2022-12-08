@@ -28,9 +28,15 @@ public class ManageApplicationAction implements Action {
 
 		ArrayList<CartVO> cartList;
 		memberPt.setM_id((String)session.getAttribute("m_id"));
-		cartList = productDAO.getMyClassList(memberPt, member, mImage);
-		session.setAttribute("cartList", cartList);
-
+		String search = request.getParameter("search");
+		if(search == null) {
+			cartList = productDAO.getMyClassList(memberPt, member, mImage);
+			session.setAttribute("cartList", cartList);
+		}
+		else {
+			cartList = productDAO.getMyClassList(memberPt, member, mImage, search);
+			session.setAttribute("cartList", cartList);
+		}
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("/com/yju/2wda/team1/view/won/manageApplication.jsp");

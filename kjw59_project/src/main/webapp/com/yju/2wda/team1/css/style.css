@@ -93,7 +93,7 @@
 
 .inputBox {
 	width: 15vw;
-	height: 3.2vh;
+	padding: 0.7vh;
 	border: 0.01rem solid #D9D9D9;
 }
 
@@ -217,4 +217,28 @@ select option {
 a {
 	text-decoration-line: none;
 }
+
+a:hover {
+	opacity:0.7;
+}
+
+.basicForm {
+	width: 60%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+	text-align: center;
+	margin-bottom: 2vw;
+}
+
+.basicFormInner {
+	margin-top: 1vw;
+	padding: 1.5vw 0;
+	border-top: 0.05vw solid #DCDCDC;
+	border-bottom: 0.05vw solid #DCDCDC;
+	width: 70%;
+	height: 20vw;
+	display: flex;
+	align-items: center;
+}
+
 

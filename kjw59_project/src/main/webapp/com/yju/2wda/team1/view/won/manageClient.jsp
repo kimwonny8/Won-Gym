@@ -11,6 +11,7 @@
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<%=cssDir%>/cart.css">
+<link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 <style>
 .bottom {
 	width: 70%;
@@ -23,100 +24,7 @@
 	align-items: center;
 }
 
-.myPageForm {
-	padding: 3vw 1vw;
-	display: flex;
-	margin-top: 5vw;
-	margin-bottom: 5vw;
-	width: 50%;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border: 0.05vw solid #DCDCDC;
-}
 
-.myPageClass {
-	width: 80%;
-	height: 12vw;
-	font-size: 0.9vw;
-	border-top: 0.01vw solid gray;
-	border-bottom: 0.01vw solid gray;
-	padding: 1vw 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	margin-top: 1vw;
-	margin-bottom: 3vw;
-}
-
-.mypageBtn {
-	font-size: 0.8vw;
-	width: 10vw;
-	height: 2vw;
-	background-color: #72787F;
-	color: white;
-	border: none;
-}
-
-.mypageBtn:hover {
-	opacity: 0.7;
-}
-
-.basicForm {
-	width: 60%;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-	text-align: center;
-	margin-bottom: 2vw;
-}
-
-.basicFormInner {
-	margin-top: 1vw;
-	padding: 1.5vw 0;
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	width: 70%;
-	height: 20vw;
-	display: flex;
-	align-items: center;
-}
-
-.cartForm {
-	text-align: center;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-}
-
-.tableForm {
-	width: 60%;
-	border-collapse: collapse;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-}
-
-th {
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	padding: 1vw 0.5vw;
-	font-size: 0.8vw;
-}
-
-td {
-	padding: 1vw 0.5vw;
-	font-size: 0.8vw;
-	border-top: 0.05vw solid #DCDCDC;
-}
-
-img {
-border-radius : 50%;
-}
-
-.manageSearchMenu {
-display: flex;
-width: 20%;
-margin-top: 2.5vw;
-font-size: 1vw;
-}
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 </head>
@@ -135,7 +43,8 @@ font-size: 1vw;
 		<a href="./manageClient.won">전체</a>/
 		<a href="./manageClient.won?search=PC">대기중</a>/
 		<a href="./manageClient.won?search=CP">진행중</a>/
-		<a href="./manageClient.won?search=CC">완료</a>
+		<a href="./manageClient.won?search=CC">완료</a>/
+		<a href="./manageClient.won?search=RE">취소</a>
 	</div>
 	
 	<div class="cartForm">
@@ -172,6 +81,7 @@ font-size: 1vw;
 					
 					if(state.equals("PC")) state = "대기중";
 					else if(state.equals("CP")) state = "진행중";
+					else if(state.equals("RE")) state="취소";
 					else state="완료";
 					
 					String date = memberPt.getMp_date();
@@ -194,7 +104,7 @@ font-size: 1vw;
 					<% if(state.equals("대기중")) { %>
 					<td>
 						<a href="./updateState.won?mp_code=<%=memberPt.getMp_code()%>&mp_state=<%=memberPt.getMp_state()%>" class="smallBtn">수락</a>
-						<a href="./refuseState.won?mp_code=<%=memberPt.getMp_code()%>" class="smallBtn">거절</a>
+						<a href="./refuseState.won?mp_code=<%=memberPt.getMp_code()%>" onclick="return chk()" class="smallBtn">거절</a>
 						<a href="./manageClientDetail.won?mp_code=<%=memberPt.getMp_code()%>" class="smallBtn">자세히</a>
 					</td>
 					<% } else if(state.equals("진행중")) {%>
@@ -218,5 +128,11 @@ font-size: 1vw;
 	</div>
 
 	<%@ include file="../module/footer.jsp"%>
+<script>
+function chk(){
+	var val=confirm("정말 거절하시겠습니까?");
+	return val;
+}
+</script>
 </body>
 </html>

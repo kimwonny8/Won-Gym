@@ -116,3 +116,10 @@
 .mypageBtn:hover {
 	opacity: 0.7;
 }
+
+.manageSearchMenu {
+display: flex;
+width: 20%;
+margin-top: 2.5vw;
+font-size: 1vw;
+}

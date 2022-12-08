@@ -11,6 +11,7 @@
 	integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
 	crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<%=cssDir%>/cart.css">
+<link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 <style>
 .bottom {
 	width: 70%;
@@ -23,93 +24,6 @@
 	align-items: center;
 }
 
-.myPageForm {
-	padding: 3vw 1vw;
-	display: flex;
-	margin-top: 5vw;
-	margin-bottom: 5vw;
-	width: 50%;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	border: 0.05vw solid #DCDCDC;
-}
-
-.myPageClass {
-	width: 80%;
-	height: 12vw;
-	font-size: 0.9vw;
-	border-top: 0.01vw solid gray;
-	border-bottom: 0.01vw solid gray;
-	padding: 1vw 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	margin-top: 1vw;
-	margin-bottom: 3vw;
-}
-
-.mypageBtn {
-	font-size: 0.8vw;
-	width: 10vw;
-	height: 2vw;
-	background-color: #72787F;
-	color: white;
-	border: none;
-}
-
-.mypageBtn:hover {
-	opacity: 0.7;
-}
-
-.basicForm {
-	width: 60%;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-	text-align: center;
-	margin-bottom: 2vw;
-}
-
-.basicFormInner {
-	margin-top: 1vw;
-	padding: 1.5vw 0;
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	width: 70%;
-	height: 20vw;
-	display: flex;
-	align-items: center;
-}
-
-.cartForm {
-	text-align: center;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-}
-
-.tableForm {
-	width: 60%;
-	border-collapse: collapse;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-}
-
-th {
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	padding: 1vw 0.5vw;
-	font-size: 0.8vw;
-}
-
-td {
-	padding: 1vw 0.5vw;
-	font-size: 0.8vw;
-	border-top: 0.05vw solid #DCDCDC;
-}
-
-img {
-border-radius : 50%;
-}
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 </head>
@@ -122,6 +36,14 @@ border-radius : 50%;
 	%>
 	<div class="bottom">
 		<p class="menuTitle">신청내역관리</p>
+	</div>
+
+	<div class="manageSearchMenu">
+		<a href="./manageApplication.won">전체</a>/
+		<a href="./manageApplication.won?search=PC">대기중</a>/
+		<a href="./manageApplication.won?search=CP">진행중</a>/
+		<a href="./manageApplication.won?search=CC">완료</a>/
+		<a href="./manageApplication.won?search=RE">취소</a>
 	</div>
 
 	<div class="cartForm">
@@ -158,6 +80,7 @@ border-radius : 50%;
 					String state = cart.getMp_state();
 					if(state.equals("PC")) state = "대기중";
 					else if(state.equals("CP")) state = "진행중";
+					else if(state.equals("RE")) state="취소";
 					else state="완료";
 					
 					String date = cart.getMp_date();

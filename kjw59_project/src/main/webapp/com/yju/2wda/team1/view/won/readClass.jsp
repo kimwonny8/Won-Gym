@@ -22,7 +22,6 @@
 	display: flex;
 	align-items: center;
 }
-
 </style>
 </head>
 <body>
@@ -46,10 +45,8 @@
 				src="<%=memberThumbDir%>/<%=allVO.getMi_thum_name()%>">
 		</div>
 		<div class="readFormRight">
-			<div><%=allVO.getM_name()%>
-				트레이너
-			</div>
-			<div>
+			<div style="margin-bottom: 1vw; font-size:1vw;"><b><%=allVO.getM_name()%></b> 트레이너</div>
+			<div class="readFormCenter">
 				<p>
 					상담:
 					<%=allVO.getPt_con_c()%>
@@ -69,8 +66,9 @@
 					"
 				</p>
 			</div>
-			<form method="post" action="./buyRightNow.won">
-				옵션 선택: <select name="pt_select" id="pt_select">
+
+			<form class="optionH" style="display: flex;" method="post" action="./buyRightNow.won">
+				<select name="pt_select" id="pt_select">
 					<option value="0">상담</option>
 					<option value="1">1회</option>
 					<option value="5">5회</option>
@@ -80,17 +78,20 @@
 					<option value="50">50회</option>
 					<option value="100">100회</option>
 				</select>
-				<p id="inputCheck"></p>
+				
 				<input type="button" onclick="addPt()" value="추가" class="smallBtn">
 				<br>
-				<input type="button" onclick="addToCart()"  class="smallBtn" id="submitBtn" style="display: none;" value="장바구니">
-				<!--  <input type="submit" onclick="buyRightNow()" id="submitBtn2" style="display: none;" value="바로구매">-->
 			</form>
+			<div class="optionH">
+			<p id="inputCheck"></p>
+			<input type="button" onclick="addToCart()"  class="smallBtn" id="submitBtn" style="display: none;" value="장바구니">
+			</div>
 		</div>
 		<div class="readFormBottom">
 			<p><%=allVO.getPt_content()%></p>
 		</div>
-		<div class="optionBtn">
+	</div>
+	<div class="optionBtn">
 		<%
 		if (m_id == null) {
 		%>
@@ -100,7 +101,6 @@
 			<a href="./updatePt.won?pt_code=<%=pt_code%>">글 수정</a>
 			<a href="./deletePt.won?pt_code=<%=pt_code%>" onclick="return deletePt()">글 삭제</a>
 		<%}%> 
-	</div>
 	</div>
 	
 
@@ -142,9 +142,9 @@ function addPt(){
 		if (state === "login" && grade !== "트레이너" && grade !== "관리자") {
 			var select;
 			if ($('#pt_select').val() == 0){
-				select = "상담";}
+				select = "선택 : 상담";}
 			else{
-				select = ($('#pt_select').val()) + "회";}
+				select = "선택 : "+($('#pt_select').val()) + "회";}
 				$('#inputCheck').text(select);
 				$('#submitBtn').show();
 				$('#submitBtn2').show();

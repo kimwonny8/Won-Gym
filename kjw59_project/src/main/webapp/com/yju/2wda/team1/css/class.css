@@ -25,10 +25,7 @@
 	justify-content: space-around;
 	align-items: center;
 }
-/* .classContent::-webkit-scrollbar {
-    display: none; 
- }
- */
+
 .classContentOne{
 	display: flex;
 	flex-direction: column;

@@ -68,7 +68,7 @@
 			<div class="formInputLineH">
 				<p>* 성별</p>
 				<select name="m_gender" class="inputBox">
-						<option value="남">남</option>
+						<option value="남" selected>남</option>
 						<option value="여">여</option>
 				</select>
 			</div>
