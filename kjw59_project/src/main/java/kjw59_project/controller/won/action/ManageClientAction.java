@@ -32,7 +32,7 @@ public class ManageClientAction implements Action {
 			session.setAttribute("classList", classList);
 		}
 		else {
-			classList = productDAO.getMyClientSearchList(memberPt, search);
+			classList = productDAO.getMyClientList(memberPt, search);
 			session.setAttribute("classList", classList);
 		}
 		

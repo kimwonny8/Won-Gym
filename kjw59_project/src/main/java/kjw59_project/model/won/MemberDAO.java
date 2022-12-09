@@ -143,7 +143,7 @@ public class MemberDAO {
 		return success;
 	}
 
-	// 로그인 메서드
+	// 아이디에 맞는 비밀번호 확인
 	public String loginPwMember(MemberDTO member) {
 		String m_pw = "";
 		String sql = "select m_pw from member where m_id = ?";
@@ -162,7 +162,6 @@ public class MemberDAO {
 		} finally {
 			disConnect();
 		}
-
 		return m_pw;
 	}
 
@@ -210,6 +209,29 @@ public class MemberDAO {
 		}
 
 		return m_coin;
+	}
+
+	// 코인 수정 메서드
+	public boolean updateCoin(MemberDTO member) {
+		boolean success = false;
+		String sql = "update member set m_coin=? where m_id=?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, member.getM_coin());
+			pstmt.setString(2, member.getM_id());
+
+			int result = pstmt.executeUpdate();
+			if (result == 1)
+				success = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+		}
+
+		return success;
 	}
 
 	// id로 동네찾기 반환 메서드
@@ -306,6 +328,38 @@ public class MemberDAO {
 		return m_pw;
 	}
 
+	// 회원정보 수정 전 기존 정보 가져오기
+	public ArrayList<MemberDTO> getMemberInfoList(String m_id) {
+		ArrayList<MemberDTO> memberList = new ArrayList<>();
+
+		String sql = "select * from member where m_id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MemberDTO member = new MemberDTO();
+
+				member.setM_id(rs.getString("m_id"));
+				member.setM_name(rs.getString("m_name"));
+				member.setM_birth(rs.getString("m_birth"));
+				member.setM_gender(rs.getString("m_gender"));
+				member.setM_phone(rs.getString("m_phone"));
+				member.setM_coin(rs.getInt("m_coin"));
+				member.setC_code(rs.getString("c_code"));
+				memberList.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return memberList;
+	}
+
 	// 회원정보 수정 메서드
 	public boolean updateMember(MemberDTO member) {
 		boolean success = false;
@@ -321,29 +375,6 @@ public class MemberDAO {
 			pstmt.setString(6, member.getM_grade());
 			pstmt.setString(7, member.getC_code());
 			pstmt.setString(8, member.getM_id());
-
-			int result = pstmt.executeUpdate();
-			if (result == 1)
-				success = true;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return success;
-		} finally {
-			disConnect();
-		}
-
-		return success;
-	}
-
-	// 코인 수정 메서드
-	public boolean updateCoin(MemberDTO member) {
-		boolean success = false;
-		String sql = "update member set m_coin=? where m_id=?";
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, member.getM_coin());
-			pstmt.setString(2, member.getM_id());
 
 			int result = pstmt.executeUpdate();
 			if (result == 1)
@@ -514,7 +545,7 @@ public class MemberDAO {
 			pstmt.setString(6, "%" + searchContent + "%");
 			pstmt.setString(7, "%" + searchContent + "%");
 			pstmt.setString(8, "%" + searchContent + "%");
-			
+
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {

@@ -62,19 +62,19 @@
 			<p id="inputCheckName" class="inputCheckRight"></p> 
 			<div class="formInputLineH">
 				<p>* 생년월일</p>
-				<input type="text" id="m_birth" name="m_birth" class="inputBox" oninput="checkBirth()" placeholder="ex) 19970117">
+				<input type="text" id="m_birth" name="m_birth" maxlength="8" class="inputBox" oninput="checkBirth()" placeholder="ex) 19970117">
 			</div>
 			<p id="inputCheckBirth" class="inputCheckRight"></p> 
 			<div class="formInputLineH">
 				<p>* 성별</p>
-				<select name="m_gender" class="inputBox">
+				<select name="m_gender" id="m_gender" class="inputBox">
 						<option value="남" selected>남</option>
 						<option value="여">여</option>
 				</select>
 			</div>
 			<div class="formInputLineH">
 				<p>* 휴대폰번호</p>
-				<input type="text" name="m_phone" id="m_phone" class="inputBox" oninput="checkPhone()" placeholder="ex) 01012345678">
+				<input type="text" name="m_phone" id="m_phone" maxlength="11" class="inputBox" oninput="checkPhone()" placeholder="ex) 01012345678">
 			</div>
 			<p id="inputCheckPhone" class="inputCheckRight"></p> 
 			<div class="formInputLineH">
@@ -110,25 +110,26 @@ window.onpageshow = function(event) {
 function checkId() {
 	var m_id = $('#m_id').val();
 	
-	if (m_id == "") {
+	if (m_id == "" || m_id == null) {
 		$('#inputCheckId').text("아이디를 입력해주세요.");
 	}
+		$.ajax({
+			type : "post",
+			data : {m_id : $("#m_id").val()},
+			url : "./chkId.won",
+			success : function(value) {
+				console.log(value);
+				if(value=="" || value == null) {
+					$('#inputCheckId').text("중복된 아이디입니다.");
+				}
+				else {
+					$('#inputCheckId').text("사용 가능한 아이디입니다.");
+				}
+			} 
+		});
 	
-	$.ajax({
-		type : "post",
-		data : {m_id : $("#m_id").val()},
-		url : "./chkId.won",
-		success : function(value) {
-			console.log(value);
-			if(value=="" || value == null) {
-				$('#inputCheckId').text("중복된 아이디입니다.");
-			}
-			else {
-				$('#inputCheckId').text("사용 가능한 아이디입니다.");
-			}
-		} 
-	});
 };
+
 
 function checkPw() {
 	var m_pw = $('#m_pw').val();
@@ -190,8 +191,8 @@ $(document).ready(function() {
 		const m_name = $("#m_name").val();
 		const m_birth = $('#m_birth').val();
 		const m_phone = $('#m_phone').val();
-		const regBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-		const regPhone = /(\d{3})(\d{4})(\d{4})/
+		const regBirth =  /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		const regPhone = /(\d{3})(\d{4})(\d{4})/;
 		var birthChk = regBirth.test(m_birth) ? true : false;
 		var phoneChk = regPhone.test(m_phone) ? true : false;
 		
@@ -243,7 +244,7 @@ $(document).ready(function() {
 			type : "post",
 			data : {m_id : $("#m_id").val(), m_pw : $("#m_pw").val(),
 					m_birth : $("#m_birth").val(), m_name : $("#m_name").val(),
-					m_gender : $('[name=m_gender]:checked').val(), m_phone : $("#m_phone").val(),
+					m_gender : $('#m_gender').val(), m_phone : $("#m_phone").val(),
 					c_code : $("#c_code").val(), m_grade: $("#m_grade").val()},
 			url : "./signupMember.won",
 			success : function(value) {

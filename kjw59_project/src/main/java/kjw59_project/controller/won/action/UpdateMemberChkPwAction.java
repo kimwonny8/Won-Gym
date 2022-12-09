@@ -22,7 +22,6 @@ public class UpdateMemberChkPwAction implements Action {
 		request.setCharacterEncoding("utf-8");
 
 		String m_pw = request.getParameter("m_pw");
-		System.out.println("dd" + m_pw);
 		request.setCharacterEncoding("utf-8");
 		MemberDAO memberDAO = new MemberDAO();
 		MemberDTO member = new MemberDTO();
@@ -32,12 +31,11 @@ public class UpdateMemberChkPwAction implements Action {
 		String pw=memberDAO.updateMemberChkPw(member);
 		
 		if(m_pw.equals(pw)) {
-			forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
+			forward.setPath("/com/yju/2wda/team1/view/won/myPage.jsp");
 			return forward;
 		}
 		else {
 			return null;
-			//forward.setPath("/com/yju/2wda/team1/view/won/mypageChkPw.jsp");
 		}
 
 		

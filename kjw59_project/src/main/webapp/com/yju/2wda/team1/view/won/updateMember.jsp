@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.*"%>
+<%@ page import="kjw59_project.model.won.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,15 +22,23 @@
 	display: flex;
 	align-items: center;
 }
+.inputCheckRight{
+	color: red;
+	font-size: 0.8vw;
+	float: right;
+	width: 65%;
+}
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/style.css">
 
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
-	<% m_id = (String)session.getAttribute("m_id");
-	 m_name = (String)session.getAttribute("m_name");
-	 m_grade = (String)session.getAttribute("m_grade");%>
+	<% 
+	ArrayList<MemberDTO> list;
+	list =(ArrayList<MemberDTO>)session.getAttribute("list");
+	MemberDTO member = list.get(0);
+	%>
 	<div class="bottom">
 		<p class="menuTitle">회원정보수정</p>
 	</div>
@@ -37,7 +47,7 @@
 		<div class="formInner">
 			<div class="formInputLineH">
 				<p>* 아이디</p>
-				<input type="text" name="m_id" value="<%=m_id %>" disabled required class="inputBox">
+				<input type="text" name="m_id" value="<%=member.getM_id() %>" disabled required class="inputBox">
 			</div>
 			<div class="formInputLineH">
 				<p>* 비밀번호</p>
@@ -50,29 +60,29 @@
 	 			<p id="inputCheckPw" class="inputCheck"></p>
 			<div class="formInputLineH">
 				<p>* 이름</p>
-				<input type="text" value="<%=m_name%>" name="m_name" disabled class="inputBox">	
+				<input type="text" value="<%=member.getM_name() %>"name="m_name" disabled class="inputBox">	
 			</div>
 			<div class="formInputLineH">
 				<p>생년월일</p>
-				<input type="text" id="m_birth" name="m_birth" class="inputBox" placeholder="ex) 19970117">
+				<input type="text" id="m_birth" name="m_birth" value="<%=member.getM_birth() %>" maxlength="8" class="inputBox" placeholder="ex) 19970117">
 			</div>
+			<p id="inputCheckBirth" class="inputCheckRight"></p> 
 			<div class="formInputLineH">
-				<p>성별</p>
-				<input type="radio" name="m_gender" id="man" value="남" style="margin-left: 0;">
-				<label for="man" style="font-size: 0.8rem; margin-left: 0;">남</label>
-				<input type="radio" name="m_gender" id="woman" value="여"> 
-				<label for="woman"  style="font-size: 0.8rem; margin-left: 0;">여</label> 
-				<input type="radio" name="m_gender" id="noGender" checked value="선택안함"> 
-				<label for="noGender" style="font-size: 0.8rem; margin-left: 0;">선택안함</label>
+				<p>* 성별</p>
+				<select name="m_gender" id="m_gender" class="inputBox">
+						<option value="남" selected>남</option>
+						<option value="여">여</option>
+				</select>
 			</div>
 			<div class="formInputLineH">
 				<p>휴대폰번호</p>
-				<input type="text" name="m_phone" id="m_phone" class="inputBox" placeholder="ex) 01012345678">
+				<input type="text" name="m_phone" id="m_phone" value="<%=member.getM_phone() %>" maxlength="11" class="inputBox" placeholder="ex) 01012345678">
 			</div>
+			<p id="inputCheckPhone" class="inputCheckRight"></p> 
 			<div class="formInputLineH">
 				<p>* 구(대구만 시범 운영중) </p>
 				<select id="c_code" name="c_code" class="inputBox">
-					<option value="수성구">수성구</option>
+					<option value="수성구" selected>수성구</option>
 					<option value="중구">중구</option>
 					<option value="동구">동구</option>
 					<option value="서구">서구</option>
@@ -99,6 +109,7 @@ window.onpageshow = function(event) {
   }
 }
 
+
 function checkPw() {
 	var m_pw = $('#m_pw').val();
 	var m_pw2 = $('#m_pw2').val();
@@ -122,6 +133,12 @@ $(document).ready(function() {
 	$("#submitBtn").click(function() {
 		var m_pw = $("#m_pw").val();
 		var m_pw2 = $("#m_pw2").val();
+		const m_birth = $('#m_birth').val();
+		const m_phone = $('#m_phone').val();
+		const regBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+		const regPhone =  /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		var birthChk = regBirth.test(m_birth) ? true : false;
+		var phoneChk = regPhone.test(m_phone) ? true : false;
 		
 		if (m_pw == "") {
 			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
@@ -139,11 +156,22 @@ $(document).ready(function() {
 			 $("#m_pw2").val("");
 			return;
 		}
+		if(m_birth !="" && birthChk == false) {
+			$('#inputCheckBirth').text("생년월일을 다시 입력해주세요.");
+			$("#m_birth").focus();
+			return;
+		}
+		
+		if(m_phone !="" && phoneChk == false) {
+			$('#inputCheckPhone').text("휴대폰 번호를 다시 입력해주세요.");
+			$("#m_phone").focus();
+			return;
+		}
 			
  	 	$.ajax({
 			type : "post",
 			data : {m_pw : $("#m_pw").val(), m_birth : $("#m_birth").val(),
-					m_gender : $('[name=m_gender]:checked').val(), m_phone : $("#m_phone").val(),
+					m_gender : $('#m_gender').val(), m_phone : $("#m_phone").val(),
 					c_code : $("#c_code").val()},
 			url : "./updateMember.won",
 			success : function(value) {

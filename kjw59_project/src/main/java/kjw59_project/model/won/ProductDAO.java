@@ -556,7 +556,7 @@ public class ProductDAO {
 	public ArrayList<MemberPtDTO> getMyClientList(MemberPtDTO memberPt) {
 		ArrayList<MemberPtDTO> classList = new ArrayList<>();
 
-		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_state from member_pt where t_id = ? and mp_state in ('PC', 'CP', 'CC', 'RE')";
+		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_coin, mp_state from member_pt where t_id = ? and mp_state in ('PC', 'CP', 'CC', 'RE')";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberPt.getM_id());
@@ -569,6 +569,7 @@ public class ProductDAO {
 				mp.setPt_code(rs.getInt("pt_code"));
 				mp.setMp_date(rs.getString("mp_date"));
 				mp.setMp_cnt(rs.getInt("mp_cnt"));
+				mp.setMp_coin(rs.getInt("mp_coin"));
 				mp.setMp_state(rs.getString("mp_state"));
 				classList.add(mp);
 			}
@@ -583,10 +584,10 @@ public class ProductDAO {
 	}
 
 	// 마이페이지 - 신청내역관리 리스트(트레이너)
-	public ArrayList<MemberPtDTO> getMyClientSearchList(MemberPtDTO memberPt, String search) {
+	public ArrayList<MemberPtDTO> getMyClientList(MemberPtDTO memberPt, String search) {
 		ArrayList<MemberPtDTO> classList = new ArrayList<>();
 
-		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_state from member_pt where t_id = ? and mp_state = ?";
+		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_coin, mp_state from member_pt where t_id = ? and mp_state = ?";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberPt.getM_id());
@@ -600,6 +601,7 @@ public class ProductDAO {
 				mp.setPt_code(rs.getInt("pt_code"));
 				mp.setMp_date(rs.getString("mp_date"));
 				mp.setMp_cnt(rs.getInt("mp_cnt"));
+				mp.setMp_coin(rs.getInt("mp_coin"));
 				mp.setMp_state(rs.getString("mp_state"));
 				classList.add(mp);
 			}

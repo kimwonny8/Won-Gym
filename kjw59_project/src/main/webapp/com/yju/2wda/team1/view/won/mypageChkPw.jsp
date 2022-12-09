@@ -57,7 +57,6 @@ a {
 		</div>
 		<input type="button" id="deleteMember"  class="mypageBtn" value="회원탈퇴" style="margin-bottom: 1vh;">
 		<input type="button" id="updateMember" class="mypageBtn" value="회원정보수정" >
-<%-- 		<a href="<%=wonViewDir%>/updateMember.jsp">회원정보수정</a> --%>
 	</div>
 
 	<%@ include file="../module/footer.jsp"%>
@@ -101,7 +100,7 @@ window.onpageshow = function(event) {
 						 $("#m_pw2").val("");
 					}
 					else {
-						location.href="/kjw59_project/com/yju/2wda/team1/view/won/updateMember.jsp";
+						location.href="./getMemberInfo.won?m_id=<%=m_id%>";
 					}
 				}
 

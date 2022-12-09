@@ -8,8 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import kjw59_project.controller.won.Action;
 import kjw59_project.controller.won.ActionForward;
-import kjw59_project.model.won.CartVO;
-import kjw59_project.model.won.MImageDTO;
+import kjw59_project.model.won.MemberDAO;
 import kjw59_project.model.won.MemberDTO;
 import kjw59_project.model.won.MemberPtDTO;
 import kjw59_project.model.won.ProductDAO;
@@ -22,11 +21,23 @@ public class RefuseStateAction implements Action {
 
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();
+		MemberDAO memberDAO = new MemberDAO();
 		MemberPtDTO memberPt = new MemberPtDTO();
-
+		MemberDTO member = new MemberDTO();
+		
 		int mp_code = Integer.parseInt(request.getParameter("mp_code"));
+		int mp_coin = Integer.parseInt(request.getParameter("mp_coin"));
+		String m_id = request.getParameter("m_id");
+		
 		memberPt.setMp_code(mp_code);
+		member.setM_id(m_id);
 		productDAO.changeMpCode(memberPt,"RE");
+		
+		// 환불할 코인 + 현재 m_id가 갖고 있는 코인 = m_id 코인 값 변경
+		mp_coin += memberDAO.getCoinMember(member);
+		member.setM_coin(mp_coin);
+		memberDAO = new MemberDAO();
+		memberDAO.updateCoin(member);
 		
 		productDAO = new ProductDAO();
 		ArrayList<MemberPtDTO> classList;

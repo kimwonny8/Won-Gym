@@ -69,7 +69,6 @@
 					<th>신청분류</th>
 					<th>결제금액</th>
 					<th>입력한 추가 정보</th>
-
 				</tr>
 			</thead>
 			<tbody>
@@ -80,7 +79,7 @@
 					String state = cart.getMp_state();
 					if(state.equals("PC")) state = "대기중";
 					else if(state.equals("CP")) state = "진행중";
-					else if(state.equals("RE")) state="취소";
+					else if(state.equals("RE")) state="취소(환불완료)";
 					else state="완료";
 					
 					String date = cart.getMp_date();

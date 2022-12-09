@@ -17,4 +17,5 @@
 	static final String imgDir = workDir +"/image";
 	static final String memberThumbDir = imgDir +"/memberImage/memberThumb";
 	static final String cssDir = workDir +"/css";
+	static final String jsDir = workDir +"/js";
 %>

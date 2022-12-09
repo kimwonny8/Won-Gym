@@ -51,6 +51,10 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			break;
 		
 		/* 회원정보 수정, 탈퇴 부분 */			
+		case "/getMemberInfo.won":
+			action = new GetMemberInfoAction();
+			break;	
+			
 		case "/updateMemberChkPw.won":
 			action = new UpdateMemberChkPwAction();
 			break;

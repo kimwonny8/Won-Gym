@@ -27,7 +27,7 @@
 <body>
 	<%@ include file="../module/header.jsp"%>
 	<%
-	ArrayList<AllClassVO> classList;
+		ArrayList<AllClassVO> classList;
 		classList = (ArrayList<AllClassVO>) session.getAttribute("classList");
 		AllClassVO allVO = classList.get(0);
 		

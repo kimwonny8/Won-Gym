@@ -26,7 +26,6 @@
 
 
 </style>
-<link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>
@@ -81,7 +80,7 @@
 					
 					if(state.equals("PC")) state = "대기중";
 					else if(state.equals("CP")) state = "진행중";
-					else if(state.equals("RE")) state="취소";
+					else if(state.equals("RE")) state="취소(환불완료)";
 					else state="완료";
 					
 					String date = memberPt.getMp_date();
@@ -104,7 +103,7 @@
 					<% if(state.equals("대기중")) { %>
 					<td>
 						<a href="./updateState.won?mp_code=<%=memberPt.getMp_code()%>&mp_state=<%=memberPt.getMp_state()%>" class="smallBtn">수락</a>
-						<a href="./refuseState.won?mp_code=<%=memberPt.getMp_code()%>" onclick="return chk()" class="smallBtn">거절</a>
+						<a href="./refuseState.won?mp_code=<%=memberPt.getMp_code()%>&mp_coin=<%=memberPt.getMp_coin()%>&m_id=<%=memberPt.getM_id()%>" onclick="return chk()" class="smallBtn">거절</a>
 						<a href="./manageClientDetail.won?mp_code=<%=memberPt.getMp_code()%>" class="smallBtn">자세히</a>
 					</td>
 					<% } else if(state.equals("진행중")) {%>
@@ -130,7 +129,7 @@
 	<%@ include file="../module/footer.jsp"%>
 <script>
 function chk(){
-	var val=confirm("정말 거절하시겠습니까?");
+	var val=confirm("정말 거절하시겠습니까?\n거절 후 코인은 자동 환불됩니다.");
 	return val;
 }
 </script>

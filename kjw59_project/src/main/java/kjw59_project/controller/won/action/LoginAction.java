@@ -23,11 +23,13 @@ public class LoginAction implements Action {
 		String m_id = request.getParameter("m_id");
 		String m_pw = request.getParameter("m_pw");
 		member.setM_id(m_id);
+		// 비밀번호 확인
 		String Chk_m_pw = memberDAO.loginPwMember(member);
 
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		
+		// 입력한 비밀번호랑 디비에 비밀번호랑 같다면 로그인
 		if(m_pw.equals(Chk_m_pw)) {
 			memberDAO = new MemberDAO();
 			String m_name = memberDAO.loginNameMember(member);
