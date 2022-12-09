@@ -26,6 +26,7 @@ public class UpdateMemberPhotoAction implements Action {
 		ServletContext application = request.getServletContext();
 		String path = application.getRealPath("/");
 		String imgDirPath = path + "com\\yju\\2wda\\team1\\image\\memberImage\\";
+		
 		// 파일 관련
 		//String imgDirPath = "D:\\project\\WorkOutNow-Page\\kjw59_project\\src\\main\\webapp\\com\\yju\\2wda\\team1\\image\\memberImage\\";
 		String thumbImageDir = imgDirPath+"memberThumb\\";

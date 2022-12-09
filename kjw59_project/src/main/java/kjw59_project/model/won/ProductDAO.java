@@ -123,7 +123,8 @@ public class ProductDAO {
 	public boolean updateProduct(PtDTO pt) {
 		boolean success = false;
 
-		String sql = "update pt set pt_title=?, pt_one_c=?, pt_con_c=?, pt_content=? where t_id=?";
+		String sql = "update pt set pt_title=?, pt_one_c=?, pt_con_c=?,"
+				+ " pt_content=? where t_id=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -169,7 +170,8 @@ public class ProductDAO {
 	public boolean paymentComplete(MemberPtDTO memberPt) {
 		boolean success = false;
 
-		String sql = "update member_pt set mp_state='PC', mp_tall=?, mp_weight=?, mp_detail=? where m_id=? and mp_state = 'PP'";
+		String sql = "update member_pt set mp_state='PC', mp_tall=?, mp_weight=?, "
+				+ "mp_detail=? where m_id=? and mp_state = 'PP'";
 
 		try {
 			pstmt = con.prepareStatement(sql);

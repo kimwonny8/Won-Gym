@@ -28,6 +28,32 @@ a {
 	align-items: center;
 }
 </style>
+</head>
+
+<body>
+	<%@ include file="../module/header.jsp"%>
+
+	<div class="bottom">
+		<p class="menuTitle">로그인</p>
+	</div>
+	
+	<div class="form">
+	<div id="inputCheck" class="inputCheck"></div>
+		<div class="FormInputLine">
+			<p>아이디</p>
+			<input type="text" id="m_id" name="m_id" class="inputBox">
+		</div>
+		<div class="FormInputLine">
+			<p>비밀번호</p>
+			<input type="password" id="m_pw" name="m_pw" class="inputBox">
+		</div>
+		<div class="FormInputLine">
+			<input type="button" id="loginMember" class="Btn inputBtn" value="로그인">
+		</div>
+		<a href="<%=wonViewDir%>/signup_grade.jsp">회원가입</a>
+	</div>
+
+	<%@ include file="../module/footer.jsp"%>
 <script>
 	 	$(document).ready(function() {
 		$("#loginMember").click(function() {
@@ -65,31 +91,5 @@ a {
 
 	}); 
 </script>
-</head>
-
-<body>
-	<%@ include file="../module/header.jsp"%>
-
-	<div class="bottom">
-		<p class="menuTitle">로그인</p>
-	</div>
-	
-	<div class="form">
-	<div id="inputCheck" class="inputCheck"></div>
-		<div class="FormInputLine">
-			<p>아이디</p>
-			<input type="text" id="m_id" name="m_id" class="inputBox">
-		</div>
-		<div class="FormInputLine">
-			<p>비밀번호</p>
-			<input type="password" id="m_pw" name="m_pw" class="inputBox">
-		</div>
-		<div class="FormInputLine">
-			<input type="button" id="loginMember" class="Btn inputBtn" value="로그인">
-		</div>
-		<a href="<%=wonViewDir%>/signup_grade.jsp">회원가입</a>
-	</div>
-
-	<%@ include file="../module/footer.jsp"%>
 </body>
 </html>

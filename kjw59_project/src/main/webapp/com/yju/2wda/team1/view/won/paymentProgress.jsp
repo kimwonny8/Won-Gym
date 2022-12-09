@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>payment Progress</title>
+<link rel="stylesheet" href="<%=cssDir%>/cart.css">
+<link rel="stylesheet" href="<%=cssDir%>/chargeCoin.css">
 <style>
 .bottom {
 	width: 70%;
@@ -19,38 +21,7 @@
 	align-items: center;
 }
 
-.paymentForm {
-	width: 60%;
-	margin-top: 5vw;
-	margin-bottom: 2vw;
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	padding: 1.5vw 0;
-}
-
-.paymentFormInner {
-	width: 70%;
-
-}
-
-.onTheFormP {
-	width: 70%;
-	margin-bottom: 0.8vw;
-	font-size: 0.9vw;
-}
-
-.tableT {
-	display: flex;
-	justify-items: center;
-	align-items: center;
-	width: 50%;
-}
-
-img {
-	margin: 0 1vw;
-}
 </style>
-<link rel="stylesheet" href="<%=cssDir%>/cart.css">
 </head>
 
 <body>

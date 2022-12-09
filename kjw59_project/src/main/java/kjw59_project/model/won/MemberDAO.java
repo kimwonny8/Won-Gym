@@ -74,7 +74,8 @@ public class MemberDAO {
 	public boolean insertMember(MemberDTO member) {
 		boolean success = false;
 
-		String sql = "insert into member (m_id, m_pw, m_name, m_birth, m_gender, m_phone, m_grade, c_code) ";
+		String sql = "insert into member (m_id, m_pw, m_name, m_birth, "
+				+ "m_gender, m_phone, m_grade, c_code) ";
 		sql += "values(?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -363,7 +364,8 @@ public class MemberDAO {
 	// 회원정보 수정 메서드
 	public boolean updateMember(MemberDTO member) {
 		boolean success = false;
-		String sql = "update member set m_pw=?, m_name=?, m_birth=?, m_gender=?, m_phone=?, m_grade=?, c_code=? WHERE m_id=?";
+		String sql = "update member set m_pw=?, m_name=?, m_birth=?, "
+				+ "m_gender=?, m_phone=?, m_grade=?, c_code=? WHERE m_id=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);

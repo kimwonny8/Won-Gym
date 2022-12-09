@@ -240,5 +240,17 @@ a:hover {
 	display: flex;
 	align-items: center;
 }
-
+.btn {
+	padding: 0.5vw;
+	width: 7vw;
+	height: 2vw;
+	margin: 2vw;
+	background-color: #72787F;
+	color: white;
+	border: none;
+	font-size: 0.9vw;
+}
+.btn:hover {
+	opacity: 0.7;
+}
 

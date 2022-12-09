@@ -9,6 +9,7 @@
   src="http://code.jquery.com/jquery-3.5.1.js"
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 <style>
 .bottom {
 	width: 70%;
@@ -20,8 +21,9 @@
 	display: flex;
 	align-items: center;
 }
+
 </style>
-<link rel="stylesheet" href="<%=cssDir%>/mypage.css">
+
 </head>
 <body>
 
@@ -83,7 +85,7 @@
             	<% } else { %>
             	<button onclick="location.href='./manageClient.won'" class="mypageBtn">신청내역관리</button>
             	<% } %>
-            	<button class="mypageBtn">게시글관리</button>                
+            	<button class="mypageBtn" onclick="alert('준비 중인 기능입니다.')">게시물관리</button>                
             </div>
             <div class="myPageBottom">
             	

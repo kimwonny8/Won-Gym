@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Application Complete!</title>
+<link rel="stylesheet" href="<%=cssDir%>/chargeCoin.css">
 <style>
 .bottom {
 	width: 70%;
@@ -17,40 +18,6 @@
 	align-items: center;
 }
 
-.depositForm {
-	width: 60%;
-	margin-top: 5vw;
-	font-size: 0.9vw;
-	text-align: center;
-	margin-bottom: 2vw;
-}
-.depositFormInner{
-	margin-top: 1vw;
-	margin-bottom: 5vw;
-	padding: 1.5vw 0;
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	width: 70%;
-	
-}
-.onTheFormP{
-	width: 70%;
-	text-align: left;
-	font-size: 0.9vw;
-}
-.btn {
-	padding: 0.5vw;
-	width: 7vw;
-	height: 2vw;
-	margin: 2vw;
-	background-color: #72787F;
-	color: white;
-	border: none;
-	font-size: 0.9vw;
-}
-.btn:hover {
-	opacity: 0.7;
-}
 </style>
 </head>
 <body>

@@ -23,24 +23,6 @@
 	align-items: center;
 }
 
-.basicForm {
-	width: 60%;
-	margin-top: 2vw;
-	margin-bottom: 2vw;
-	text-align: center;
-	margin-bottom: 2vw;
-}
-
-.basicFormInner {
-	margin-top: 1vw;
-	padding: 1.5vw 0;
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	width: 70%;
-	height: 20vw;
-	display: flex;
-	align-items: center;
-}
 </style>
 </head>
 <body>

@@ -10,6 +10,7 @@
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
 <link rel="stylesheet" href="<%=cssDir%>/cart.css">
+<link rel="stylesheet" href="<%=cssDir%>/chargeCoin.css">
 <style>
 .bottom {
 	width: 70%;
@@ -20,44 +21,6 @@
 	opacity: 0.8;
 	display: flex;
 	align-items: center;
-}
-label {
-	font-size: 0.9vw;
-}
-
-.coinForm {
-	margin-top: 5vw;
-	margin-bottom: 5vw;
-	padding: 2vw 1vw;
-	width: 50%;
-	border: 0.05vw solid #DCDCDC;
-	text-align: center;
-}
-
-.coinFormInner {
-	padding: 2vw 0;
-	margin-top: 1vw;
-	margin-bottom: 5vw;
-	width: 70%;
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	text-align: left;
-}
-.coinSelectH {
-	margin: 2vw;
-}
-
-.btn {
-	width: 10vw;
-	height: 2vw;
-	margin: 1vw;
-	background-color: #72787F;
-	color: white;
-	border: none;
-	font-size: 0.9vw;
-}
-.btn:hover {
-	opacity: 0.7;
 }
 </style>
 </head>

@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+label {
+	font-size: 0.9vw;
+}
+
+.coinForm {
+	margin-top: 5vw;
+	margin-bottom: 5vw;
+	padding: 2vw 1vw;
+	width: 50%;
+	border: 0.05vw solid #DCDCDC;
+	text-align: center;
+}
+
+.coinFormInner {
+	padding: 2vw 0;
+	margin-top: 1vw;
+	margin-bottom: 5vw;
+	width: 70%;
+	border-top: 0.05vw solid #DCDCDC;
+	border-bottom: 0.05vw solid #DCDCDC;
+	text-align: left;
+}
+.coinSelectH {
+	margin: 2vw;
+}
+.depositForm {
+	width: 60%;
+	margin-top: 2vw;
+	margin-bottom: 2vw;
+	text-align: center;
+	margin-bottom: 2vw;
+}
+.depositFormInner{
+	margin-top: 1vw;
+	padding: 1.5vw 0;
+	border-top: 0.05vw solid #DCDCDC;
+	border-bottom: 0.05vw solid #DCDCDC;
+	width: 70%;
+	
+}
+
+.onTheFormP{
+	width: 70%;
+	text-align: left;
+	font-size: 0.9vw;
+}
+
+.tableT {
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	width: 50%;
+}
+
+img {
+	margin: 0 1vw;
+}

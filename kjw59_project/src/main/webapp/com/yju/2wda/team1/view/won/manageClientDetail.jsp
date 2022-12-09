@@ -45,9 +45,6 @@
 	width: 50%;
 }
 
-img {
-	margin: 0 1vw;
-}
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 </head>

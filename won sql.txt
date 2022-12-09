@@ -1,0 +1,86 @@
+// 전체 상품 리스트
+select p.pt_code, p.t_id, p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like, 
+m.m_name, m.c_code, IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name
+from pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.t_id = m.m_id) 
+order by p.pt_code limit 0, 10;
+
+
+// 회원 조건 검색
+select * from member where (m_id like '%a%') or (m_name like '%a%') or (m_birth like '%a%') or (m_gender like '%a%')
+ or (m_phone like '%a%') or (m_coin like '%a%') or (m_grade like '%a%') or (c_code like '%a%');
+
+
+// 동네 검색
+select p.pt_code, p.t_id, p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like, 
+m.m_name, m.c_code, IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name
+from pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.t_id = m.m_id) 
+where m.c_code = '수성구' order by p.pt_code;
+
+
+// 상품 클릭시 한개 정보
+select  p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like, 
+m.m_name, m.c_code, IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name
+from pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.t_id = m.m_id) 
+where p.pt_code = 1;
+
+
+// 상품 글 수정시 불러옴
+select pt_title, pt_one_c, pt_con_c, pt_content, pt_like from pt where pt_code = ?
+
+
+// 장바구니 담기 전 같은 걸 담고 있는 지 확인
+select count(*) from member_pt where pt_code =? and m_id=?;
+
+
+
+// 장바구니에 담기
+insert into member_pt (m_id, pt_code, t_id, mp_state, mp_coin, mp_cnt) values (?, ?, ?, ?, ?, ?);
+
+
+// 장바구니 리스트
+select p.mp_code, p.pt_code, p.t_id, p.mp_coin, p.mp_cnt, m.c_code,
+IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name
+from member_pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.m_id = m.m_id) 
+where p.m_id = 'a' and p.mp_state='CR' order by p.mp_code;
+
+
+// 결제 진행 리스트
+select p.mp_code, p.pt_code, p.t_id, p.mp_coin, p.mp_cnt, m.c_code, 
+IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name 
+from member_pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.m_id = m.m_id) 
+where p.m_id = 'a' and p.mp_state='PP' order by p.mp_code;
+
+
+// 결제 완료 후 데이터 집어넣고 상태 PC로
+update member_pt set mp_state='PC', mp_tall=165, mp_weight=50, mp_detail='test' 
+where m_id='a' and mp_state = 'PP';
+
+
+// 분류 골라서 검색
+select p.pt_code, p.t_id, p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like,
+m.m_name, m.c_code, IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name
+from pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.t_id = m.m_id)
+where ? like ? order by p.pt_code
+
+
+// 전체에서 상품 검색
+select p.pt_code, p.t_id, p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like,
+m.m_name, m.c_code, IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name
+from pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.t_id = m.m_id)
+where (p.t_id like ?) or (p.pt_title like ?) or ( m.c_code like ?) or (p.pt_content like ?) order by p.pt_code;
+
+
+// 마이페이지에서 신청내역 관리(회원)
+select p.mp_code, p.pt_code, p.t_id, p.mp_coin, p.mp_cnt, m.c_code, p.mp_state,
+IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name 
+from member_pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.m_id = m.m_id) 
+where p.m_id = 'a' and p.mp_state in ('PC', 'CP', 'CC') order by p.mp_code;
+
+
+// 마이페이지에서 신청내역 관리(트레이너)
+select mp_code, m_id, pt_code, mp_date, mp_cnt from member_pt where t_id = ? and mp_state in ('PC', 'CP');
+
+
+// 마이페이지 신청내역 관리 - 자세히(트레이너)
+select m.m_name, m.m_birth, m.m_gender, m.m_phone, p.mp_tall, p.mp_weight, p.mp_detail 
+from member_pt p left join member m on (p.m_id = m.m_id) where p.mp_code = 13;

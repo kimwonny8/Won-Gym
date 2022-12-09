@@ -16,7 +16,6 @@ public class SignupAction implements Action {
 		MemberDAO memberDAO = new MemberDAO();
 		MemberDTO member = new MemberDTO();
 		TrainerDTO trainer = new TrainerDTO();
-		CityDTO city = new CityDTO();
 		
 		String m_grade=request.getParameter("m_grade");
 		String m_id=request.getParameter("m_id");
