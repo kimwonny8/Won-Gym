@@ -63,8 +63,8 @@ PtDTO pt;
 			<option value="pt_title">제목</option>
 			<option value="pt_content">내용</option>
 		</select>
-		<input type="text" name="searchContent">
-		<button>검색</button>
+		<input type="text" class="inputBox" name="searchContent">
+		<button class="smallBtn">검색</button>
 		<%
 		if (postList.size() == 0) {
 		%>

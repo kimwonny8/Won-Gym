@@ -2,6 +2,7 @@ package kjw59_project.controller.won.action;
 
 import java.util.Enumeration;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,9 +23,12 @@ public class UpdateMemberPhotoAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
 		
+		ServletContext application = request.getServletContext();
+		String path = application.getRealPath("/");
+		String imgDirPath = path + "com\\yju\\2wda\\team1\\image\\memberImage\\";
 		// 파일 관련
-		String imgDirPath = "D:\\project\\WorkOutNow-Page\\kjw59_project\\src\\main\\webapp\\com\\yju\\2wda\\team1\\image\\memberImage\\";
-		String thumbImageDir = "D:\\project\\WorkOutNow-Page\\kjw59_project\\src\\main\\webapp\\com\\yju\\2wda\\team1\\image\\memberImage\\memberThumb\\";
+		//String imgDirPath = "D:\\project\\WorkOutNow-Page\\kjw59_project\\src\\main\\webapp\\com\\yju\\2wda\\team1\\image\\memberImage\\";
+		String thumbImageDir = imgDirPath+"memberThumb\\";
 
 		int maxSize = 1024 * 1024 * 5; // 최대 5G까지 가능 1024 => 1KB
 

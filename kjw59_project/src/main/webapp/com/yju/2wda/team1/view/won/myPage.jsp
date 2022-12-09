@@ -20,43 +20,6 @@
 	display: flex;
 	align-items: center;
 }
-.myPageClass{
-    width: 80%;
-    height: 12vw;
-    font-size: 0.9vw;
-    border-top: 0.01vw solid gray;
-    border-bottom: 0.01vw solid gray;
-    padding: 1vw 0;
-    display: flex;
-    flex-direction: column;
- 	justify-content: space-around;
- 	margin-top: 1vw;
- 	margin-bottom: 3vw;
-}
-.filebox label {
-  display: inline-block;
-  padding: .5em .75em;
-  color: #999;
-  font-size: inherit;
-  line-height: normal;
-  vertical-align: middle;
-  background-color: #fdfdfd;
-  cursor: pointer;
-  border: 1px solid #ebebeb;
-  border-bottom-color: #e2e2e2;
-  border-radius: .25em;
-}
-
-.filebox input[type="file"] {  /* 파일 필드 숨기기 */
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip:rect(0,0,0,0);
-  border: 0;
-}
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 </head>
@@ -98,8 +61,8 @@
                 </div>
                 <div class="addMyPageImage">
                 <div class="filebox">
-		             <label for="file">사진선택</label>
-	  				<input type="file" id="file">  
+		            <label for="file">사진선택</label>
+	  				<input type="file" name="file" id="file">  
 	            </div>
 	            <p id="fileName" class="inputCheck" style="color:gray;"></p>
 	            <p id="inputCheck" class="inputCheck"></p>

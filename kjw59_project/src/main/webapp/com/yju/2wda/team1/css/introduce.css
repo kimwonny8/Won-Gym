@@ -1,0 +1,31 @@
+@charset "UTF-8";
+
+
+.introduceForm {
+	margin-top: 5vw;
+	margin-bottom: 5vw;
+	width: 70%;
+}
+
+.introduceText {
+	text-align: center;
+	padding: 1vw;
+}
+
+.greetingMent {
+	position: relative;
+	text-align: center;
+}
+
+.greetingMent p {
+	font-size: 1.5vw;
+}
+.icon1 {
+	position: absolute;
+	left: 25%;
+}
+
+.icon2 {
+	position: absolute;
+	right: 25%;
+}

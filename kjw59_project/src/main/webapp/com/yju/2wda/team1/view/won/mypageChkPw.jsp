@@ -16,11 +16,6 @@
 	font-size: 0.8rem;
 }
 
-a {
-	text-decoration-line: none;
-	color: black;
-}
-
 .bottom {
 	width: 70%;
 	height: 20vh;

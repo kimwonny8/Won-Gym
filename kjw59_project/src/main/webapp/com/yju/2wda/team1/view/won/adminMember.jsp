@@ -67,8 +67,8 @@ ArrayList<MemberDTO> memberList;
 			<option value="c_code">동네</option>
 			<option value="m_grade">회원 등급</option>
 		</select>
-		<input type="text" name="searchContent">
-		<button>검색</button>
+		<input type="text" class="inputBox" name="searchContent">
+		<button class="smallBtn">검색</button>
 	</form>
 		<%
 		if (memberList.size() == 0) {
@@ -101,6 +101,9 @@ ArrayList<MemberDTO> memberList;
 				<%
 				for (int i = 0; i < memberList.size(); i++) {
 					member = memberList.get(i);
+					String grade = member.getM_grade();
+					if(grade.equals("client")) grade = "일반";
+					else if(grade.equals("trainer")) grade = "트레이너";
 					if(member.getM_id().equals("admin")) continue;
 				%>
 				<tr>
@@ -111,8 +114,17 @@ ArrayList<MemberDTO> memberList;
 					<td><%=member.getM_phone() %></td>
 					<td><%=member.getM_coin() %></td>
 					<td><%=member.getC_code() %></td>
-					<td><%=member.getM_grade() %></td>
-					<td><a href="./expulsionMember.won?m_id=<%=member.getM_id() %>">추방</a></td>
+					<td><%=grade %></td>
+					<td>
+					<form method="post" action="./updateGrade.won">
+						<select name="m_grade">
+							<option value="client">client</option>
+							<option value="trainer">trainer</option>
+						</select>
+						<input type="hidden" name="m_id" value="<%=member.getM_id() %>">
+						<button class="smallBtn">변경</button>
+						<a href="./expulsionMember.won?m_id=<%=member.getM_id() %>">추방</a></td>
+					</form>
 				<tr>	
 			</tbody>
 				<% } }%>

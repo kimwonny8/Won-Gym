@@ -420,7 +420,7 @@ public class MemberDAO {
 		boolean success = false;
 
 		String sql = "insert into m_image (m_id, mi_file_name, mi_size, mi_thum_name)";
-		sql += "values (?, ?, ?, ?)";
+		sql += " values (?, ?, ?, ?)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -567,6 +567,29 @@ public class MemberDAO {
 		}
 
 		return memberList;
+	}
+
+	// 관리자 - 회원 등급 수정 메서드
+	public boolean updateGrade(MemberDTO member) {
+		boolean success = false;
+		String sql = "update member set m_grade=? where m_id=?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getM_grade());
+			pstmt.setString(2, member.getM_id());
+
+			int result = pstmt.executeUpdate();
+			if (result == 1)
+				success = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return success;
+		} finally {
+			disConnect();
+		}
+
+		return success;
 	}
 
 	// 썸네일
