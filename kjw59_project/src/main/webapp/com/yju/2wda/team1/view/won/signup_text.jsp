@@ -191,7 +191,7 @@ $(document).ready(function() {
 		const m_name = $("#m_name").val();
 		const m_birth = $('#m_birth').val();
 		const m_phone = $('#m_phone').val();
-		const regBirth =  /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+		const regBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 		const regPhone = /(\d{3})(\d{4})(\d{4})/;
 		var birthChk = regBirth.test(m_birth) ? true : false;
 		var phoneChk = regPhone.test(m_phone) ? true : false;

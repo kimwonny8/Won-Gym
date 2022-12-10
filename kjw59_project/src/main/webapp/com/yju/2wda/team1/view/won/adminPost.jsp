@@ -105,12 +105,18 @@ PtDTO pt;
 					<td><%=pt.getPt_one_c() %></td>
 					<td><a href="./selectPt.won?pt_code=<%=pt.getPt_code() %>">글 보러가기</a></td>
 					<td><%=pt.getPt_like() %></td>
-					<td><a href="./expulsionPost.won?pt_code=<%=pt.getPt_code() %>">삭제</a></td>
+					<td><a href="./expulsionPost.won?pt_code=<%=pt.getPt_code() %>" onclick="return chk()">삭제</a></td>
 				<tr>	
 			</tbody>
 				<% } }%>
 		</table>
 
 <%@ include file="../module/footer.jsp"%>
+<script>
+function chk() {
+	var tmp = confirm("정말 삭제하시겠습니까?");
+	return tmp;
+}
+</script>
 </body>
 </html>

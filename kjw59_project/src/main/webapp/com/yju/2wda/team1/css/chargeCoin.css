@@ -40,6 +40,19 @@ label {
 	width: 70%;
 	
 }
+.paymentForm {
+	width: 60%;
+	margin-top: 5vw;
+	margin-bottom: 2vw;
+	border-top: 0.05vw solid #DCDCDC;
+	border-bottom: 0.05vw solid #DCDCDC;
+	padding: 1.5vw 0;
+}
+
+.paymentFormInner {
+	width: 70%;
+
+}
 
 .onTheFormP{
 	width: 70%;
