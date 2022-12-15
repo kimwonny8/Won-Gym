@@ -55,9 +55,14 @@ public class AddToCartAction implements Action {
 			
 			ActionForward forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("./getCartList.won");
 			
-			return forward;
+			if(success == true) {
+				forward.setPath("./getCartList.won");
+				return forward;
+			}
+			else {
+				return null;
+			}
 		}
 		else return null;
 

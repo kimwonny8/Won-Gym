@@ -50,7 +50,7 @@ a {
 		<div class="FormInputLine">
 			<input type="button" id="loginMember" class="Btn inputBtn" value="로그인">
 		</div>
-		<a href="<%=wonViewDir%>/signup_grade.jsp">회원가입</a>
+		<a href="<%=wonViewDir%>/signupGrade.jsp">회원가입</a>
 	</div>
 
 	<%@ include file="../module/footer.jsp"%>

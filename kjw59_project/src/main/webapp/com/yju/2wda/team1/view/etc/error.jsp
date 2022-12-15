@@ -17,6 +17,17 @@
 	display: flex;
 	align-items: center;
 }
+.errorForm{
+	height: 20vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center; 
+}
+
+.errorForm > p {
+	font-size: 1.5vw;
+}
 </style>
 </head>
 <body>
@@ -24,8 +35,11 @@
 <div class="bottom">
 		<p class="menuTitle">오류</p>
 	</div>
-<div style="text-align:center;">
- <h1>오류페이지! 관리자에게 문의하세요</h1>
+<div class="errorForm">
+	<p><img src="<%=imgDir%>/error.png" width="20vw"> 오류페이지! 관리자에게 문의하세요</p>
+	<br>
+	<br>
+	<a href="/kjw59_project/index.jsp">홈으로</a>
 </div>
 <%@ include file="../module/footer.jsp"%>
 </body>
