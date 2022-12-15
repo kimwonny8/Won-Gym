@@ -36,7 +36,7 @@ a {
 			<button onclick="location.href='<%=rootDir%>/index.jsp'"></button>
 		</div>
 		<div class="topMenu">
-			<button onclick="location.href='<%=wonViewDir%>/signup_grade.jsp'"
+			<button onclick="location.href='<%=wonViewDir%>/signupGrade.jsp'"
 				class="Btn topMenuBtn">회원가입</button>
 			<button onclick="location.href='<%=wonViewDir%>/login.jsp'"
 				class="Btn topMenuBtn">로그인</button>
