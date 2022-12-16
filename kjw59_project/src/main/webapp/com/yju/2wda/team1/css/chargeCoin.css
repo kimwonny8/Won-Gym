@@ -38,7 +38,7 @@ label {
 	border-top: 0.05vw solid #DCDCDC;
 	border-bottom: 0.05vw solid #DCDCDC;
 	width: 70%;
-	
+	font-size: 1vw;
 }
 .paymentForm {
 	width: 60%;
@@ -65,8 +65,4 @@ label {
 	justify-items: center;
 	align-items: center;
 	width: 50%;
-}
-
-img {
-	margin: 0 1vw;
 }

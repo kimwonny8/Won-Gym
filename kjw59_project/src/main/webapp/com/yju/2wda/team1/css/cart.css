@@ -42,8 +42,9 @@ td {
 	color: white;
 }
 
-img {
+.cartImg {
 border-radius : 50%;
+margin: 0 1vw;
 }
 
 .orderList {

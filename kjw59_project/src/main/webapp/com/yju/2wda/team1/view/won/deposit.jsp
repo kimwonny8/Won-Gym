@@ -23,7 +23,7 @@
 	<div class="depositForm">
 		<p class="onTheFormP">계좌번호 확인 후 입금해주세요.</p>
 		<div class="depositFormInner">
-			<p>카카오뱅크 3333-04-0123456</p>
+			<p>계좌번호 : 00000000000</p>
 			<p>(주)WON</p>
 			<br>
 			<p style="margin: 1vw;">입금하실 금액 <b><%=money%></b> 원</p>

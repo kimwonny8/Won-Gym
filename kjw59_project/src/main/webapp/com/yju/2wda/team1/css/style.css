@@ -165,7 +165,7 @@
 }
 
 .footerTop {
-	height: 20%;
+	height: 2.5vw;
 	background-color: #72787F;
 	text-align: right;
 }
@@ -181,6 +181,7 @@
 .footerTop>button>img {
 	position: absolute;
 	width: 70%;
+	height: 2vw;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);

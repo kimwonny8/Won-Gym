@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="cartForm">
-		<p class="onTheFormP">선택한 상품</p>
+		<p class="onTheFormP" style="text-align: center;">선택한 상품</p>
 		<table class="tableForm" style="margin-top: 0;">
 			<thead>
 				<tr>
@@ -64,7 +64,7 @@
 				<tr>
 					<td>
 						<p class="tableT">
-							<img src="<%=memberThumbDir%>/<%=thumbsnail%>" width=70>
+							<img class="cartImg" src="<%=memberThumbDir%>/<%=thumbsnail%>" width=70>
 							<%=cart.getT_name()%>
 							트레이너<br> 대구시
 							<%=cart.getC_code()%></p>
@@ -82,7 +82,7 @@
 
 		<form method="post" action="./paymentComplete.won" onsubmit="return chkCoin()">
 		<div class="paymentForm">
-			<p class="onTheFormP">신청자 추가 정보</p>
+			<p class="onTheFormP" style="text-align: center;">신청자 추가 정보</p>
 			<div class="paymentFormInner">
 				<div class="formInputLineH">
 					<p>키</p>

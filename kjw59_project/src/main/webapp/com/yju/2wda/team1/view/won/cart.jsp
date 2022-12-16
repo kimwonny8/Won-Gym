@@ -70,7 +70,7 @@
 				<tr>
 					<td><input type="checkbox" class="check"
 						value="<%=cart.getMp_code()%>" name="check"></td>
-					<td><img src="<%=memberThumbDir%>/<%=thumbsnail%>" width=100 height=100>
+					<td><img class="cartImg" src="<%=memberThumbDir%>/<%=thumbsnail%>" width=100 height=100>
 						<br><%=cart.getT_name()%> 트레이너 <br>대구시 <%=cart.getC_code()%></td>
 					<td><%=select%></td>
 					<td><%=cart.getMp_coin()%></td>
