@@ -72,7 +72,7 @@
 			</div>
 			<!-- 글쓰기 -->
 			<div class="classMenuWrite">
-			<%	if (session.getAttribute("m_grade") == null || m_grade.equals("일반") || m_grade.equals("관리자")) {
+			<%	if (session.getAttribute("m_grade") == null || m_grade.equals("일반") || m_grade.equals("관리자") || m_grade.equals("트레이너(대기중)")) {
 			} else { 
 			%> <button class="Btn" onclick="location.href='<%=wonViewDir%>/uploadClass.jsp'">글쓰기</button> <%	}%>
 			</div>

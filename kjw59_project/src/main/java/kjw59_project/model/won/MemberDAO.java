@@ -74,8 +74,7 @@ public class MemberDAO {
 	public boolean insertMember(MemberDTO member) {
 		boolean success = false;
 
-		String sql = "insert into member (m_id, m_pw, m_name, m_birth, "
-				+ "m_gender, m_phone, m_grade, c_code) ";
+		String sql = "insert into member (m_id, m_pw, m_name, m_birth, " + "m_gender, m_phone, m_grade, c_code) ";
 		sql += "values(?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try {
@@ -101,15 +100,17 @@ public class MemberDAO {
 		return success;
 	}
 
-	// 회원가입 메서드
+	// 회원가입 메서드 - 트레이너
 	public boolean insertTrainer(TrainerDTO trainer) {
 		boolean success = false;
 
-		String sql = "insert into trainer (t_id) values (?)";
+		String sql = "insert into trainer (t_id, t_license_name, t_license_num) values (?, ?, ?)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, trainer.getT_id());
+			pstmt.setString(2, trainer.getT_license_name());
+			pstmt.setString(3, trainer.getT_license_num());
 
 			pstmt.executeUpdate();
 			success = true;
@@ -121,6 +122,36 @@ public class MemberDAO {
 
 		}
 		return success;
+	}
+
+	// 트레이너 자격증 정보 가져오기
+	public ArrayList<TrainerDTO> getTrainerLicense(String t_id) {
+		ArrayList<TrainerDTO> trainerList = new ArrayList<>();
+
+		String sql = "select * from trainer where t_id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, t_id);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				TrainerDTO trainer = new TrainerDTO();
+
+				trainer.setT_id(rs.getString("t_id"));
+				trainer.setT_license_name(rs.getString("t_license_name"));
+				trainer.setT_license_num(rs.getString("t_license_num"));
+
+				trainerList.add(trainer);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return trainerList;
 	}
 
 	// 회원탈퇴 메서드

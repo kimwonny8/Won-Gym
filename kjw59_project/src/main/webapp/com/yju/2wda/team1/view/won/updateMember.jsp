@@ -25,7 +25,13 @@
 	<% 
 	ArrayList<MemberDTO> list;
 	list =(ArrayList<MemberDTO>)session.getAttribute("list");
-	MemberDTO member = list.get(0);
+	MemberDTO member = null;
+	if(list.size() != 0){
+		member = list.get(0);
+	}
+	 else {
+			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
+		}
 	%>
 	<div class="bottom">
 		<p class="menuTitle">회원정보수정</p>

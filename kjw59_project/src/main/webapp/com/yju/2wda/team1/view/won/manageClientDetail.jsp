@@ -21,15 +21,25 @@
 	<%
 	ArrayList<CartVO> classList;
 	classList = (ArrayList<CartVO>) session.getAttribute("classList");
-	CartVO cart = classList.get(0);
+	String m_birth=""; 
+	String m_gender=""; 
+	String m_phone=""; 
+	int mp_tall=0; 
+	int mp_weight=0;
+	String mp_detail="";
 	
-	m_name = cart.getM_name();
-	String m_birth = cart.getM_birth();
-	String m_gender = cart.getM_gender();
-	String m_phone = cart.getM_phone();
-	int mp_tall = cart.getMp_tall();
-	int mp_weight = cart.getMp_weight();
-	String mp_detail = cart.getMp_detail();
+	if(classList.size() != 0) {
+		CartVO cart = classList.get(0);
+		m_name = cart.getM_name();
+		m_birth = cart.getM_birth();
+		m_gender = cart.getM_gender();
+		m_phone = cart.getM_phone();
+		mp_tall = cart.getMp_tall();
+		mp_weight = cart.getMp_weight();
+		mp_detail = cart.getMp_detail();
+	} else {
+		response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
+	}
 	
 	%>
 	<div class="bottom">

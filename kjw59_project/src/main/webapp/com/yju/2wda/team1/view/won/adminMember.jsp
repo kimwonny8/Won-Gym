@@ -13,6 +13,9 @@
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
 <style>
+td > a {
+	font-size: 0.8vw;
+}
 .bottom {
 	background-image: url("<%=imgDir%>/mypage.jpg");
 }
@@ -22,7 +25,7 @@
 <body>
 <%@ include file="../module/header.jsp"%>
 <%
-ArrayList<MemberDTO> memberList;
+	ArrayList<MemberDTO> memberList;
 	memberList = (ArrayList<MemberDTO>) session.getAttribute("memberList");
 	MemberDTO member;
 %>
@@ -79,6 +82,7 @@ ArrayList<MemberDTO> memberList;
 					String grade = member.getM_grade();
 					if(grade.equals("client")) grade = "일반";
 					else if(grade.equals("trainer")) grade = "트레이너";
+					else if(grade.equals("trainerW")) grade = "트레이너(대기중)";
 					if(member.getM_id().equals("admin")) continue;
 				%>
 				<tr>
@@ -89,7 +93,10 @@ ArrayList<MemberDTO> memberList;
 					<td><%=member.getM_phone() %></td>
 					<td><%=member.getM_coin() %></td>
 					<td><%=member.getC_code() %></td>
-					<td><%=grade %></td>
+					<% if(grade.equals("트레이너(대기중)")) { %>
+						<td><a href="./adminTrainerDetail.won?m_id=<%=member.getM_id()%>"><%=grade %></a></td>
+					<% } else { %>
+					<td><%=grade %></td> <% } %>
 					<td>
 					<form method="post" action="./updateGrade.won">
 						<select name="m_grade">

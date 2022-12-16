@@ -40,6 +40,7 @@ public class LoginAction implements Action {
 			memberDAO = new MemberDAO();
 			String m_grade = memberDAO.loginChkGrade(member);
 			if(m_grade.equals("trainer")) m_grade = "트레이너"; 
+			else if(m_grade.equals("trainerW")) m_grade = "트레이너(대기중)"; 
 			else if (m_grade.equals("client")) m_grade = "일반";
 			else if (m_grade.equals("admin")) m_grade = "관리자";
 			

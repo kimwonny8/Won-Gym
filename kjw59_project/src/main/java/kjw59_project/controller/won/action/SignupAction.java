@@ -28,16 +28,18 @@ public class SignupAction implements Action {
 		member.setM_phone(request.getParameter("m_phone"));
 		member.setM_grade(m_grade);
 		member.setC_code(request.getParameter("c_code"));
-
+		
 		memberDAO = new MemberDAO();
 		boolean result = memberDAO.insertMember(member);
 		
 		// trainer 테이블에도 추가
-		if(m_grade.equals("trainer")) {
+		if(m_grade.equals("trainerW")) {
+			trainer.setT_license_name(request.getParameter("t_license_name"));
+			trainer.setT_license_num(request.getParameter("t_license_num"));
 			trainer.setT_id(m_id);
 			
 			memberDAO = new MemberDAO();
-			boolean result2 = memberDAO.insertTrainer(trainer);
+			memberDAO.insertTrainer(trainer);
 		}
 		
 		ActionForward forward = new ActionForward();

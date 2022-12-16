@@ -218,6 +218,7 @@ select option {
 a {
 	text-decoration-line: none;
 	font-size: 1vw;
+	color: black;
 }
 
 a:hover {

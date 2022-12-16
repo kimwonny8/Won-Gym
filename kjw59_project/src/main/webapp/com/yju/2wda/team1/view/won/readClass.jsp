@@ -22,11 +22,19 @@
 	<%
 		ArrayList<AllClassVO> classList;
 		classList = (ArrayList<AllClassVO>) session.getAttribute("classList");
-		AllClassVO allVO = classList.get(0);
+		AllClassVO allVO=null;
+		int pt_code = 0;
+		String t_id = "";
 		
-		int pt_code = (Integer)session.getAttribute("pt_code");
+		if(classList.size() != 0) {
+		allVO = classList.get(0);
+		pt_code = (Integer)session.getAttribute("pt_code");
 		m_id = (String)session.getAttribute("m_id");
-		String t_id = allVO.getT_id();
+		t_id = allVO.getT_id();
+		}
+		else {
+			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
+		}
 	%>
 	<div class="bottom">
 		<p class="menuTitle">수업신청</p>

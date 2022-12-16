@@ -33,13 +33,9 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			action = new ChkIdAction();
 			break;
 		
-		case "/signupMember.won":
+		case "/signup.won":
 			action = new SignupAction();
 			break;
-			
-		case "/signupTrainer.won":
-			action = new SignupTrainerAction();
-			break;	
 			
 		case "/loginMember.won":
 			action = new LoginAction();
@@ -157,6 +153,11 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/adminPost.won":
 			action = new AdminPostAction();
 			break;	
+		
+		case "/adminTrainerDetail.won":
+			action = new AdminTrainerDetailAction();
+			break;	
+			
 		
 		case "/updateGrade.won":
 			action = new UpdateGradeAction();

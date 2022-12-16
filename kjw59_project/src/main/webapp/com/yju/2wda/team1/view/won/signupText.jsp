@@ -85,7 +85,7 @@
 			<input type="button" id="submitBtn" value="회원가입" class="Btn inputBtn inputBtnSmall">
 		</div>
 	</div>
-	<% } else if(m_grade.equals("trainer")) { %>
+	<% } else if(m_grade.equals("trainerW")) { %>
 		<div class="form formLong">
 		<div class="formInner">
 			<div class="formInputLineH">
@@ -139,12 +139,12 @@
 			</div>
 		<div class="formInputLineH">
 				<p>* 자격증 종류</p>
-				<p><input type="text" name="license_name" id="license_name" class="inputBox">
+				<p><input type="text" name="t_license_name" id="t_license_name" class="inputBox">
 		</div>	
 		<p id="inputCheckLicenseName" class="inputCheckRight"></p> 	
 			<div class="formInputLineH">		
 				<p>* 자격증 번호</p>
-				<input type="number" name="license_number" id="license_number" class="inputBox" placeholder="숫자만 입력">			
+				<input type="text" name="t_license_num" id="t_license_num" class="inputBox">			
 		</div>
 		</div>
 		<div class="FormInputLine">
@@ -304,7 +304,7 @@ $(document).ready(function() {
 					m_birth : $("#m_birth").val(), m_name : $("#m_name").val(),
 					m_gender : $('#m_gender').val(), m_phone : $("#m_phone").val(),
 					c_code : $("#c_code").val(), m_grade: $("#m_grade").val()},
-			url : "./signupMember.won",
+			url : "./signup.won",
 			success : function(value) {
 				console.log(value);
 				if(value=="" || value == null) {
@@ -334,8 +334,8 @@ $(document).ready(function() {
 		const regPhone = /(\d{3})(\d{4})(\d{4})/;
 		var birthChk = regBirth.test(m_birth) ? true : false;
 		var phoneChk = regPhone.test(m_phone) ? true : false;
-		const license_name = $('#license_name').val();
-		const license_number = $('#license_number').val();
+		const t_license_name = $('#t_license_name').val();
+		const t_license_num = $('#t_license_num').val();
 		
 		if (m_id == "") {
 			$('#inputCheckId').text("아이디를 입력해주세요.");
@@ -380,15 +380,15 @@ $(document).ready(function() {
 			return;
 		}
 		
-		if(license_name == "") {
+		if(t_license_name == "") {
 			$('#inputCheckLicenseName').text("자격증 종류를 입력해주세요.");
-			$("#license_name").focus();
+			$("#t_license_name").focus();
 			return;
 		}
 		
-		if(license_number == "") {
+		if(t_license_num == "") {
 			$('#inputCheckLicenseNumber').text("자격증 번호를 입력해주세요.");
-			$("#license_number").focus();
+			$("#t_license_num").focus();
 			return;
 		}
 		
@@ -398,9 +398,9 @@ $(document).ready(function() {
 			data : {m_id : $("#m_id").val(), m_pw : $("#m_pw").val(),
 					m_birth : $("#m_birth").val(), m_name : $("#m_name").val(),
 					m_gender : $('#m_gender').val(), m_phone : $("#m_phone").val(),
-					c_code : $("#c_code").val(), m_grade: $("#m_grade").val()},
-					
-			url : "./signupClient.won",
+					c_code : $("#c_code").val(), m_grade: $("#m_grade").val(),
+					t_license_name: $("#t_license_name").val(), t_license_num: $("#t_license_num").val()},		
+			url : "./signup.won",
 			success : function(value) {
 				console.log(value);
 				if(value=="" || value == null) {

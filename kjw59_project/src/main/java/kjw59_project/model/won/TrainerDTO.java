@@ -2,50 +2,46 @@ package kjw59_project.model.won;
 
 public class TrainerDTO {
 	private String t_id;
-	private int t_con_cnt;
-	private int t_pt_cnt;
+	private String t_license_name;
+	private String t_license_num;
 	
 	public TrainerDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public TrainerDTO(String t_id, int t_con_cnt, int t_pt_cnt) {
+
+	public TrainerDTO(String t_id, String t_license_name, String t_license_num) {
 		super();
 		this.t_id = t_id;
-		this.t_con_cnt = t_con_cnt;
-		this.t_pt_cnt = t_pt_cnt;
+		this.t_license_name = t_license_name;
+		this.t_license_num = t_license_num;
 	}
-
 
 	public String getT_id() {
 		return t_id;
 	}
 
-
 	public void setT_id(String t_id) {
 		this.t_id = t_id;
 	}
 
-
-	public int getT_con_cnt() {
-		return t_con_cnt;
+	public String getT_license_name() {
+		return t_license_name;
 	}
 
-
-	public void setT_con_cnt(int t_con_cnt) {
-		this.t_con_cnt = t_con_cnt;
+	public void setT_license_name(String t_license_name) {
+		this.t_license_name = t_license_name;
 	}
 
-
-	public int getT_pt_cnt() {
-		return t_pt_cnt;
+	public String getT_license_num() {
+		return t_license_num;
 	}
 
-
-	public void setT_pt_cnt(int t_pt_cnt) {
-		this.t_pt_cnt = t_pt_cnt;
+	public void setT_license_num(String t_license_num) {
+		this.t_license_num = t_license_num;
 	}
 	
 	
 }
+	
+	

@@ -10,10 +10,6 @@
 <link rel="stylesheet" href="<%=cssDir%>/style.css">
 <style>
 * { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
-a {
-	text-decoration-line: none;
-	color: black;
-}
 
 .menuDiv {
 	opacity: 0.3;
