@@ -80,6 +80,10 @@ public class WonFrontController extends HttpServlet implements Servlet {
 			action = new ManageClientDetailAction();
 			break;		
 			
+		case "/manageMyPost.won":
+			action = new ManageMyPostAction();
+			break;	
+			
 		case "/updateState.won":
 			action = new UpdateStateAction();
 			break;	
@@ -157,8 +161,7 @@ public class WonFrontController extends HttpServlet implements Servlet {
 		case "/adminTrainerDetail.won":
 			action = new AdminTrainerDetailAction();
 			break;	
-			
-		
+				
 		case "/updateGrade.won":
 			action = new UpdateGradeAction();
 			break;	

@@ -26,6 +26,7 @@
 	ArrayList<MemberPtDTO> classList;
 	classList = (ArrayList<MemberPtDTO>) session.getAttribute("classList");
 	MemberPtDTO memberPt;
+	String t_id = (String)session.getAttribute("m_id");
 	%>
 	<div class="bottom">
 		<p class="menuTitle">신청내역관리</p>
@@ -95,7 +96,7 @@
 					<td><b><%=state %></b></td>
 					<% if(state.equals("대기중")) { %>
 					<td>
-						<a href="./updateState.won?mp_code=<%=memberPt.getMp_code()%>&mp_state=<%=memberPt.getMp_state()%>" class="smallBtn">수락</a>
+						<a href="./updateState.won?mp_code=<%=memberPt.getMp_code()%>&mp_state=<%=memberPt.getMp_state()%>&mp_coin=<%=memberPt.getMp_coin()%>&t_id=<%=t_id%>" class="smallBtn">수락</a>
 						<a href="./refuseState.won?mp_code=<%=memberPt.getMp_code()%>&mp_coin=<%=memberPt.getMp_coin()%>&m_id=<%=memberPt.getM_id()%>" onclick="return chk()" class="smallBtn">거절</a>
 						<a href="./manageClientDetail.won?mp_code=<%=memberPt.getMp_code()%>" class="smallBtn">자세히</a>
 					</td>

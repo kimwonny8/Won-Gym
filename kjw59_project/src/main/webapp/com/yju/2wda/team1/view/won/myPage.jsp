@@ -78,7 +78,7 @@
             	<% } else { %>
             	<button onclick="location.href='./manageClient.won'" class="mypageBtn">신청내역관리</button>
             	<% } %>
-            	<button class="mypageBtn" onclick="alert('준비 중인 기능입니다.')">게시물관리</button>                
+            	<button class="mypageBtn" onclick="location.href='./manageMyPost.won'">게시물관리</button>                
             </div>
             <div class="myPageBottom">
             	

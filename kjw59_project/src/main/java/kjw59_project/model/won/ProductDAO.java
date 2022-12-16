@@ -123,8 +123,7 @@ public class ProductDAO {
 	public boolean updateProduct(PtDTO pt) {
 		boolean success = false;
 
-		String sql = "update pt set pt_title=?, pt_one_c=?, pt_con_c=?,"
-				+ " pt_content=? where t_id=?";
+		String sql = "update pt set pt_title=?, pt_one_c=?, pt_con_c=?," + " pt_content=? where t_id=?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -999,4 +998,38 @@ public class ProductDAO {
 
 		return postList;
 	}
+
+	// 개인 - 게시물관리 시 모든 게시물 조회
+	public ArrayList<PtDTO> selectAllPostList2(String m_id) {
+		ArrayList<PtDTO> postList = new ArrayList<>();
+
+		String sql = "select * from pt where t_id = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, m_id);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				PtDTO pt = new PtDTO();
+
+				pt.setPt_code(rs.getInt("pt_code"));
+				pt.setT_id(rs.getString("t_id"));
+				pt.setPt_title(rs.getString("pt_title"));
+				pt.setPt_con_c(rs.getInt("pt_con_c"));
+				pt.setPt_one_c(rs.getInt("pt_one_c"));
+				pt.setPt_content(rs.getString("pt_content"));
+				pt.setPt_like(rs.getInt("pt_like"));
+				postList.add(pt);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+
+		return postList;
+
+	}
+
 }
