@@ -10,22 +10,8 @@
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
 <style>
-.inputBtn > p {
-	font-size : 0.8rem;
-}
-a {
-	text-decoration-line: none;
-	color: black;
-}
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/login.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.6;
-	display: flex;
-	align-items: center;
 }
 </style>
 </head>

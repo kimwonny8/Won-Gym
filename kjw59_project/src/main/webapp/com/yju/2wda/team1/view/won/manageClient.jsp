@@ -14,14 +14,7 @@
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 <style>
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/mypage.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 60vh;
-	opacity: 0.8;
-	display: flex;
-	align-items: center;
 }
 
 

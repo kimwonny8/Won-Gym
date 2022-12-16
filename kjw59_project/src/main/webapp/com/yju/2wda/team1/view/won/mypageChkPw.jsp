@@ -12,19 +12,8 @@
 </head>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
 <style>
-.inputBtn>p {
-	font-size: 0.8rem;
-}
-
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/mypage.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.6;
-	display: flex;
-	align-items: center;
 }
 </style>
 

@@ -7,21 +7,13 @@
 <head>
 <meta charset="UTF-8">
 <title>upload class</title>
+<link rel="stylesheet" href="<%=cssDir%>/writeform.css">
 <style>
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/class.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.8;
-	display: flex;
-	align-items: center;
 }
 </style>
-<link rel="stylesheet" href="<%=cssDir%>/writeform.css">
 </head>
-
 <body>
 	<%@ include file="../module/header.jsp"%>
 <%

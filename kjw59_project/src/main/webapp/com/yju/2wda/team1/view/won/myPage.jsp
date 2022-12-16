@@ -13,7 +13,7 @@
 <style>
 .bottom {
 	width: 70%;
-	height: 20vh;
+	height: 10vw;
 	background-image: url("<%=imgDir%>/mypage.jpg");
 	background-repeat: no-repeat;
 	background-size: 100% 60vh;

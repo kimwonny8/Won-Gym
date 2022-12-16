@@ -11,14 +11,7 @@
 <link rel="stylesheet" href="<%=cssDir%>/chargeCoin.css">
 <style>
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/cart.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.8;
-	display: flex;
-	align-items: center;
 }
 
 </style>

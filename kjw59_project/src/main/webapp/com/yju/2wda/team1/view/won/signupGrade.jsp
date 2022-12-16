@@ -7,18 +7,8 @@
 <title>sign-up</title>
 <link rel="stylesheet" href="<%=cssDir%>/grade.css">
 <style>
-a {
-	text-decoration-line: none;
-}
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/login.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.8;
-	display: flex;
-	align-items: center;
 }
 
 </style>

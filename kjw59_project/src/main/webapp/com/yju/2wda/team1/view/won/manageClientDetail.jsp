@@ -9,44 +9,12 @@
 <title>payment Progress</title>
 <style>
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/cart.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.8;
-	display: flex;
-	align-items: center;
-}
-
-.paymentForm {
-	width: 60%;
-	margin-top: 5vw;
-	margin-bottom: 2vw;
-	border-top: 0.05vw solid #DCDCDC;
-	border-bottom: 0.05vw solid #DCDCDC;
-	padding: 1.5vw 0;
-}
-
-.paymentFormInner {
-	width: 70%;
-}
-
-.onTheFormP {
-	width: 70%;
-	margin-bottom: 0.8vw;
-	font-size: 0.9vw;
-}
-
-.tableT {
-	display: flex;
-	justify-items: center;
-	align-items: center;
-	width: 50%;
 }
 
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/mypage.css">
+<link rel="stylesheet" href="<%=cssDir%>/chargeCoin.css">
 </head>
 <body>
 	<%@ include file="../module/header.jsp"%>

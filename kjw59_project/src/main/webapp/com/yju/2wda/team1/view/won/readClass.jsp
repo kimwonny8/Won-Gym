@@ -13,14 +13,7 @@
 <link rel="stylesheet" href="<%=cssDir%>/readClass.css">
 <style>
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/class.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.8;
-	display: flex;
-	align-items: center;
 }
 </style>
 </head>

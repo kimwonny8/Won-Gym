@@ -13,21 +13,9 @@
   crossorigin="anonymous"></script>
 <style>
 .bottom {
-	width: 70%;
-	height: 20vh;
 	background-image: url("<%=imgDir%>/mypage.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.8;
-	display: flex;
-	align-items: center;
 }
-.inputCheckRight{
-	color: red;
-	font-size: 0.8vw;
-	float: right;
-	width: 65%;
-}
+
 </style>
 <link rel="stylesheet" href="<%=cssDir%>/style.css">
 
