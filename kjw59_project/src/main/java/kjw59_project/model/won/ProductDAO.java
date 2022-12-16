@@ -558,7 +558,8 @@ public class ProductDAO {
 	public ArrayList<MemberPtDTO> getMyClientList(MemberPtDTO memberPt) {
 		ArrayList<MemberPtDTO> classList = new ArrayList<>();
 
-		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_coin, mp_state from member_pt where t_id = ? and mp_state in ('PC', 'CP', 'CC', 'RE')";
+		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_coin, mp_state from member_pt "
+				+ "where t_id = ? and mp_state in ('PC', 'CP', 'CC', 'RE') order by mp_code desc";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberPt.getM_id());
@@ -589,7 +590,8 @@ public class ProductDAO {
 	public ArrayList<MemberPtDTO> getMyClientList(MemberPtDTO memberPt, String search) {
 		ArrayList<MemberPtDTO> classList = new ArrayList<>();
 
-		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_coin, mp_state from member_pt where t_id = ? and mp_state = ?";
+		String sql = "select mp_code, m_id, pt_code, mp_date, mp_cnt, mp_coin, mp_state from member_pt "
+				+ "where t_id = ? and mp_state = ? order by mp_code desc";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberPt.getM_id());

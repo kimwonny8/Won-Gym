@@ -42,7 +42,7 @@
 				<input type="radio" name="coin" id="50코인" value="53"><label for="50코인"> 50 코인 + <b>3 코인!</b></label>
 			</div>
 			<div class="coinSelectH">
-				<input type="radio" name="coin" id="100코인" value="105"><label for="100코인"> 100 코인 + <b>5 코인!</b></label>
+				<input type="radio" name="coin" id="100코인" value="107"><label for="100코인"> 100 코인 + <b>7 코인!</b></label>
 			</div>
 			<div class="coinSelectH">
 				<input type="radio" name="coin" id="200코인" value="220"><label for="200코인"> <b style="color:red;">정기결제</b>시 200 코인 + <b>20 코인!</b></label>
@@ -61,7 +61,7 @@
 				</div>
 				<div class="orderListH">
 					<p>결제 금액</p>
-					<p style="color: red; font-size: 1vw" id="money">코인</p>
+					<p style="color: red; font-size: 1vw" id="money">원</p>
 				</div>
 				<div class="orderListH">
 					<p>현재 잔액 금액</p>
@@ -95,7 +95,7 @@ window.onpageshow = function(event) {
 		var chk = $('input[name="coin"]:checked').val();
 		
 		if(chk == 53) money = 50*1000;
-		else if(chk == 105) money = 100*1000;
+		else if(chk == 107) money = 100*1000;
 		else if(chk == 220) money = 200*1000;
 		else money = chk*1000;
 		

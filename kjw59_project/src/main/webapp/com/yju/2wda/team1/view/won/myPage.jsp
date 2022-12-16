@@ -42,7 +42,7 @@
 	<div class="myPageForm">
 		<div class="coinMenu">
 			<p><%=m_coin%> 코인</p>
-			<a href="<%=wonViewDir%>/chargeCoin.jsp" class="btn">코인충전</a>
+			<a href="<%=wonViewDir%>/chargeCoin.jsp" class="redBtn">코인충전</a>
 		</div>
 		
         <div class="myPageTop">
