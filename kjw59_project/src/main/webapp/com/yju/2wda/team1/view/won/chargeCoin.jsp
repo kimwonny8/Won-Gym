@@ -9,6 +9,10 @@
   src="http://code.jquery.com/jquery-3.5.1.js"
   integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
   crossorigin="anonymous"></script>
+ <!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <link rel="stylesheet" href="<%=cssDir%>/cart.css">
 <link rel="stylesheet" href="<%=cssDir%>/chargeCoin.css">
 <style>
@@ -20,7 +24,10 @@
 
 <body>
 	<%@ include file="../module/header.jsp"%>
-	<% m_coin = (Integer)session.getAttribute("m_coin");  %>
+	<% 
+	m_id = (String)session.getAttribute("m_id");
+	m_name = (String)session.getAttribute("m_name");
+	m_coin = (Integer)session.getAttribute("m_coin");  %>
 	<div class="bottom">
 		<p class="menuTitle">코인 충전</p>
 	</div>
@@ -74,7 +81,7 @@
 			</div>
 		</div>
 		<input type="button" class="btn" id="nextBtn" value="무통장 입금">
-		<input type="button" class="btn" onclick="alert('준비 중인 기능입니다.');" value="카드 결제">
+		<input type="button" class="btn" onclick="pay()" value="카카오 페이">
 		<input type="button" class="btn" onclick="alert('준비 중인 기능입니다.');" value="계좌 이체">
 		
 	</div>
@@ -101,7 +108,7 @@ window.onpageshow = function(event) {
 		
 		total = Number(currMoney)+Number(chk);
 		$('#cnt').text(chk+" 개");
-		$('#money').text(money+" 코인");
+		$('#money').text(money+" 원");
 		$('#afterMoney').text(total+" 코인");
 	});	
 		
@@ -115,6 +122,63 @@ window.onpageshow = function(event) {
 		}
 	});
 }); 
+
+function pay() {
+	$(function(){
+    var IMP = window.IMP; // 생략가능
+    IMP.init('imp05343127'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
+    var msg;
+    
+    IMP.request_pay({
+        pg : 'kakaopay',
+        pay_method : 'card',
+        merchant_uid : 'merchant_' + new Date().getTime(),
+        name : '코인충전',
+        amount : money,
+        buyer_name : '<%=m_name%>',
+<%--    buyer_email : '<%=email%>',
+        buyer_tel : '<%=phone%>',
+        buyer_addr : '<%=address%>', --%>
+        buyer_postcode : '123-456',
+        //m_redirect_url : 'http://www.naver.com'
+    }, function(rsp) {
+        if ( rsp.success ) {
+            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            jQuery.ajax({
+                url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    imp_uid : rsp.imp_uid
+                    //기타 필요한 데이터가 있으면 추가 전달
+                }
+            }).done(function(data) {
+                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                if ( everythings_fine ) {
+                    msg = '결제가 완료되었습니다.';
+                    msg += '\n고유ID : ' + rsp.imp_uid;
+                    msg += '\n상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '\결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                    
+                    alert(msg);
+                } else {
+                    //[3] 아직 제대로 결제가 되지 않았습니다.
+                    //[4] 결제된 금액이 요청한 금액과 달라 결제를 자동취소처리하였습니다.
+                }
+            });
+            //성공시 이동할 페이지
+            location.href="<%=wonViewDir%>/paymentSuccess.jsp?money="+money+"&&total="+total;
+        } else {
+            msg = '결제에 실패하였습니다.';
+            msg += '\n에러내용 : ' + rsp.error_msg;
+            //실패시 이동할 페이지
+			history.back();
+            alert(msg);
+        }
+    });
+	});
+};
 </script>
 </body>
 </html>

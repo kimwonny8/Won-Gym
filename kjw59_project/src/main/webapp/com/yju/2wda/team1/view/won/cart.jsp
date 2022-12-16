@@ -92,19 +92,19 @@
 			<div class="orderListRight">
 				<div class="orderListH">
 					<p>주문상품 수</p>
-					<p id="chkCnt">0</p>
+					<p id="chkCnt">0 개</p>
 				</div>
 				<div class="orderListH">
 					<p>주문 금액</p>
-					<p id="chkCoin">0</p>
+					<p id="chkCoin">0 코인</p>
 				</div>
 				<div class="orderListH">
 					<p>할인 금액</p>
-					<p>0</p>
+					<p>0 코인</p>
 				</div>
 				<div class="orderListH lastH">
 					<p>최종 결제 금액</p>
-					<p id="totalCoin">0</p>
+					<p id="totalCoin">0 코인</p>
 				</div>
 			</div>
 		</div>
@@ -145,20 +145,19 @@ $(document).ready(function() {
 						return sum+currValue; // 코인 합계
 					})
 					chkMpCode.push($(this).val());
-					$('#chkCnt').text(chkMpCode.length);
-					$('#chkCoin').text(sumChkMpCoin);
-					$('#totalCoin').text(sumChkMpCoin);
+					$('#chkCnt').text(chkMpCode.length+" 개");
+					$('#chkCoin').text(sumChkMpCoin+" 코인");
+					$('#totalCoin').text(sumChkMpCoin+" 코인");
 				});
 			}
-	
 	  	}else {
 		 	$("input[name='check']").prop("checked",false);
 		 	rowData = [];
 		 	chkMpCode = [];
 		 	chkMpCoin = [0];
-		 	$('#chkCnt').text(chkMpCode.length);
-		 	$('#chkCoin').text(0);
-			$('#totalCoin').text(0);
+		 	$('#chkCnt').text(chkMpCode.length+" 개");
+		 	$('#chkCoin').text(0+" 코인");
+			$('#totalCoin').text(0+" 코인");
 	  	}
 	});
 	 
@@ -168,6 +167,7 @@ $(document).ready(function() {
 		chkMpCoin = [0]; // 상품가격 담고 있는 배열
 		
 		if($(this).is(":checked")) {
+			$("#allChk").prop("checked",false);
 			$('input[name=check]:checked').each(function(i) {
 				const tr = $('input[name=check]:checked').parent().parent().eq(i);
 				const td = tr.children();
@@ -181,9 +181,9 @@ $(document).ready(function() {
 				})
 				
 				chkMpCode.push($(this).val());
-				$('#chkCnt').text(chkMpCode.length);
-				$('#chkCoin').text(sumChkMpCoin);
-				$('#totalCoin').text(sumChkMpCoin);
+				$('#chkCnt').text(chkMpCode.length+" 개");
+				$('#chkCoin').text(sumChkMpCoin+" 코인");
+				$('#totalCoin').text(sumChkMpCoin+" 코인");
 			});
 		}
 		else {
@@ -191,9 +191,9 @@ $(document).ready(function() {
 			const sumChkMpCoin = tmp.reduce(function add(sum, currValue){
 				return sum+currValue; // 코인 합계
 			})
-			$('#chkCnt').text(chkMpCode.length);
-			$('#chkCoin').text(sumChkMpCoin);
-			$('#totalCoin').text(sumChkMpCoin);
+			$('#chkCnt').text(chkMpCode.length+" 개");
+			$('#chkCoin').text(sumChkMpCoin+" 코인");
+			$('#totalCoin').text(sumChkMpCoin+" 코인");
 		}
 	});
 	
