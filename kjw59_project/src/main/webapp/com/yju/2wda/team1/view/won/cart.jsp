@@ -46,8 +46,7 @@
 		<table class="tableForm">
 			<thead>
 				<tr>
-					<th><input type="checkbox" class="check" id="allChk"
-						name="allChk"></th>
+					<th><input type="checkbox" class="check" id="allChk" name="allChk"></th>
 					<th>트레이너정보</th>
 					<th>신청분류</th>
 					<th>결제금액</th>
