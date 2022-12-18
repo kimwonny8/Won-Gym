@@ -32,6 +32,8 @@ public class UpdateStateAction implements Action {
 		String t_id = request.getParameter("t_id");
 		int mp_coin = Integer.parseInt(request.getParameter("mp_coin"));
 		
+		member.setM_id(t_id);
+		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		
@@ -39,14 +41,16 @@ public class UpdateStateAction implements Action {
 		if(mp_state.equals("PC")) {
 			// 등급 변경 + 트레이너 코인 가져와서 더해야 함
 			int t_coin = memberDAO.getCoinMember(member);
-
+			
 			boolean chk = productDAO.changeMpCode(memberPt, "CP");
 			if(chk==true) {
 				int total = t_coin + mp_coin;
+
 				memberDAO = new MemberDAO();
 				member.setM_coin(total);
 				member.setM_id(t_id);
 				memberDAO.updateCoin(member);
+				
 				session.setAttribute("m_coin", total);
 				
 				productDAO = new ProductDAO();		

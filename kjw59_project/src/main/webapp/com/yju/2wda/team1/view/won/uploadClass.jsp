@@ -17,7 +17,7 @@
 <body>
 	<%@ include file="../module/header.jsp"%>
 <%
-String t_name = (String)session.getAttribute("m_name");
+	String t_name = (String)session.getAttribute("m_name");
 	String c_code = (String)session.getAttribute("c_code");
 	
 	PtDTO pt;
@@ -29,16 +29,13 @@ String t_name = (String)session.getAttribute("m_name");
 	
 	ArrayList<PtDTO> ptList=(ArrayList<PtDTO>)session.getAttribute("ptList");
 	
-	if(ptList.size() != 0){
+	if(ptList != null){
 		update = true; 
 		pt = ptList.get(0);
 		pt_title = pt.getPt_title();
 		pt_con_c = pt.getPt_con_c();
 		pt_one_c = pt.getPt_one_c();
 		pt_content = pt.getPt_content();
-	}
-	else {
-		response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
 	}
 %>
 
