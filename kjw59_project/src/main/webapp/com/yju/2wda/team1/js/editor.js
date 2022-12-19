@@ -2,12 +2,7 @@
  * 
  */
 let editor;
-// This sample still does not showcase all CKEditor 5 features (!)
-// Visit https://ckeditor.com/docs/ckeditor5/latest/features/index.html to browse all the features.
 CKEDITOR.ClassicEditor.create(document.getElementById("editor"), { 
-	 //width : '620px',  // 입력창의 넓이, 넓이는 config.js 에서 % 로 제어
-   	height : '30vw',  // 입력창의 높이
-    startupFocus : false,
 	toolbar: {
 		items: [
 			'heading', '|',
@@ -21,8 +16,6 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 		],
 		shouldNotGroupWhenFull: true
 	},
-	// Changing the language of the interface requires loading the language file using the <script> tag.
-	// language: 'es',
 	list: {
 		properties: {
 			styles: true,
@@ -30,7 +23,6 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 			reversed: true
 		}
 	},
-	// https://ckeditor.com/docs/ckeditor5/latest/features/headings.html#configuration
 	heading: {
 		options: [
 			{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
@@ -42,9 +34,7 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 			{ model: 'heading6', view: 'h6', title: 'Heading 6', class: 'ck-heading_heading6' }
 		]
 	},
-	// https://ckeditor.com/docs/ckeditor5/latest/features/editor-placeholder.html#using-the-editor-configuration
-	placeholder: '상품 상세페이지에 보일 문서를 작성해주십시오',
-	// https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-family-feature
+	placeholder: '내용을 입력해주세요.',
 	fontFamily: {
 		options: [
 			'default',
@@ -59,13 +49,10 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 		],
 		supportAllValues: true
 	},
-	// https://ckeditor.com/docs/ckeditor5/latest/features/font.html#configuring-the-font-size-feature
 	fontSize: {
 		options: [10, 12, 14, 'default', 18, 20, 22],
 		supportAllValues: true
 	},
-	// Be careful with the setting below. It instructs CKEditor to accept ALL HTML markup.
-	// https://ckeditor.com/docs/ckeditor5/latest/features/general-html-support.html#enabling-all-html-features
 	htmlSupport: {
 		allow: [
 			{
@@ -76,12 +63,9 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 			}
 		]
 	},
-	// Be careful with enabling previews
-	// https://ckeditor.com/docs/ckeditor5/latest/features/html-embed.html#content-previews
 	htmlEmbed: {
 		showPreviews: true
 	},
-	// https://ckeditor.com/docs/ckeditor5/latest/features/link.html#custom-link-attributes-decorators
 	link: {
 		decorators: {
 			addTargetToExternalLinks: true,
@@ -95,7 +79,6 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 			}
 		}
 	},
-	// https://ckeditor.com/docs/ckeditor5/latest/features/mentions.html#configuration
 	mention: {
 		feeds: [
 			{
@@ -110,21 +93,10 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 			}
 		]
 	},
-	// The "super-build" contains more premium features that require additional configuration, disable them below.
-	// Do not turn them on unless you read the documentation and know how to configure them and setup the editor.
 	removePlugins: [
-		// These two are commercial, but you can try them out without registering to a trial.
-		// 'ExportPdf',
-		// 'ExportWord',
 		'CKBox',
 		'CKFinder',
 		'EasyImage',
-		// This sample uses the Base64UploadAdapter to handle image uploads as it requires no configuration.
-		// https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/base64-upload-adapter.html
-		// Storing images as Base64 is usually a very bad idea.
-		// Replace it on production website with other solutions:
-		// https://ckeditor.com/docs/ckeditor5/latest/features/images/image-upload/image-upload.html
-		// 'Base64UploadAdapter',
 		'RealTimeCollaborativeComments',
 		'RealTimeCollaborativeTrackChanges',
 		'RealTimeCollaborativeRevisionHistory',
@@ -135,14 +107,11 @@ CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
 		'RevisionHistory',
 		'Pagination',
 		'WProofreader',
-		// Careful, with the Mathtype plugin CKEditor will not load when loading this sample
-		// from a local file system (file://) - load this site via HTTP server if you enable MathType
 		'MathType'
 	]
 });
+
 document.querySelector('#submit').addEventListener('click', () => {
 	const editorData = document.getElementById("editor").getData();
 	console.log(editorData);
-
-	// …
 });

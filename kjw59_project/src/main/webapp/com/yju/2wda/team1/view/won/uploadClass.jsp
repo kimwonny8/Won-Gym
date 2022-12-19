@@ -16,8 +16,16 @@
 .ck.ck-editor {
 	height: 65%;
 }
-.ck.ck-toolbar>.ck-toolbar__items {
-	font-size: 0.9vw;
+.ck.ck-toolbar>.ck-toolbar__items{
+	font-size: 0.8vw;
+	justify-content: center;
+}
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+	height: 25vw;
+}
+.ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, 
+.ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners {
+height: 25vw;
 }
 </style>
 </head>
@@ -84,7 +92,7 @@
 				<p>내용</p>
 			</div>
 			<textarea class="writeContentBox" id="editor" name="pt_content"></textarea>
-			<button class="writeBtn" id="submit" style="margin-top:3vh;" >작성 완료</button>
+			<button class="writeBtn" id="submit" style="margin-top:3vh; padding:0.5vh 0;" >작성 완료</button>
 		</div>
 	</form>
 <% } else { %> 
@@ -122,21 +130,22 @@
 			</div>
 			<input type="hidden" name="pt_code" value="<%=pt_code %>">
 			 <textarea required class="writeContentBox" id="editor" name="pt_content"><%=pt_content%></textarea> 
-			<button class="writeBtn" style="margin-top:3vh;" >수정 완료</button>
+			<button class="writeBtn" style="margin-top:3vh; padding:0.5vh 0;" >수정 완료</button>
 		</div>
 	</form>
 	
 <% } %>
 	<%@ include file="../module/footer.jsp"%>
+	<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/super-build/ckeditor.js"></script>
+<script src="<%=jsDir%>/editor.js"></script>
 	<script type="text/javascript">
 	window.onpageshow = function(event) {
 	    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
 	    alert("잘못된 접근입니다.");
 	    location.href="/kjw59_project/index.jsp";
 	  }
-	}
+	};
 	</script>
-	<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/super-build/ckeditor.js"></script>
-<script src="<%=jsDir%>/editor.js"></script>
+	
 </body>
 </html>

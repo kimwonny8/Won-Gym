@@ -20,16 +20,25 @@ public class GetMemberInfoAction implements Action {
 		forward.setRedirect(false);
 		
 		request.setCharacterEncoding("utf-8");
-
-		String m_id = request.getParameter("m_id");
-		request.setCharacterEncoding("utf-8");
 		MemberDAO memberDAO = new MemberDAO();
 		MemberDTO member = new MemberDTO();
-		ArrayList<MemberDTO> list = memberDAO.getMemberInfoList(m_id);
-		session.setAttribute("list", list);
 		
-		forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
+		String m_id = request.getParameter("m_id");
+		member.setM_id(m_id);
+		
+		if(memberDAO.chkId(member) == false) {
+			memberDAO = new MemberDAO();
+			ArrayList<MemberDTO> list = memberDAO.getMemberInfoList(m_id);
+			session.setAttribute("list", list);
+			forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
+		}
+		else {
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+		}
+		
 		return forward;
 	}
+	
+	
 
 }

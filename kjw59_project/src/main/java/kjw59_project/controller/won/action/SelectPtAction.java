@@ -26,20 +26,25 @@ public class SelectPtAction implements Action {
 		MemberDTO member = new MemberDTO();
 		MImageDTO mImage = new MImageDTO();
 		PtDTO pt = new PtDTO();
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
 		
 		int pt_code=Integer.parseInt(request.getParameter("pt_code"));
 		
 		session.setAttribute("pt_code", pt_code);
 		pt.setPt_code(pt_code);
 		
-		ArrayList<AllClassVO> classList;
-		
-		classList = productDAO.selectClassList(pt, member, mImage);
-		session.setAttribute("classList", classList);
-	
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
+		if(productDAO.chkPtCode(pt) == true) {
+			ArrayList<AllClassVO> classList;
+			productDAO = new ProductDAO();
+			classList = productDAO.selectClassList(pt, member, mImage);
+			session.setAttribute("classList", classList);
+
+			forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
+		}
+		else {
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+		}
 		
 		return forward;
 	}

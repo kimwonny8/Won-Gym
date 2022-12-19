@@ -46,7 +46,7 @@
 				src="<%=memberThumbDir%>/<%=allVO.getMi_thum_name()%>">
 		</div>
 		<div class="readFormRight">
-			<div style="margin-bottom: 1vw; font-size:1vw;"><b><%=allVO.getM_name()%></b> 트레이너</div>
+			<div style="margin-bottom: 1vw; font-size:0.7vw;"><b><%=allVO.getM_name()%></b> 트레이너</div>
 			<div class="readFormCenter">
 				<p>
 					상담:
@@ -84,9 +84,8 @@
 				<br>
 			</form>
 			<div class="optionH">
-			<p id="inputCheck">
+			<p id="inputCheck"></p>
 			<input type="button" onclick="addToCart()"  class="smallBtn" id="submitBtn" style="display: none;" value="장바구니">
-			</p>
 			</div>
 		</div>	
 	</div>
@@ -131,7 +130,7 @@ function addToCart(){
 					 location.href="./getCartList.won";
 				}
 				else {
-					location.href="./getClassList.won";
+					history.go();
 				}
 			}
 		}

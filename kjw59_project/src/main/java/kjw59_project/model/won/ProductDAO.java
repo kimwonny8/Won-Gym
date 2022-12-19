@@ -403,6 +403,31 @@ public class ProductDAO {
 		}
 	}
 
+	// 상품 확인 메서드 - true 면 있는 거
+	public boolean chkPtCode(PtDTO pt) {
+		boolean result = false;
+		String sql = "select count(*) from pt where pt_code = ?";
+
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, pt.getPt_code());
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String tmp = rs.getString(1);
+				if (tmp.equals("1"))
+					result = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return result;
+		} finally {
+			disConnect();
+		}
+
+		return result;
+	}
+
 	// 장바구니에 담기 전 동일 상품 있는 지 확인
 	public String chkSamePt(MemberPtDTO memberPt) {
 		String cnt = null;

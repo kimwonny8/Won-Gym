@@ -502,7 +502,7 @@ public class MemberDAO {
 	public ArrayList<MemberDTO> selectAllMemberList() {
 		ArrayList<MemberDTO> memberList = new ArrayList<>();
 
-		String sql = "select * from member";
+		String sql = "select * from member order by m_date desc";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -534,7 +534,7 @@ public class MemberDAO {
 	public ArrayList<MemberDTO> selectAllMemberList(String search, String searchContent) {
 		ArrayList<MemberDTO> memberList = new ArrayList<>();
 
-		String sql = "select * from member where " + search + " like ? ";
+		String sql = "select * from member where " + search + " like ? order by m_date desc";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -567,7 +567,7 @@ public class MemberDAO {
 		ArrayList<MemberDTO> memberList = new ArrayList<>();
 
 		String sql = "select * from member where (m_id like ?) or (m_name like ?) or (m_birth like ?) or (m_gender like ?)"
-				+ " or (m_phone like ?) or (m_coin like ?) or (m_grade like ?) or (c_code like ?)";
+				+ " or (m_phone like ?) or (m_coin like ?) or (m_grade like ?) or (c_code like ?) order by m_date desc";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + searchContent + "%");

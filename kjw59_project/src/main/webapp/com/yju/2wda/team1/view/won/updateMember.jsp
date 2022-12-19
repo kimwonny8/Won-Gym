@@ -51,14 +51,14 @@
 				<p>* 비밀번호 확인</p>
 				<input type="password" id="m_pw2" name="m_pw2" oninput="checkPw()" class="inputBox">
 			</div>
-	 			<p id="inputCheckPw" class="inputCheck"></p>
+	 			<p id="inputCheckPw" class="inputCheckRight"></p>
 			<div class="formInputLineH">
 				<p>* 이름</p>
 				<input type="text" value="<%=member.getM_name() %>"name="m_name" disabled class="inputBox">	
 			</div>
 			<div class="formInputLineH">
 				<p>생년월일</p>
-				<input type="text" id="m_birth" name="m_birth" value="<%=member.getM_birth() %>" maxlength="8" class="inputBox" placeholder="ex) 19970117">
+				<input type="text" oninput="checkBirth()" id="m_birth" name="m_birth" value="<%=member.getM_birth() %>" maxlength="8" class="inputBox" placeholder="ex) 19970117">
 			</div>
 			<p id="inputCheckBirth" class="inputCheckRight"></p> 
 			<div class="formInputLineH">
@@ -70,7 +70,7 @@
 			</div>
 			<div class="formInputLineH">
 				<p>휴대폰번호</p>
-				<input type="text" name="m_phone" id="m_phone" value="<%=member.getM_phone() %>" maxlength="11" class="inputBox" placeholder="ex) 01012345678">
+				<input type="text" oninput="checkPhone()" name="m_phone" id="m_phone" value="<%=member.getM_phone() %>" maxlength="11" class="inputBox" placeholder="ex) 01012345678">
 			</div>
 			<p id="inputCheckPhone" class="inputCheckRight"></p> 
 			<div class="formInputLineH">
@@ -103,65 +103,105 @@ window.onpageshow = function(event) {
   }
 }
 
+var pw=false;
+var birth=true;
+var phone=true;
 
 function checkPw() {
 	var m_pw = $('#m_pw').val();
 	var m_pw2 = $('#m_pw2').val();
 	
-	if (m_pw == "") {
-		$('#inputCheckPw').text("비밀번호를 입력해주세요.");
-	}
-	else if (m_pw2 == "") {
-		$('#inputCheckPw').text("비밀번호를 입력해주세요.");
+	if (m_pw.search(/\s/) != -1) {
+		$('#inputCheckPw').text("비밀번호는 공백을 포함할 수 없습니다.");
+		pw = false;
 	}
 	
-	else if(m_pw != m_pw2) {
-		 $('#inputCheckPw').text("비밀번호가 일치하지 않습니다.");
+	else {
+		if(m_pw.length < 6) {
+			$('#inputCheckPw').text("비밀번호를 6자리 이상 입력해주세요.");
+			pw = false;
+		}
+		else if (m_pw == "") {
+			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
+			pw = false;
+		}
+		else if (m_pw2 == "") {
+			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
+			pw = false;
+		}
+		
+		else if(m_pw != m_pw2) {
+			 $('#inputCheckPw').text("비밀번호가 일치하지 않습니다.");
+			 pw = false;
+		}
+		else {
+			 $('#inputCheckPw').text("비밀번호가 일치합니다.");
+			 pw = true;
+		}
+	}
+}
+
+function checkBirth() {
+	const regBirth = /^(19[0-9][0-9]|20[0-2]{1}[0-9]{1})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+	var m_birth = $('#m_birth').val();
+	var birthChk = regBirth.test(m_birth) ? true : false;
+	
+	if(birthChk == false) {
+		$('#inputCheckBirth').text("생년월일을 다시 입력해주세요.");
+		birth = false;
+	}
+	
+	else if (m_birth == "") {
+		$('#inputCheckBirth').text("생년월일을 입력해주세요.");
+		birth = false;
+	}
+	
+	else {
+		$('#inputCheckBirth').text("");
+		birth = true;
+	}
+}
+
+function checkPhone() {
+	var m_phone = $('#m_phone').val();
+	const regPhone = /^01[0-9]{1}[0-9]{4}[0-9]{4}/;
+	var phoneChk = regPhone.test(m_phone) ? true : false;
+	
+	if(phoneChk == false) {
+		$('#inputCheckPhone').text("휴대폰 번호를 다시 입력해주세요.");
+		phone=false;
+	}
+	
+	else if (m_phone == "") {
+		$('#inputCheckPhone').text("휴대폰번호를 입력해주세요.");
+		phone=false;
 	}
 	else {
-		 $('#inputCheckPw').text("비밀번호가 일치합니다.");
+		$('#inputCheckPhone').text("");
+		phone=true;
 	}
 }
 
 $(document).ready(function() {
 	$("#submitBtn").click(function() {
-		var m_pw = $("#m_pw").val();
-		var m_pw2 = $("#m_pw2").val();
-		const m_birth = $('#m_birth').val();
-		const m_phone = $('#m_phone').val();
-		const regBirth = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
-		const regPhone =  /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-		var birthChk = regBirth.test(m_birth) ? true : false;
-		var phoneChk = regPhone.test(m_phone) ? true : false;
-		
-		if (m_pw == "") {
-			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
-			$("#m_pw").focus();
-			return;
-		}
-		if (m_pw2 == "") {
-			$('#inputCheckPw').text("비밀번호를 입력해주세요.");
-			$("#m_pw2").focus();
-			return;
-		}
-		if(m_pw2 != m_pw){
-			 $('#inputCheckPw').text("비밀번호가 일치하지 않습니다.");
-			 $("#m_pw").val("");
-			 $("#m_pw2").val("");
-			return;
-		}
-		if(m_birth !="" && birthChk == false) {
-			$('#inputCheckBirth').text("생년월일을 다시 입력해주세요.");
-			$("#m_birth").focus();
-			return;
-		}
-		
-		if(m_phone !="" && phoneChk == false) {
-			$('#inputCheckPhone').text("휴대폰 번호를 다시 입력해주세요.");
-			$("#m_phone").focus();
-			return;
-		}
-			
+	if (pw == false) {
+		checkPw();
+		$("#m_pw").focus();
+		return;
+	}
+	
+	else if(birth == false) {
+		$('#inputCheckBirth').text("생년월일을 다시 입력해주세요.");
+		$("#m_birth").focus();
+		return;
+	}
+	
+	else if(phone == false) {
+		$('#inputCheckPhone').text("휴대폰 번호를 다시 입력해주세요.");
+		$("#m_phone").focus();
+		return;
+	}
+	else {
  	 	$.ajax({
 			type : "post",
 			data : {m_pw : $("#m_pw").val(), m_birth : $("#m_birth").val(),
@@ -172,7 +212,7 @@ $(document).ready(function() {
 				console.log(value);
 				if(value=="" || value == null) {
 					alert("회원 정보 수정에 실패했습니다.");
-					location.href="/kjw59_project/com/yju/2wda/team1/view/won/updateMember.jsp";
+					return;
 				}
 				else {
 					alert("회원 정보가 수정되었습니다.");
@@ -181,6 +221,7 @@ $(document).ready(function() {
 			}
 
 		}); 
+	}
 	});
 
 }); 

@@ -2,6 +2,7 @@
 
 * {
 	margin: 0 auto;
+	font-size: 0.8vw;
 }
 .top {
 	margin: 1vw 0;
@@ -36,7 +37,7 @@
 .Btn {
 	background-color: white;
 	border: none;
-	font-size: 1vw;
+	font-size: 0.9vw;
 }
 
 .Btn:hover {
@@ -49,7 +50,7 @@
 }
 
 .topMenuBtn {
-	font-size: 1vw;
+	font-size: 0.9vw;
 	float: right;
 	margin-right: 1vw;
 }
@@ -221,7 +222,7 @@ select option {
 
 a {
 	text-decoration-line: none;
-	font-size: 1vw;
+	font-size: 0.9vw;
 	color: black;
 }
 

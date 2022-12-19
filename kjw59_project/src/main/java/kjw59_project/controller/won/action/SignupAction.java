@@ -1,12 +1,16 @@
 package kjw59_project.controller.won.action;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.JOptionPane;
 
 import kjw59_project.controller.won.Action;
 import kjw59_project.controller.won.ActionForward;
-import kjw59_project.model.won.*;
+import kjw59_project.model.won.MemberDAO;
+import kjw59_project.model.won.MemberDTO;
+import kjw59_project.model.won.TrainerDTO;
 
 public class SignupAction implements Action {
 	@Override
@@ -20,7 +24,7 @@ public class SignupAction implements Action {
 		String m_grade=request.getParameter("m_grade");
 		String m_id=request.getParameter("m_id");
 
-		member.setM_pw(request.getParameter("m_pw"));
+		member.setM_pw(encrypt(request.getParameter("m_pw")));
 		member.setM_id(m_id);
 		member.setM_name(request.getParameter("m_name"));
 		member.setM_birth(request.getParameter("m_birth"));
@@ -53,4 +57,20 @@ public class SignupAction implements Action {
 			return null;
 		}
 	}
+	
+	// 비밀번호 암호화
+	public String encrypt(String text) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        md.update(text.getBytes());
+
+        return bytesToHex(md.digest());
+    }
+
+    private String bytesToHex(byte[] bytes) {
+        StringBuilder builder = new StringBuilder();
+        for (byte b : bytes) {
+            builder.append(String.format("%02x", b));
+        }
+        return builder.toString();
+    }
 }
