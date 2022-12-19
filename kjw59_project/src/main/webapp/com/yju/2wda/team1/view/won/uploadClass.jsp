@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="kjw59_project.model.won.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,12 @@
 <style>
 .bottom {
 	background-image: url("<%=imgDir%>/class.jpg");
+}
+.ck.ck-editor {
+	height: 65%;
+}
+.ck.ck-toolbar>.ck-toolbar__items {
+	font-size: 0.9vw;
 }
 </style>
 </head>
@@ -24,12 +31,14 @@
 	String pt_title ="";
 	int pt_con_c=0;
 	int pt_one_c=0;
+	int pt_code=0;
 	String pt_content="";
 	boolean update = false; // true면 글 수정중, false면 글 작성중
 	
 	ArrayList<PtDTO> ptList=(ArrayList<PtDTO>)session.getAttribute("ptList");
 	
 	if(ptList != null){
+		pt_code = (int)session.getAttribute("pt_code");
 		update = true; 
 		pt = ptList.get(0);
 		pt_title = pt.getPt_title();
@@ -74,8 +83,8 @@
 			<div class="writeContentTop">
 				<p>내용</p>
 			</div>
-			<textarea required class="writeContentBox" name="pt_content"></textarea>
-			<button class="writeBtn" style="margin-top:3vh;" >작성 완료</button>
+			<textarea class="writeContentBox" id="editor" name="pt_content"></textarea>
+			<button class="writeBtn" id="submit" style="margin-top:3vh;" >작성 완료</button>
 		</div>
 	</form>
 <% } else { %> 
@@ -111,7 +120,8 @@
 			<div class="writeContentTop">
 				<p>내용</p>
 			</div>
-			<textarea required class="writeContentBox" name="pt_content"><%=pt_content%></textarea>
+			<input type="hidden" name="pt_code" value="<%=pt_code %>">
+			 <textarea required class="writeContentBox" id="editor" name="pt_content"><%=pt_content%></textarea> 
 			<button class="writeBtn" style="margin-top:3vh;" >수정 완료</button>
 		</div>
 	</form>
@@ -126,5 +136,7 @@
 	  }
 	}
 	</script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/super-build/ckeditor.js"></script>
+<script src="<%=jsDir%>/editor.js"></script>
 </body>
 </html>

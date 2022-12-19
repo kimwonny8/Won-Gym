@@ -20,6 +20,7 @@ public class UpdatePtContentAction implements Action {
 		PtDTO pt = new PtDTO();
 
 		// pt 테이블에 내용 추가
+		pt.setPt_code(Integer.parseInt(request.getParameter("pt_code")));
 		pt.setT_id((String)session.getAttribute("m_id"));
 		pt.setPt_title(request.getParameter("pt_title"));
 		pt.setPt_one_c(Integer.parseInt(request.getParameter("pt_one_c")));
@@ -29,7 +30,7 @@ public class UpdatePtContentAction implements Action {
 		boolean result = productDAO.updateProduct(pt);
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		
+
 		if(result == true) {
 			forward.setPath("/getClassList.won");
 		}

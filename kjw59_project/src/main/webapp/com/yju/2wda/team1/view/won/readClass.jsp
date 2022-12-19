@@ -84,14 +84,15 @@
 				<br>
 			</form>
 			<div class="optionH">
-			<p id="inputCheck"></p>
+			<p id="inputCheck">
 			<input type="button" onclick="addToCart()"  class="smallBtn" id="submitBtn" style="display: none;" value="장바구니">
+			</p>
 			</div>
-		</div>
-		<div class="readFormBottom">
-			<p><%=allVO.getPt_content()%></p>
-		</div>
+		</div>	
 	</div>
+	<div class="readFormBottom">
+			<div class="readContent"><%=allVO.getPt_content()%></div>
+		</div>
 	<div class="optionBtn">
 		<%
 		if (m_id == null) {
@@ -148,7 +149,6 @@ function addPt(){
 				select = "선택 : "+($('#pt_select').val()) + "회";}
 				$('#inputCheck').text(select);
 				$('#submitBtn').show();
-				$('#submitBtn2').show();
 		} else {
 			if (grade === "트레이너" || grade === "관리자") {
 				alert("일반회원만 사용 가능합니다.");

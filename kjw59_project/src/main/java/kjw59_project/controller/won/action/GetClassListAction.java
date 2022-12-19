@@ -15,6 +15,8 @@ public class GetClassListAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		HttpSession session = request.getSession();
+		// 이거해줘야 글 수정후 글쓸때 오류없음
+		session.setAttribute("ptList", null);
 		
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();

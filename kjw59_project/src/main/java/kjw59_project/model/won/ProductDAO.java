@@ -123,7 +123,7 @@ public class ProductDAO {
 	public boolean updateProduct(PtDTO pt) {
 		boolean success = false;
 
-		String sql = "update pt set pt_title=?, pt_one_c=?, pt_con_c=?," + " pt_content=? where t_id=?";
+		String sql = "update pt set pt_title=?, pt_one_c=?, pt_con_c=?," + " pt_content=? where pt_code = ?";
 
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class ProductDAO {
 			pstmt.setInt(2, pt.getPt_one_c());
 			pstmt.setInt(3, pt.getPt_con_c());
 			pstmt.setString(4, pt.getPt_content());
-			pstmt.setString(5, pt.getT_id());
+			pstmt.setInt(5, pt.getPt_code());
 
 			pstmt.executeUpdate();
 			success = true;
