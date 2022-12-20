@@ -94,8 +94,8 @@
 				</div>
 				<div class="formInputLineH">
 					<p>상세정보</p>
-					<input type="text" name="mp_detail" id="mp_detail" required class="inputBox"
-						placeholder="ex) 허리가 좋지 않습니다. ">
+					<input type="text" name="mp_detail" id="mp_detail" maxlength="50" required class="inputBox"
+						placeholder="ex) 허리가 좋지 않습니다.">
 				</div>
 			</div>
 		</div>

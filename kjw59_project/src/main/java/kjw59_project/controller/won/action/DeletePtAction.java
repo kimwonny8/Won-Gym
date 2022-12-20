@@ -30,7 +30,7 @@ public class DeletePtAction implements Action {
 			forward.setPath("/getClassList.won");
 		}
 		else {
-			forward.setPath("/error.jsp");
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
 		}
 		
 		return forward;

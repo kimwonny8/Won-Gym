@@ -94,16 +94,25 @@
 $("#file").on('change',function(){
 	  var fileName = $("#file").val();
 	  $("#fileName").text(fileName);
+	  chkFile();
 	});
 	
 function chkFile(){
 	var file = $('#file').val();
-	console.log(file);
+	var chk = file.split('.');
+	console.log(chk[chk.length-1]);
+	
 	if(file == ""){
 		$('#inputCheck').text("파일을 선택해주세요!");
-	} else {
+		$('#submitBtn').hide();
+	} 
+	else if(chk[chk.length-1]=='jpg' || chk[chk.length-1]=='png' || chk[chk.length-1] =='jpeg'){
 		$('#inputCheck').text("제출버튼을 눌러 저장을 완료해주세요.");
 		$('#submitBtn').show();
+	}
+	else {
+		$('#inputCheck').text("파일 확장자는 jpg, png만 가능합니다.");
+		$('#submitBtn').hide();
 	}
 } 
 </script>

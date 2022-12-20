@@ -27,10 +27,10 @@
 		String t_id = "";
 		
 		if(classList.size() != 0) {
-		allVO = classList.get(0);
-		pt_code = (Integer)session.getAttribute("pt_code");
-		m_id = (String)session.getAttribute("m_id");
-		t_id = allVO.getT_id();
+			allVO = classList.get(0);
+			pt_code = (Integer)session.getAttribute("pt_code");
+			m_id = (String)session.getAttribute("m_id");
+			t_id = allVO.getT_id();
 		}
 		else {
 			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
@@ -144,7 +144,7 @@ $("#pt_select").on('change',function(){
 function addPt(){
 	var state = '<%=(String) session.getAttribute("loginState")%>';
 	var grade = '<%=(String) session.getAttribute("m_grade")%>';
-		if (state === "login" && grade !== "트레이너" && grade !== "관리자") {
+		if (state === "login" && grade !== "트레이너" && grade !== "관리자" && grade !=="트레이너(대기중)") {
 			var select;
 			if ($('#pt_select').val() == 0){
 				select = "선택 : 상담";}
@@ -153,7 +153,7 @@ function addPt(){
 				$('#inputCheck').text(select);
 				$('#submitBtn').show();
 		} else {
-			if (grade === "트레이너" || grade === "관리자") {
+			if (grade === "트레이너" || grade === "관리자" || grade==="트레이너(대기중)") {
 				alert("일반회원만 사용 가능합니다.");
 			} else
 				alert("로그인 후 이용해주세요.");

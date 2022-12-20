@@ -111,11 +111,10 @@ function checkPw() {
 	var m_pw = $('#m_pw').val();
 	var m_pw2 = $('#m_pw2').val();
 	
-	if (m_pw.search(/\s/) != -1) {
-		$('#inputCheckPw').text("비밀번호는 공백을 포함할 수 없습니다.");
+	if(m_pw.length < 6 || m_pw.length > 25) {
+		$('#inputCheckPw').text("비밀번호를 6~25자 이내로 입력해주세요.");
 		pw = false;
 	}
-	
 	else {
 		if(m_pw.length < 6) {
 			$('#inputCheckPw').text("비밀번호를 6자리 이상 입력해주세요.");

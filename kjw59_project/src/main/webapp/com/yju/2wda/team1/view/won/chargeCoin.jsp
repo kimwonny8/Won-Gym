@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.net.InetAddress"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +27,9 @@
 <body>
 	<%@ include file="../module/header.jsp"%>
 	<%
+ 	InetAddress inet= InetAddress.getLocalHost(); 
+	System.out.println("주소"+inet.getHostAddress()); 
+	
 	m_id = (String) session.getAttribute("m_id");
 	m_name = (String) session.getAttribute("m_name");
 	m_coin = (Integer) session.getAttribute("m_coin");
@@ -142,8 +146,8 @@ function toss() {
 	orderId: 'XXcVF565fVbYJK-kA9q-g',
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
-	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
-	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+	failUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	validHours: 24,
 	cashReceipt: {
 		 type: '소득공제',
@@ -179,8 +183,8 @@ function tossCard() {
 	orderId: 'ngLrzNT4rJtTytSgFoog_',
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
-	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/paymentSuccess.jsp?money='+money+'&&total='+total,
-	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/won/paymentSuccess.jsp?money='+money+'&&total='+total,
+	failUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	})
 	.catch(function (error) {
 	 if (error.code === 'USER_CANCEL') {
@@ -219,7 +223,7 @@ function kakaoPay() {
         buyer_tel : '<%=phone%>',
         buyer_addr : '<%=address%>', --%>
         buyer_postcode : '123-456',
-        //m_redirect_url : 'http://www.naver.com'
+        //m_redirect_url : 'http://www.naver.com's
     }, function(rsp) {
         if ( rsp.success ) {
             //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기

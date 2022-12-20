@@ -89,13 +89,13 @@
 					if (date.equals(arr[i])) {
 				%>
 					<tr>
-					<td style="border-top:none;"></td>
-					<td style="border-top:none;"><b><%=state %></b></td>
-					<td style="border-top:none;"><img src="<%=memberThumbDir%>/<%=cart.getMi_thum_name()%>"
+					<td></td>
+					<td><b><%=state %></b></td>
+					<td><img src="<%=memberThumbDir%>/<%=cart.getMi_thum_name()%>"
 						width=100 height=100> <br><%=cart.getT_name()%> 트레이너 <br>대구시 <%=cart.getC_code()%></td>
-					<td style="border-top:none;"><%=select%></td>
-					<td style="border-top:none;"><%=cart.getMp_coin()%> 코인</td>
-					<td style="border-top:none;">키 : <%=cart.getMp_tall()%><br> 몸무게 : <%=cart.getMp_weight()%><br>
+					<td><%=select%></td>
+					<td><%=cart.getMp_coin()%> 코인</td>
+					<td style="width:30%">키 : <%=cart.getMp_tall()%><br> 몸무게 : <%=cart.getMp_weight()%><br>
 						상세정보 : <%=cart.getMp_detail()%></td>
 					</tr>
 				<%

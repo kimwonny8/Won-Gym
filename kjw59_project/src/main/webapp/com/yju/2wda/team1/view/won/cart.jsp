@@ -123,12 +123,16 @@ $(document).ready(function() {
 	var rowData = [];
 	var chkMpCode = []; // 상품코드 담고 있는 배열
 	var chkMpCoin = [0]; // 상품가격 담고 있는 배열
+	var sumChkMpCoin = 0;
 	
 	// 전체 선택
 	$("#allChk").click(function(){ 
 		if($("#allChk").prop("checked")) {
 		 	$("input[name='check']").prop("checked",true);
-
+		 	rowData = [];
+	  		chkMpCode = []; // 상품코드 담고 있는 배열
+	  		chkMpCoin = [0]; // 상품가격 담고 있는 배열
+	  		
 			// 전체 선택 -> 수정해야함..
 			if($(this).is(":checked")) {
 				$('input[name=check]:checked').each(function(i) {
@@ -140,34 +144,35 @@ $(document).ready(function() {
 					chkMpCoin.push(coin);
 					
 					const tmp = chkMpCoin.map((i) => Number(i)); // 숫자형 배열로 변환
-					const sumChkMpCoin = tmp.reduce(function add(sum, currValue){
+					sumChkMpCoin = tmp.reduce(function add(sum, currValue){
 						return sum+currValue; // 코인 합계
 					})
-					chkMpCode.push($(this).val());
-					$('#chkCnt').text(chkMpCode.length+" 개");
-					$('#chkCoin').text(sumChkMpCoin+" 코인");
-					$('#totalCoin').text(sumChkMpCoin+" 코인");
+					chkMpCode.push($(this).val());	
 				});
 			}
 	  	}else {
-		 	$("input[name='check']").prop("checked",false);
-		 	rowData = [];
-		 	chkMpCode = [];
-		 	chkMpCoin = [0];
-		 	$('#chkCnt').text(chkMpCode.length+" 개");
-		 	$('#chkCoin').text(0+" 코인");
-			$('#totalCoin').text(0+" 코인");
-	  	}
+	  		$('input[name=check]:checked').prop("checked",false);
+	  		rowData = [];
+	  		chkMpCode = []; // 상품코드 담고 있는 배열
+	  		chkMpCoin = [0]; // 상품가격 담고 있는 배열
+	  		sumChkMpCoin=0;
+		};
+		$('#chkCnt').text(chkMpCode.length+" 개");
+		$('#chkCoin').text(sumChkMpCoin+" 코인");
+		$('#totalCoin').text(sumChkMpCoin+" 코인");
+		
 	});
 	 
-	$("input[name=check]").change(function() {		
+	$("input[name=check]").change(function() {	
+		$("#allChk").prop("checked",false);
 		rowData = [];
 		chkMpCode = []; // 상품코드 담고 있는 배열
 		chkMpCoin = [0]; // 상품가격 담고 있는 배열
+		sumChkMpCoin=0;
 		
 		if($(this).is(":checked")) {
-			$("#allChk").prop("checked",false);
 			$('input[name=check]:checked').each(function(i) {
+
 				const tr = $('input[name=check]:checked').parent().parent().eq(i);
 				const td = tr.children();
 				rowData.push(tr.text());
@@ -175,26 +180,33 @@ $(document).ready(function() {
 				const coin = td.eq(3).text(); // 금액 가져오기
 				chkMpCoin.push(coin);
 				const tmp = chkMpCoin.map((i) => Number(i)); // 숫자형 배열로 변환
-				const sumChkMpCoin = tmp.reduce(function add(sum, currValue){
+				sumChkMpCoin = tmp.reduce(function add(sum, currValue){
 					return sum+currValue; // 코인 합계
 				})
 				
 				chkMpCode.push($(this).val());
-				$('#chkCnt').text(chkMpCode.length+" 개");
-				$('#chkCoin').text(sumChkMpCoin+" 코인");
-				$('#totalCoin').text(sumChkMpCoin+" 코인");
 			});
 		}
-		else {
-			const tmp = chkMpCoin.map((i) => Number(i)); // 숫자형 배열로 변환
-			const sumChkMpCoin = tmp.reduce(function add(sum, currValue){
-				return sum+currValue; // 코인 합계
-			})
-			$('#chkCnt').text(chkMpCode.length+" 개");
-			$('#chkCoin').text(sumChkMpCoin+" 코인");
-			$('#totalCoin').text(sumChkMpCoin+" 코인");
+		else {		
+			$('input[name=check]:checked').each(function(i) {
+				const tr = $('input[name=check]:checked').parent().parent().eq(i);
+				const td = tr.children();
+				rowData.push(tr.text());
+				
+				const coin = td.eq(3).text(); // 금액 가져오기
+				chkMpCoin.push(coin);
+				
+				const tmp = chkMpCoin.map((i) => Number(i)); // 숫자형 배열로 변환
+				sumChkMpCoin = tmp.reduce(function add(sum, currValue){
+					return sum+currValue; // 코인 합계
+				})
+				chkMpCode.push($(this).val());
+			});
 		}
-	});
+		$('#chkCnt').text(chkMpCode.length+" 개");
+		$('#chkCoin').text(sumChkMpCoin+" 코인");
+		$('#totalCoin').text(sumChkMpCoin+" 코인");
+	}); 
 	
  	$("#orderBtn").click(function(){
 		const value = $('#chkCnt').text();

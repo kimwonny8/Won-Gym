@@ -19,7 +19,7 @@ public class BuyRightNowAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		HttpSession session = request.getSession();
 
 		request.setCharacterEncoding("utf-8");
@@ -27,28 +27,44 @@ public class BuyRightNowAction implements Action {
 		MemberDTO member = new MemberDTO();
 		MImageDTO mImage = new MImageDTO();
 
-		int mp_code = Integer.parseInt(request.getParameter("mp_code"));
-		memberPt.setMp_code(mp_code);
-		
-		ProductDAO productDAO = new ProductDAO();
-		productDAO.paymentProgressCart(memberPt); // 결제 진행중으로 상태 변경
-		
-		// PP에 해당하는 리스트 생성
-		productDAO = new ProductDAO();
-		ArrayList<CartVO> cartList;
-		memberPt.setM_id((String)session.getAttribute("m_id"));
-		cartList = productDAO.getPPList(memberPt, member, mImage);
-		session.setAttribute("cartList", cartList);	
-
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-
-		if(cartList.size() != 0) {
-			forward.setPath("/com/yju/2wda/team1/view/won/paymentProgress.jsp");
-			return forward;
-		}
-		else {
+		String codeString = request.getParameter("mp_code");
+		if (!isNumeric(codeString)) {
 			return null;
+		} else {
+			int mp_code = Integer.parseInt(request.getParameter("mp_code"));
+
+			memberPt.setMp_code(mp_code);
+
+			ProductDAO productDAO = new ProductDAO();
+			productDAO.paymentProgressCart(memberPt); // 결제 진행중으로 상태 변경
+
+			// PP에 해당하는 리스트 생성
+			productDAO = new ProductDAO();
+			ArrayList<CartVO> cartList;
+			memberPt.setM_id((String) session.getAttribute("m_id"));
+			cartList = productDAO.getPPList(memberPt, member, mImage);
+			session.setAttribute("cartList", cartList);
+
+			ActionForward forward = new ActionForward();
+			forward.setRedirect(false);
+
+			if (cartList.size() != 0) {
+				forward.setPath("/com/yju/2wda/team1/view/won/paymentProgress.jsp");
+				return forward;
+			}
+
+			else {
+				return null;
+			}
+		}
+	}
+
+	public static boolean isNumeric(String s) {
+		try {
+			Double.parseDouble(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
 		}
 	}
 
