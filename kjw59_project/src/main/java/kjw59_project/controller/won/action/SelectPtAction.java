@@ -29,24 +29,39 @@ public class SelectPtAction implements Action {
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		
-		int pt_code=Integer.parseInt(request.getParameter("pt_code"));
-		
-		session.setAttribute("pt_code", pt_code);
-		pt.setPt_code(pt_code);
-		
-		if(productDAO.chkPtCode(pt) == true) {
-			ArrayList<AllClassVO> classList;
-			productDAO = new ProductDAO();
-			classList = productDAO.selectClassList(pt, member, mImage);
-			session.setAttribute("classList", classList);
-
-			forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
+		String codeString = request.getParameter("pt_code");
+		if(!isNumeric(codeString)) { // true면 숫자
+			forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
 		}
 		else {
-			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+			int pt_code=Integer.parseInt(codeString);
+			
+			session.setAttribute("pt_code", pt_code);
+			pt.setPt_code(pt_code);
+			
+			if(productDAO.chkPtCode(pt) == true) {
+				ArrayList<AllClassVO> classList;
+				productDAO = new ProductDAO();
+				classList = productDAO.selectClassList(pt, member, mImage);
+				session.setAttribute("classList", classList);
+
+				forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
+			}
+			else {
+				forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
+			}
+	
 		}
-		
 		return forward;
 	}
+	
+	  public static boolean isNumeric(String s) {
+	        try {
+	            Double.parseDouble(s);
+	            return true;
+	        } catch (NumberFormatException e) {
+	            return false;
+	        }
+	    }
 
 }

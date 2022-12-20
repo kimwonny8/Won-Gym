@@ -18,7 +18,6 @@ public class PaymentProgressAction implements Action {
 		HttpSession session = request.getSession();
 
 		request.setCharacterEncoding("utf-8");
-		MemberDAO memberDAO = new MemberDAO();
 		MemberPtDTO memberPt = new MemberPtDTO();
 		MemberDTO member = new MemberDTO();
 		MImageDTO mImage = new MImageDTO();

@@ -137,6 +137,10 @@ function addToCart(){
 
 	});
 }
+$("#pt_select").on('change',function(){
+		addPt();
+});
+	
 function addPt(){
 	var state = '<%=(String) session.getAttribute("loginState")%>';
 	var grade = '<%=(String) session.getAttribute("m_grade")%>';

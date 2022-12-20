@@ -105,7 +105,7 @@ td > a {
 						</select>
 						<input type="hidden" name="m_id" value="<%=member.getM_id() %>">
 						<button class="smallBtn">변경</button>
-						<a href="./expulsionMember.won?m_id=<%=member.getM_id() %>">추방</a></td>
+						<a href="./expulsionMember.won?m_id=<%=member.getM_id() %>" onclick="return chk()">추방</a></td>
 					</form>
 				<tr>	
 			</tbody>
@@ -113,5 +113,10 @@ td > a {
 		</table>
 </div>
 <%@ include file="../module/footer.jsp"%>
+<script>
+function chk() {
+	return confirm("정말 추방시키시겠습니까?");
+}
+</script>
 </body>
 </html>

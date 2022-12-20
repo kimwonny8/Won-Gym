@@ -40,7 +40,6 @@ public class UpdateMemberPhotoAction implements Action {
 		
 		request.setCharacterEncoding("utf-8");
 		MemberDAO memberDAO = new MemberDAO();
-		ProductDAO productDAO = new ProductDAO();
 		MemberDTO member = new MemberDTO();
 		MImageDTO mImage = new MImageDTO();
 		
@@ -61,7 +60,7 @@ public class UpdateMemberPhotoAction implements Action {
 			i_file_type = multi.getContentType(element);
 			i_length = multi.getFile(element).length();
 			
-			System.out.println("photo"+i_file_name);
+			System.out.println("photo"+i_file_name.split("."));
 			mImage.setMi_file_name(i_file_name);
 			mImage.setMi_thum_name("t_"+i_file_name);
 			mImage.setMi_size(i_length);
@@ -93,7 +92,7 @@ public class UpdateMemberPhotoAction implements Action {
 		forward.setRedirect(false);
 		
 		if(result == true) {
-			forward.setPath("/index.jsp");
+			forward.setPath("/com/yju/2wda/team1/view/won/myPage.jsp");
 		}
 		else {
 			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");

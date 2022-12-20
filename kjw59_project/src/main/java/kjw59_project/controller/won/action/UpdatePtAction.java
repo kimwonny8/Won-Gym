@@ -19,28 +19,39 @@ public class UpdatePtAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		
+
 		request.setCharacterEncoding("utf-8");
-		ProductDAO productDAO = new ProductDAO(); // 상품 내용
-		MemberDTO member = new MemberDTO();
-		MImageDTO mImage = new MImageDTO();
-		PtDTO pt = new PtDTO();
-		
-		int pt_code=Integer.parseInt(request.getParameter("pt_code"));
-		
-		session.setAttribute("pt_code", pt_code);
-		pt.setPt_code(pt_code);
-		
-		ArrayList<PtDTO> ptList;
-		
-		ptList = productDAO.updateGetPtList(pt);
-		session.setAttribute("ptList", ptList);
-		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/uploadClass.jsp");
-		
+
+		ProductDAO productDAO = new ProductDAO(); // 상품 내용
+		PtDTO pt = new PtDTO();
+
+		String codeString = request.getParameter("pt_code");
+		if (!isNumeric(codeString)) { // true면 숫자
+			forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
+		} else {
+			int pt_code = Integer.parseInt(request.getParameter("pt_code"));
+
+			session.setAttribute("pt_code", pt_code);
+			pt.setPt_code(pt_code);
+
+			ArrayList<PtDTO> ptList;
+
+			ptList = productDAO.updateGetPtList(pt);
+			session.setAttribute("ptList", ptList);
+
+			forward.setPath("/com/yju/2wda/team1/view/won/uploadClass.jsp");
+		}
 		return forward;
 	}
 
+	public static boolean isNumeric(String s) {
+		try {
+			Double.parseDouble(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
 }

@@ -36,7 +36,7 @@
 		<p class="menuTitle">오류</p>
 	</div>
 <div class="errorForm">
-	<p><img src="<%=imgDir%>/error.png" width="20vw"> 오류가 발생했습니다. 관리자에게 문의하세요</p>
+	<p><img src="<%=imgDir%>/error.png" width="20vw"> 권한이 없거나 존재하지 않는 페이지 입니다.</p>
 	<br>
 	<br>
 	<a href="javascript:history.back();">이전 페이지</a>

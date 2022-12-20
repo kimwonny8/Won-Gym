@@ -33,7 +33,7 @@ public class GetMemberInfoAction implements Action {
 			forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
 		}
 		else {
-			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+			forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
 		}
 		
 		return forward;

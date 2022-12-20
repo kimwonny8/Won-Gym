@@ -654,6 +654,8 @@ public class MemberDAO {
 			ImageIO.write(tImage, ext, tFile);
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			disConnect();
 		}
 	}
 

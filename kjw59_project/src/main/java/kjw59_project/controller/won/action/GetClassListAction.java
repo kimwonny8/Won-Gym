@@ -38,8 +38,8 @@ public class GetClassListAction implements Action {
 				classList = productDAO.getClassSearchList(pt, member, mImage);
 				session.setAttribute("classList", classList);
 			}
-			
 		}
+		
 		else { 
 			if(search.equals("c_code")) { // 동네면 citySearchContent
 				searchContent = request.getParameter("citySearchContent");
