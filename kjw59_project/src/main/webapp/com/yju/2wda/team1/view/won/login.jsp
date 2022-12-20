@@ -41,40 +41,47 @@
 
 	<%@ include file="../module/footer.jsp"%>
 <script>
+function input(){
+	var m_id = $("#m_id").val();
+	var m_pw = $("#m_pw").val();
+
+	if (m_id == "") {
+		$('#inputCheck').text("아이디를 입력해주세요.");
+		$("#m_id").focus();
+		return;
+	}
+	if (m_pw == "") {
+		$('#inputCheck').text("비밀번호를 입력해주세요.");
+		$("#m_pw").focus();
+		return;
+	}
+	$.ajax({
+		type : "post",
+		data : {m_id: $("#m_id").val(), m_pw : $("#m_pw").val()},
+		url : "./loginMember.won",
+		success : function(value) {
+			console.log(value);
+			if(value=="" || value == null){
+				 $('#inputCheck').text("일치하는 정보가 없습니다.");
+				 $("#m_id").val("");
+				 $("#m_pw").val("");
+			}
+			else {
+				location.href="/kjw59_project/index.jsp";
+			}
+		}
+
+	});
+}
 	 	$(document).ready(function() {
 		$("#loginMember").click(function() {
-			var m_id = $("#m_id").val();
-			var m_pw = $("#m_pw").val();
-
-			if (m_id == "") {
-				$('#inputCheck').text("아이디를 입력해주세요.");
-				$("#m_id").focus();
-				return;
-			}
-			if (m_pw == "") {
-				$('#inputCheck').text("비밀번호를 입력해주세요.");
-				$("#m_pw").focus();
-				return;
-			}
-			$.ajax({
-				type : "post",
-				data : {m_id: $("#m_id").val(), m_pw : $("#m_pw").val()},
-				url : "./loginMember.won",
-				success : function(value) {
-					console.log(value);
-					if(value=="" || value == null){
-						 $('#inputCheck').text("일치하는 정보가 없습니다.");
-						 $("#m_id").val("");
-						 $("#m_pw").val("");
-					}
-					else {
-						location.href="/kjw59_project/index.jsp";
-					}
-				}
-
-			});
+			input();
 		});
-
+		$("#m_pw").keypress(function(e) {
+			if(e.keyCode === 13){
+				input();
+			}
+		});
 	}); 
 </script>
 </body>
