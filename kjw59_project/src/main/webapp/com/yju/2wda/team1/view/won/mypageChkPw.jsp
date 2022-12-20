@@ -129,7 +129,7 @@ window.onpageshow = function(event) {
 								}
 								else {
 									alert("탈퇴되었습니다. 이용해주셔서 감사합니다.");
-									location.href="/kjw59_project/index.jsp";
+									location.href="./logoutMember.won";
 								}
 							}
 

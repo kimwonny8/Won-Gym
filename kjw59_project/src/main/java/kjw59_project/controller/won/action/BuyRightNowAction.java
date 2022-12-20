@@ -27,9 +27,13 @@ public class BuyRightNowAction implements Action {
 		MemberDTO member = new MemberDTO();
 		MImageDTO mImage = new MImageDTO();
 
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+		
 		String codeString = request.getParameter("mp_code");
 		if (!isNumeric(codeString)) {
-			return null;
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+			return forward;
 		} else {
 			int mp_code = Integer.parseInt(request.getParameter("mp_code"));
 
@@ -45,14 +49,10 @@ public class BuyRightNowAction implements Action {
 			cartList = productDAO.getPPList(memberPt, member, mImage);
 			session.setAttribute("cartList", cartList);
 
-			ActionForward forward = new ActionForward();
-			forward.setRedirect(false);
-
 			if (cartList.size() != 0) {
 				forward.setPath("/com/yju/2wda/team1/view/won/paymentProgress.jsp");
 				return forward;
 			}
-
 			else {
 				return null;
 			}

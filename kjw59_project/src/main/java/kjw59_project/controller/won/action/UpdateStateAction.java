@@ -27,18 +27,18 @@ public class UpdateStateAction implements Action {
 		
 		// 등급 받아서 올려야 함
 		int mp_code = Integer.parseInt(request.getParameter("mp_code"));
-		memberPt.setMp_code(mp_code);
 		String mp_state = request.getParameter("mp_state");
-		String t_id = request.getParameter("t_id");
-		int mp_coin = Integer.parseInt(request.getParameter("mp_coin"));
-		
-		member.setM_id(t_id);
+		memberPt.setMp_code(mp_code);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		
 		// 대기 PC -> 진행 CP
 		if(mp_state.equals("PC")) {
+			String t_id = request.getParameter("t_id");
+			int mp_coin = Integer.parseInt(request.getParameter("mp_coin"));	
+			member.setM_id(t_id);
+			
 			// 등급 변경 + 트레이너 코인 가져와서 더해야 함
 			int t_coin = memberDAO.getCoinMember(member);
 			

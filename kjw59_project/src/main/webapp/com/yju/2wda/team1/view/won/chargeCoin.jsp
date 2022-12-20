@@ -146,8 +146,12 @@ function toss() {
 	orderId: 'XXcVF565fVbYJK-kA9q-g',
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
-	successUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
-	failUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	
+//	successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+//	failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	
 	validHours: 24,
 	cashReceipt: {
 		 type: '소득공제',
@@ -183,8 +187,11 @@ function tossCard() {
 	orderId: 'ngLrzNT4rJtTytSgFoog_',
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
-	successUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/won/paymentSuccess.jsp?money='+money+'&&total='+total,
-	failUrl: 'http://<%=inet.getHostAddress()%>:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/paymentSuccess.jsp?money='+money+'&&total='+total,
+	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+//	successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+//	failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	
 	})
 	.catch(function (error) {
 	 if (error.code === 'USER_CANCEL') {

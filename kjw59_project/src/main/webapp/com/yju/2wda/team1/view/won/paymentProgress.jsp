@@ -133,7 +133,7 @@
 function chkCoin() {
 	const afterCoin = <%=afterCoin%>;
 	if(afterCoin < 0 ){
-		alert("결제할 금액이 없습니다. 코인 충전 후 이용해주세요!");
+		alert("결제 코인이 부족합니다. \n마이페이지에서 코인을 충전 후 이용해주세요!");
 		return false;
 	}
 	else {

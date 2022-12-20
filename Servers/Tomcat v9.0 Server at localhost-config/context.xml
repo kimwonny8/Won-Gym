@@ -29,9 +29,9 @@
 				url="jdbc:mariadb://localhost:3306/workoutnow_db"
 				username="root"
 				password="root"
-				maxActive="100"
+				maxTotal="100"
 				maxIdle="30"
-				maxWait="-1" />
+				maxWaitMillis="-1" />
     <!-- Uncomment this to disable session persistence across Tomcat restarts -->
     <!--
     <Manager pathname="" />

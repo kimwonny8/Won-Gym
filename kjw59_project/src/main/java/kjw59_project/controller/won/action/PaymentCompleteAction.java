@@ -17,8 +17,7 @@ public class PaymentCompleteAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();
 		MemberPtDTO memberPt = new MemberPtDTO();
-		PtDTO pt = new PtDTO();
-		
+
 		// memberPt에 키, 체중, 요구사항 정보 추가, PC로 업그레이드
 		// 아이디랑 상품state 보고 넣으면 됨
 		String m_id = (String)session.getAttribute("m_id");
