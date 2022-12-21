@@ -512,6 +512,7 @@ public class MemberDAO {
 				MemberDTO member = new MemberDTO();
 
 				member.setM_id(rs.getString("m_id"));
+				member.setM_pw(rs.getString("m_pw"));
 				member.setM_name(rs.getString("m_name"));
 				member.setM_birth(rs.getString("m_birth"));
 				member.setM_gender(rs.getString("m_gender"));
@@ -544,6 +545,7 @@ public class MemberDAO {
 			while (rs.next()) {
 				MemberDTO member = new MemberDTO();
 				member.setM_id(rs.getString("m_id"));
+				member.setM_pw(rs.getString("m_pw"));
 				member.setM_name(rs.getString("m_name"));
 				member.setM_birth(rs.getString("m_birth"));
 				member.setM_gender(rs.getString("m_gender"));
@@ -584,6 +586,7 @@ public class MemberDAO {
 			while (rs.next()) {
 				MemberDTO member = new MemberDTO();
 				member.setM_id(rs.getString("m_id"));
+				member.setM_pw(rs.getString("m_pw"));
 				member.setM_name(rs.getString("m_name"));
 				member.setM_birth(rs.getString("m_birth"));
 				member.setM_gender(rs.getString("m_gender"));

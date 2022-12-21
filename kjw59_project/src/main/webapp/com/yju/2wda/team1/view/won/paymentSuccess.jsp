@@ -13,31 +13,26 @@
 </style>
 </head>
 <body>
-<%  String money = request.getParameter("money");
-	String total = request.getParameter("total"); %>
 	<%@ include file="../module/header.jsp"%>
+	<% m_coin = (Integer)session.getAttribute("m_coin");  %>
 	<div class="bottom">
 		<p class="menuTitle">결제완료</p>
 	</div>
 	
 	<div class="depositForm">
 		<div class="depositFormInner">
-			<p>확인을 누르시면 코인 충전이 완료됩니다.</p>
+			<p>충전이 완료되었습니다!</p>
 			<p>(주)WON</p>
 			<br>
-			<p style="margin: 1vw;">결제 완료 금액 <b><%=money%></b> 원</p>
-			<a href="./updateCoin.won?total=<%=total%>" class="btn">확인</a>
+			<br>
+			<p style="margin: 1vw;">현재 잔액 코인: <%=m_coin %> 코인</p>
+			<a href="<%=wonViewDir%>/myPage.jsp" class="btn">확인</a>
+<%-- 			<p style="margin: 1vw;">결제 완료 금액 <b><%=money%></b> 원</p>
+			<a href="./updateCoin.won?total=<%=total%>" class="btn">확인</a> --%>
 		</div>
 	</div>
 	
 	<%@ include file="../module/footer.jsp"%>	
-<script>
-window.onpageshow = function(event) {
-    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-    alert("잘못된 접근입니다.");
-    location.href="/kjw59_project/index.jsp";
-  }
-}
-</script>
+
 </body>
 </html>

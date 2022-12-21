@@ -62,8 +62,8 @@
 	            <p id="fileName" class="inputCheck" style="color:gray;"></p>
 	            <p id="inputCheck" class="inputCheck"></p>
 	            <div style="display:flex;">
-	            <input type="button" class="smallBtn" value="저장" onclick="chkFile()">
-	            <button id="submitBtn" class="smallBtn" style="display:none;">제출</button> 
+	          <!--   <input type="button" class="smallBtn" value="저장" onclick="chkFile()"> -->
+	            <button id="submitBtn" class="smallBtn" style="display:none;">저장</button> 
 	            </div>
 	            </div>
             </form>
@@ -107,7 +107,7 @@ function chkFile(){
 		$('#submitBtn').hide();
 	} 
 	else if(chk[chk.length-1]=='jpg' || chk[chk.length-1]=='png' || chk[chk.length-1] =='jpeg'){
-		$('#inputCheck').text("제출버튼을 눌러 저장을 완료해주세요.");
+		$('#inputCheck').text("버튼을 눌러 저장을 완료해주세요.");
 		$('#submitBtn').show();
 	}
 	else {

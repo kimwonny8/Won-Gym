@@ -70,6 +70,7 @@
 
 			<form class="optionH" style="display: flex;" method="post" action="./buyRightNow.won">
 				<select name="pt_select" id="pt_select">
+					<option value="-1">선택</option>
 					<option value="0">상담</option>
 					<option value="1">1회</option>
 					<option value="5">5회</option>
@@ -80,11 +81,11 @@
 					<option value="100">100회</option>
 				</select>
 				
-				<input type="button" onclick="addPt()" value="추가" class="smallBtn">
+<!-- 				<input type="button" onclick="addPt()" value="추가" class="smallBtn"> -->
 				<br>
 			</form>
-			<div class="optionH">
-			<p id="inputCheck"></p>
+			<div class="optionH" id="" style="display:flex;">
+			<p id="inputCheck" style="display:flex; align-items:center;"></p>
 			<input type="button" onclick="addToCart()"  class="smallBtn" id="submitBtn" style="display: none;" value="장바구니">
 			</div>
 		</div>	
@@ -109,6 +110,7 @@
 	
 <script>
 function addToCart(){
+	addPt();
 	$.ajax({
 		type : "post",
 		data : {pt_select : $("#pt_select").val()},
@@ -146,12 +148,20 @@ function addPt(){
 	var grade = '<%=(String) session.getAttribute("m_grade")%>';
 		if (state === "login" && grade !== "트레이너" && grade !== "관리자" && grade !=="트레이너(대기중)") {
 			var select;
-			if ($('#pt_select').val() == 0){
-				select = "선택 : 상담";}
-			else{
-				select = "선택 : "+($('#pt_select').val()) + "회";}
-				$('#inputCheck').text(select);
+			if ($('#pt_select').val() == -1) {
+				select = "";
+				$('#submitBtn').hide();
+			}
+			else if ($('#pt_select').val() == 0){
+				select = "선택 : 상담";
 				$('#submitBtn').show();
+			}
+			else{
+				select = "선택 : "+($('#pt_select').val()) + "회";
+				$('#submitBtn').show();
+			}
+				$('#inputCheck').text(select);
+				
 		} else {
 			if (grade === "트레이너" || grade === "관리자" || grade==="트레이너(대기중)") {
 				alert("일반회원만 사용 가능합니다.");

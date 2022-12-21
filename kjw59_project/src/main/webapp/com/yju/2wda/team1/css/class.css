@@ -39,7 +39,7 @@
 }
 
 .classContentOne:hover {
-	opacity: 0.7;
+	opacity: 0.5;
 }
 
 .classContentImg {
@@ -47,7 +47,7 @@
 	height: 10vw;
 	margin-bottom: 1vw;
 	border-radius: 50%;
-	box-shadow: 0 1px 3px gray;
+	box-shadow: 0 1px 10px gray;
 	transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
 }
 

@@ -8,14 +8,7 @@
 <style>
 
 .bottom {
-	width: 70%;
-	height: 20vh;
-	background-image: url("<%=imgDir%>/mypage.jpg");
-	background-repeat: no-repeat;
-	background-size: 100% 50vh;
-	opacity: 0.6;
-	display: flex;
-	align-items: center;
+	background-image: url("<%=imgDir%>/wait.jpg");
 }
 .errorForm{
 	height: 70%;
@@ -37,7 +30,7 @@
 <body>
 <%@ include file="../module/header.jsp"%>
 <div class="bottom">
-		<p class="menuTitle">오류</p>
+		<p class="menuTitle">준비 중</p>
 	</div>
 <div class="errorForm">
 	<img src="<%=imgDir%>/prepare.jpg">

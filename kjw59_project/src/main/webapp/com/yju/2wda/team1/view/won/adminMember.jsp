@@ -19,7 +19,9 @@ td > a {
 .bottom {
 	background-image: url("<%=imgDir%>/mypage.jpg");
 }
-
+.tdid:hover {
+	color: blue;
+}
 </style>
 </head>
 <body>
@@ -84,9 +86,11 @@ td > a {
 					else if(grade.equals("trainer")) grade = "트레이너";
 					else if(grade.equals("trainerW")) grade = "트레이너(대기중)";
 					if(member.getM_id().equals("admin")) continue;
+					
+					String id=member.getM_id();
 				%>
 				<tr>
-					<td><%=member.getM_id() %></td>
+					<td class="tdid" onclick="alert('<%=id%>의 암호화된 비밀번호\n<%=member.getM_pw()%>');"><%=id%></td>
 					<td><%=member.getM_name() %></td>
 					<td><%=member.getM_birth() %></td>
 					<td><%=member.getM_gender() %></td>

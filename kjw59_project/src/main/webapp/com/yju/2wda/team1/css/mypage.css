@@ -98,6 +98,7 @@
 	height: 100%;
 	border-radius: 50%;
 	object-fit:cover;
+	box-shadow: 0 1px 10px gray;
 }
 .addMyPageImage{
 	width: 100%; 

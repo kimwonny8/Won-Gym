@@ -133,7 +133,6 @@ $(document).ready(function() {
 	  		chkMpCode = []; // 상품코드 담고 있는 배열
 	  		chkMpCoin = [0]; // 상품가격 담고 있는 배열
 	  		
-			// 전체 선택 -> 수정해야함..
 			if($(this).is(":checked")) {
 				$('input[name=check]:checked').each(function(i) {
 					const tr = $('input[name=check]:checked').parent().parent().eq(i);

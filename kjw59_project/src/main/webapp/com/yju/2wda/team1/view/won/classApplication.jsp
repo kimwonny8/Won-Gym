@@ -45,9 +45,8 @@
 				<select name="search">
 					<option value="전체" selected>전체</option>
 					<option value="c_code">동네</option>
-					<option value="t_id">아이디</option>
+					<option value="m_name">이름</option>
 					<option value="pt_title">제목</option>
-					<option value="pt_content">내용</option>
 				</select>
 				<input type="text" name="searchContent" id="text" class="inputBox"> 
 				
@@ -74,7 +73,7 @@
 			<div class="classMenuWrite">
 			<%	if (session.getAttribute("m_grade") == null || m_grade.equals("일반") || m_grade.equals("관리자") || m_grade.equals("트레이너(대기중)")) {
 			} else { 
-			%> <button class="Btn" onclick="location.href='<%=wonViewDir%>/uploadClass.jsp'">글쓰기</button> <%	}%>
+			%> <button class="Btn" style="margin-top:1vw;" onclick="location.href='<%=wonViewDir%>/uploadClass.jsp'">글쓰기</button> <%	}%>
 			</div>
 		</div>
 
@@ -87,7 +86,7 @@
 				allVO = classList.get(i);
 				String thumbsnail = allVO.getMi_thum_name();
 			%>
-			<a href="./selectPt.won?pt_code=<%=allVO.getPt_code() %>" class="classContentOne">
+			<a href="./selectPt.won?pt_code=<%=allVO.getPt_code() %>" style="transition: all 0.5s" class="classContentOne">
 				<div>
 				<img class="classContentImg" src="<%=memberThumbDir%>/<%=thumbsnail%>">
 				</div>
@@ -112,28 +111,6 @@ $(document).ready(function() {
 	    }
 	  }); 
 	}); 
-
-/* 스크롤 페이징 진행할 예정
- var page = 0;
-
-	function getList() {
-		$.ajax({
-			type : "post",
-			data : page,
-			url : "./getClassList.won",
-			success : function(value) {
-				console.log(value);
-			}
-		});
-	};
-
-    $(window).scroll(function() {
-        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-          console.log(++page);
-          $("#classContent").append('<h1>Page ' + page + '</h1>');
-
-        }
-    }); */
   </script>
 </body>
 </html>

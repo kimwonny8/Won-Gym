@@ -20,7 +20,7 @@
 	
 }
 .optionH {
-	margin-top: 1vw;
+	margin-top: 0.5vw;
 	font-size: 1vw;
 }
 .readFormLeft{
@@ -35,6 +35,7 @@
 	height: 15vw;
 	margin-bottom: 1vw;
 	border-radius: 50%;
+	box-shadow: 0 1px 5px gray;
 }
 .readFormRight {
 	width: 60%;

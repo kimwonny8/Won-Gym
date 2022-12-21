@@ -146,11 +146,12 @@ function toss() {
 	orderId: 'XXcVF565fVbYJK-kA9q-g',
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
-	//successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
-	//failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
-	successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
-	failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	
+	//successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+	//failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
 	validHours: 24,
 	cashReceipt: {
@@ -187,11 +188,12 @@ function tossCard() {
 	orderId: 'ngLrzNT4rJtTytSgFoog_',
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
-	//successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/paymentSuccess.jsp?money='+money+'&&total='+total,
-	//failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
-	successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
-	failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
+	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	
+	//successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
+	//failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
 	})
 	.catch(function (error) {
@@ -209,12 +211,13 @@ function tossCard() {
 };	
 
 function kakaoPay() {
+	
 	var val = $('input[name="coin"]:checked').val();
 	if(val == undefined) {
 		alert("충전할 코인 금액을 선택해주세요!");
 	}
 	else {
-	
+	alert("테스트 서버라 불안정해서 [종료된 요청입니다.] 가 뜨면 \nQR결제 말고 카톡결제 또는 다른 결제방식으로 부탁드립니다.🙇‍♀️");
 	$(function(){
     var IMP = window.IMP; // 생략가능
     IMP.init('imp05343127'); // 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -259,7 +262,7 @@ function kakaoPay() {
                 }
             });
             //성공시 이동할 페이지
-            location.href="<%=wonViewDir%>/paymentSuccess.jsp?money="+money+"&&total="+total;
+            location.href="./updateCoin.won?total="+total;
         } else {
             msg = '결제에 실패하였습니다.';
             msg += '\n에러내용 : ' + rsp.error_msg;

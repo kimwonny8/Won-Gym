@@ -14,14 +14,15 @@
 </head>
 <body>
 <%  String money = request.getParameter("money");
-	String total = request.getParameter("total"); %>
+	String total = request.getParameter("total"); 
+%>
 	<%@ include file="../module/header.jsp"%>
 	<div class="bottom">
 		<p class="menuTitle">무통장입금</p>
 	</div>
 	
 	<div class="depositForm">
-		<p class="onTheFormP">계좌번호 확인 후 입금해주세요.</p>
+		<p class="onTheFormP">계좌번호 확인 후 입금해주세요.<br>(현재는 테스트중이라 확인을 누르면 충전이 완료됩니다.)</p>
 		<div class="depositFormInner">
 			<p>계좌번호 : 00000000000</p>
 			<p>(주)WON</p>

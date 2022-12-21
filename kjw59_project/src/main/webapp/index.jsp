@@ -56,7 +56,6 @@
 			$(".slide").css({
 				width : winW
 			}); //창크기에 슬라이드이미지 맞춤
-
 		};
 
 		$(window).resize(function() {
