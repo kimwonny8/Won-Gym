@@ -39,7 +39,7 @@
 			<p>비밀번호 확인</p>
 			<input type="password" id="m_pw2" name="m_pw" class="inputBox">
 		</div>
-		<input type="button" id="deleteMember"  class="mypageBtn" value="회원탈퇴" style="margin-bottom: 1vh;">
+		<input type="button" id="deleteMember" class="mypageBtn" value="회원탈퇴" style="margin-bottom: 1vh;">
 		<input type="button" id="updateMember" class="mypageBtn" value="회원정보수정" >
 	</div>
 

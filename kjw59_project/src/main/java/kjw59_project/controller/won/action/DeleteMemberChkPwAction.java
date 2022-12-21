@@ -35,7 +35,7 @@ public class DeleteMemberChkPwAction implements Action {
 			boolean result = memberDAO.deleteMember(member);
 			if (result == true) {
 				session.setAttribute("loginState", "logout");
-				forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
+				forward.setPath("/com/yju/2wda/team1/view/won/myPage.jsp");
 				return forward;
 			}
 			return null;
