@@ -310,7 +310,7 @@ public class ProductDAO {
 		String sql = "select p.pt_code, p.t_id, p.pt_title, p.pt_one_c, p.pt_con_c, p.pt_content, p.pt_like, "
 				+ "m.m_name, m.c_code, IFNULL(i.mi_thum_name, 'user.png') AS mi_thum_name "
 				+ "from pt p left join m_image i on (p.t_id = i.m_id) left join member m on (p.t_id = m.m_id) "
-				+ "where (p.m_name like ?) or (p.pt_title like ?) or ( m.c_code like ?) order by p.pt_code";
+				+ "where (m.m_name like ?) or (p.pt_title like ?) or ( m.c_code like ?) order by p.pt_code";
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + searchContent + "%");
@@ -961,13 +961,12 @@ public class ProductDAO {
 	public ArrayList<PtDTO> selectAllPostList(String searchContent) {
 		ArrayList<PtDTO> postList = new ArrayList<>();
 
-		String sql = "select * from pt where (t_id like ?) or (pt_title like ?) or (pt_content like ?) ";
+		String sql = "select * from pt where (t_id like ?) or (pt_title like ?)";
 
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%" + searchContent + "%");
 			pstmt.setString(2, "%" + searchContent + "%");
-			pstmt.setString(3, "%" + searchContent + "%");
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {

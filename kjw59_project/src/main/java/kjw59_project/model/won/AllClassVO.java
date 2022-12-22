@@ -1,7 +1,13 @@
 package kjw59_project.model.won;
 
-public class AllClassVO {
+import java.io.Serializable;
+
+public class AllClassVO implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int pt_code;
 	private String t_id;
 	private String pt_title;
@@ -13,11 +19,6 @@ public class AllClassVO {
 	private String c_code;
 	private String mi_thum_name;
 	
-	public AllClassVO() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	public AllClassVO(int pt_code, String t_id, String pt_title, int pt_one_c, int pt_con_c, String pt_content,
 			int pt_like, String m_name, String c_code, String mi_thum_name) {
 		super();
@@ -31,6 +32,11 @@ public class AllClassVO {
 		this.m_name = m_name;
 		this.c_code = c_code;
 		this.mi_thum_name = mi_thum_name;
+	}
+
+	public AllClassVO() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getPt_code() {

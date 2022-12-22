@@ -35,7 +35,6 @@ PtDTO pt;
 			<option value="전체" selected>전체</option>
 			<option value="t_id">아이디</option>
 			<option value="pt_title">제목</option>
-			<option value="pt_content">내용</option>
 		</select>
 		<input type="text" class="inputBox" name="searchContent">
 		<button class="smallBtn">검색</button>
@@ -62,7 +61,6 @@ PtDTO pt;
 					<th>상담 가격</th>
 					<th>회당 가격</th>
 					<th>내용</th>
-					<th>좋아요</th>
 					<th>관리</th>
 				</tr>
 			</thead>
@@ -78,7 +76,6 @@ PtDTO pt;
 					<td><%=pt.getPt_con_c() %></td>
 					<td><%=pt.getPt_one_c() %></td>
 					<td><a href="./selectPt.won?pt_code=<%=pt.getPt_code() %>">글 보러가기</a></td>
-					<td><%=pt.getPt_like() %></td>
 					<td><a href="./expulsionPost.won?pt_code=<%=pt.getPt_code() %>" onclick="return chk()">삭제</a></td>
 				<tr>	
 			</tbody>

@@ -1,6 +1,12 @@
 package kjw59_project.model.won;
 
-public class CartVO {
+import java.io.Serializable;
+
+public class CartVO implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// memberPt 테이블 + member 테이블 + mImage 테이블
 	private int mp_code;
 	private String m_id; // 회원 아이디

@@ -139,12 +139,12 @@
 			</div>
 		<div class="formInputLineH">
 				<p>* 자격증 종류</p>
-				<input type="text" name="t_license_name" id="t_license_name" class="inputBox">
+				<input type="text" name="t_license_name" maxlength="40" id="t_license_name" class="inputBox">
 		</div>
 		<p id="inputCheckLicenseName" class="inputCheckRight"></p> 	
 			<div class="formInputLineH">		
 				<p>* 자격증 번호</p>
-				<input type="text" name="t_license_num" id="t_license_num" class="inputBox">			
+				<input type="text" name="t_license_num" maxlength="40" id="t_license_num" class="inputBox">			
 				
 		</div>
 		<p style="text-align:center; color:blue;">자격증은 제출 후 수정할 수 없으니 신중히 입력해주세요.</p> 		

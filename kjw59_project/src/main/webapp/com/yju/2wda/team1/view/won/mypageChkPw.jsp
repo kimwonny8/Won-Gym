@@ -45,12 +45,6 @@
 
 	<%@ include file="../module/footer.jsp"%>
 <script>
-window.onpageshow = function(event) {
-    if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-    alert("잘못된 접근입니다.");
-    location.href="/kjw59_project/index.jsp";
-  }
-}
 	 	$(document).ready(function() {
 		$("#updateMember").click(function() {
 			var m_pw = $("#m_pw").val();

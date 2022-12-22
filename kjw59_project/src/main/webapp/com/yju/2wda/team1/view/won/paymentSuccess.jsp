@@ -24,7 +24,6 @@
 			<p>충전이 완료되었습니다!</p>
 			<p>(주)WON</p>
 			<br>
-			<br>
 			<p style="margin: 1vw;">현재 잔액 코인: <%=m_coin %> 코인</p>
 			<a href="<%=wonViewDir%>/myPage.jsp" class="btn">확인</a>
 <%-- 			<p style="margin: 1vw;">결제 완료 금액 <b><%=money%></b> 원</p>

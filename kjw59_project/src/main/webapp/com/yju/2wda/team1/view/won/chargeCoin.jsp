@@ -147,11 +147,11 @@ function toss() {
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
 	
-	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
-	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	//successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+	//failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
-	//successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
-	//failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/deposit.jsp?money='+money+'&&total='+total,
+	failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
 	validHours: 24,
 	cashReceipt: {
@@ -189,11 +189,11 @@ function tossCard() {
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
 	
-	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
-	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	//successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
+	//failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
-	//successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
-	//failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
+	failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
 	})
 	.catch(function (error) {
