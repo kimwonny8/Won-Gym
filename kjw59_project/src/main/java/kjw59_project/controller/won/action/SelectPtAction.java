@@ -29,12 +29,16 @@ public class SelectPtAction implements Action {
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		
-		String codeString = request.getParameter("pt_code");
-		if(!isNumeric(codeString)) { // true면 숫자
-			forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
-		}
-		else {
-			int pt_code=Integer.parseInt(codeString);
+		/*
+		 *기존엔 하나하나 받아서 체크했지만, try - catch 구문으로 변경
+		 String codeString = request.getParameter("pt_code");
+		 if(!isNumeric(codeString)) { // true면 숫자
+		 forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp"); 
+		 } else {
+		 */
+		
+		try{
+			int pt_code=Integer.parseInt(request.getParameter("pt_code"));
 			
 			session.setAttribute("pt_code", pt_code);
 			pt.setPt_code(pt_code);
@@ -47,14 +51,15 @@ public class SelectPtAction implements Action {
 
 				forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
 			}
-			else {
+			}
+			 catch(Exception e) {
 				forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
 			}
 	
-		}
 		return forward;
 	}
 	
+	/*
 	  public static boolean isNumeric(String s) {
 	        try {
 	            Double.parseDouble(s);
@@ -63,5 +68,5 @@ public class SelectPtAction implements Action {
 	            return false;
 	        }
 	    }
-
+	 */
 }

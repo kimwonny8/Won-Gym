@@ -20,57 +20,61 @@ public class SignupAction implements Action {
 		MemberDAO memberDAO = new MemberDAO();
 		MemberDTO member = new MemberDTO();
 		TrainerDTO trainer = new TrainerDTO();
-		
-		String m_grade=request.getParameter("m_grade");
-		String m_id=request.getParameter("m_id");
 
-		member.setM_pw(encrypt(request.getParameter("m_pw")));
-		member.setM_id(m_id);
-		member.setM_name(request.getParameter("m_name"));
-		member.setM_birth(request.getParameter("m_birth"));
-		member.setM_gender(request.getParameter("m_gender"));
-		member.setM_phone(request.getParameter("m_phone"));
-		member.setM_grade(m_grade);
-		member.setC_code(request.getParameter("c_code"));
-		
-		memberDAO = new MemberDAO();
-		boolean result = memberDAO.insertMember(member);
-		
-		// trainer 테이블에도 추가
-		if(m_grade.equals("trainerW")) {
-			trainer.setT_license_name(request.getParameter("t_license_name"));
-			trainer.setT_license_num(request.getParameter("t_license_num"));
-			trainer.setT_id(m_id);
-			
+		try {
+			String m_grade = request.getParameter("m_grade");
+			String m_id = request.getParameter("m_id");
+
+			member.setM_pw(encrypt(request.getParameter("m_pw")));
+			member.setM_id(m_id);
+			member.setM_name(request.getParameter("m_name"));
+			member.setM_birth(request.getParameter("m_birth"));
+			member.setM_gender(request.getParameter("m_gender"));
+			member.setM_phone(request.getParameter("m_phone"));
+			member.setM_grade(m_grade);
+			member.setC_code(request.getParameter("c_code"));
+
 			memberDAO = new MemberDAO();
-			memberDAO.insertTrainer(trainer);
-		}
-		
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		
-		if(result == true) {
-			forward.setPath("/index.jsp");
-			return forward;
-		}
-		else {
+			boolean result = memberDAO.insertMember(member);
+
+			// trainer 테이블에도 추가
+			if (m_grade.equals("trainerW")) {
+				trainer.setT_license_name(request.getParameter("t_license_name"));
+				trainer.setT_license_num(request.getParameter("t_license_num"));
+				trainer.setT_id(m_id);
+
+				memberDAO = new MemberDAO();
+				memberDAO.insertTrainer(trainer);
+			}
+
+			ActionForward forward = new ActionForward();
+			forward.setRedirect(false);
+
+			if (result == true) {
+				forward.setPath("/index.jsp");
+				return forward;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
 			return null;
 		}
 	}
-	
+
 	// 비밀번호 암호화
 	public String encrypt(String text) throws NoSuchAlgorithmException {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        md.update(text.getBytes());
+		MessageDigest md = MessageDigest.getInstance("SHA-256");
+		md.update(text.getBytes());
 
-        return bytesToHex(md.digest());
-    }
+		return bytesToHex(md.digest());
+	}
 
-    private String bytesToHex(byte[] bytes) {
-        StringBuilder builder = new StringBuilder();
-        for (byte b : bytes) {
-            builder.append(String.format("%02x", b));
-        }
-        return builder.toString();
-    }
+	private String bytesToHex(byte[] bytes) {
+		StringBuilder builder = new StringBuilder();
+		for (byte b : bytes) {
+			builder.append(String.format("%02x", b));
+		}
+		return builder.toString();
+	}
 }

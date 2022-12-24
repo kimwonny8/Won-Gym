@@ -21,7 +21,7 @@ public class PaymentProgressAction implements Action {
 		MemberPtDTO memberPt = new MemberPtDTO();
 		MemberDTO member = new MemberDTO();
 		MImageDTO mImage = new MImageDTO();
-
+		
 		// ajax를 통해 넘어온 배열 데이터 선언 - int 배열로 변환
 		String[] tmp = request.getParameterValues("chkMpCode");
 		int[] mp_code = Arrays.stream(tmp).mapToInt(Integer::parseInt).toArray();

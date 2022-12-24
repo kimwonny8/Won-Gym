@@ -17,8 +17,10 @@ public class ManageClientDetailAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		HttpSession session = request.getSession();
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
 		
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();
@@ -26,14 +28,15 @@ public class ManageClientDetailAction implements Action {
 		MemberDTO member = new MemberDTO();
 
 		ArrayList<CartVO> classList;
-		memberPt.setMp_code(Integer.parseInt(request.getParameter("mp_code")));
-		classList = productDAO.getMyClientDetailList(memberPt, member);
-		session.setAttribute("classList", classList);
+		try {
+			memberPt.setMp_code(Integer.parseInt(request.getParameter("mp_code")));
+			classList = productDAO.getMyClientDetailList(memberPt, member);
+			session.setAttribute("classList", classList);
 
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/manageClientDetail.jsp");
-		
+			forward.setPath("/com/yju/2wda/team1/view/won/manageClientDetail.jsp");
+		} catch (Exception e) {
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+		}
 		return forward;
 	}
 

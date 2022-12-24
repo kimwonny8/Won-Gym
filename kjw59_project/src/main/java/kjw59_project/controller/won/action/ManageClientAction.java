@@ -19,27 +19,31 @@ public class ManageClientAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		
+
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();
 		MemberPtDTO memberPt = new MemberPtDTO();
-		
+
 		ArrayList<MemberPtDTO> classList;
-		memberPt.setM_id((String)session.getAttribute("m_id"));
-		String search = request.getParameter("search");
-		if(search == null) {
-			classList = productDAO.getMyClientList(memberPt);
-			session.setAttribute("classList", classList);
+
+		try {
+			memberPt.setM_id((String) session.getAttribute("m_id"));
+			String search = request.getParameter("search");
+			if (search == null) {
+				classList = productDAO.getMyClientList(memberPt);
+				session.setAttribute("classList", classList);
+			} else {
+				classList = productDAO.getMyClientList(memberPt, search);
+				session.setAttribute("classList", classList);
+			}
+
+			forward.setPath("/com/yju/2wda/team1/view/won/manageClient.jsp");
+		} catch (Exception e) {
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
 		}
-		else {
-			classList = productDAO.getMyClientList(memberPt, search);
-			session.setAttribute("classList", classList);
-		}
-		
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/manageClient.jsp");
-		
 		return forward;
 	}
 

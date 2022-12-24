@@ -18,7 +18,7 @@ public class ChkIdAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		MemberDAO memberDAO = new MemberDAO();
 		MemberDTO member = new MemberDTO();
-		
+				
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		

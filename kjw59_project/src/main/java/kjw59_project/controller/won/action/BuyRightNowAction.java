@@ -29,12 +29,8 @@ public class BuyRightNowAction implements Action {
 
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		
-		String codeString = request.getParameter("mp_code");
-		if (!isNumeric(codeString)) {
-			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
-			return forward;
-		} else {
+
+		try {
 			int mp_code = Integer.parseInt(request.getParameter("mp_code"));
 
 			memberPt.setMp_code(mp_code);
@@ -52,20 +48,13 @@ public class BuyRightNowAction implements Action {
 			if (cartList.size() != 0) {
 				forward.setPath("/com/yju/2wda/team1/view/won/paymentProgress.jsp");
 				return forward;
-			}
-			else {
+			} else {
 				return null;
 			}
+
+		} catch (Exception e) {
+			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
+			return null;
 		}
 	}
-
-	public static boolean isNumeric(String s) {
-		try {
-			Double.parseDouble(s);
-			return true;
-		} catch (NumberFormatException e) {
-			return false;
-		}
-	}
-
 }

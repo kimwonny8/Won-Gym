@@ -14,25 +14,28 @@ public class DeletePtAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		
+
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();
 		PtDTO pt = new PtDTO();
-		
-		int pt_code = Integer.parseInt(request.getParameter("pt_code"));
-		pt.setPt_code(pt_code);
-		
-		boolean result = productDAO.deleteProduct(pt);
+
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		
-		if(result == true) {
-			forward.setPath("/getClassList.won");
-		}
-		else {
+
+		try {
+			int pt_code = Integer.parseInt(request.getParameter("pt_code"));
+			pt.setPt_code(pt_code);
+
+			boolean result = productDAO.deleteProduct(pt);
+
+			if (result == true) {
+				forward.setPath("/getClassList.won");
+			} else {
+				forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+			}
+		} catch (Exception e) {
 			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
 		}
-		
 		return forward;
 	}
 

@@ -23,22 +23,26 @@ public class UpdateMemberChkPwAction implements Action {
 
 		request.setCharacterEncoding("utf-8");
 
-		String m_pw = encrypt(request.getParameter("m_pw"));
-		request.setCharacterEncoding("utf-8");
-		MemberDAO memberDAO = new MemberDAO();
-		MemberDTO member = new MemberDTO();
+		try {
+			String m_pw = encrypt(request.getParameter("m_pw"));
+			request.setCharacterEncoding("utf-8");
+			MemberDAO memberDAO = new MemberDAO();
+			MemberDTO member = new MemberDTO();
 
-		String m_id = (String) session.getAttribute("m_id");
-		member.setM_id(m_id);
-		String pw = memberDAO.updateMemberChkPw(member);
+			String m_id = (String) session.getAttribute("m_id");
+			member.setM_id(m_id);
+			String pw = memberDAO.updateMemberChkPw(member);
 
-		if (m_pw.equals(pw)) {
-			forward.setPath("/com/yju/2wda/team1/view/won/myPage.jsp");
-			return forward;
-		} else {
+			if (m_pw.equals(pw)) {
+				forward.setPath("/com/yju/2wda/team1/view/won/myPage.jsp");
+				return forward;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
 			return null;
 		}
-
 	}
 
 	// 비밀번호 암호화

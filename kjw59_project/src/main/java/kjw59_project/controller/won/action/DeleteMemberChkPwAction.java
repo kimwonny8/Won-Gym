@@ -24,7 +24,7 @@ public class DeleteMemberChkPwAction implements Action {
 		request.setCharacterEncoding("utf-8");
 		MemberDAO memberDAO = new MemberDAO();
 		MemberDTO member = new MemberDTO();
-
+		
 		String m_id = (String) session.getAttribute("m_id");
 		member.setM_id(m_id);
 		String pw = memberDAO.updateMemberChkPw(member);

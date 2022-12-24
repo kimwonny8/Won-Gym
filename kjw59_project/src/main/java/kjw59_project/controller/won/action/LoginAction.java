@@ -23,58 +23,62 @@ public class LoginAction implements Action {
 		MemberDTO member = new MemberDTO();
 		MImageDTO mImage = new MImageDTO();
 
-		String m_id = request.getParameter("m_id");
-		String m_pw = request.getParameter("m_pw");
-		String m_pw2 = encrypt(m_pw);
-		
-		member.setM_id(m_id);
-		// 비밀번호 확인
-		String Chk_m_pw = memberDAO.loginPwMember(member);
+		try {
+			String m_id = request.getParameter("m_id");
+			String m_pw = request.getParameter("m_pw");
+			String m_pw2 = encrypt(m_pw);
 
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
+			member.setM_id(m_id);
+			// 비밀번호 확인
+			String Chk_m_pw = memberDAO.loginPwMember(member);
 
-		// 입력한 비밀번호랑 디비에 비밀번호랑 같다면 로그인
-		if (m_pw.equals(Chk_m_pw) || m_pw2.equals(Chk_m_pw)) {
-			memberDAO = new MemberDAO();
-			String m_name = memberDAO.loginNameMember(member);
+			ActionForward forward = new ActionForward();
+			forward.setRedirect(false);
 
-			memberDAO = new MemberDAO();
-			String c_code = memberDAO.getC_codeMember(member);
+			// 입력한 비밀번호랑 디비에 비밀번호랑 같다면 로그인
+			if (m_pw.equals(Chk_m_pw) || m_pw2.equals(Chk_m_pw)) {
+				memberDAO = new MemberDAO();
+				String m_name = memberDAO.loginNameMember(member);
 
-			memberDAO = new MemberDAO();
-			String m_grade = memberDAO.loginChkGrade(member);
-			if (m_grade.equals("trainer"))
-				m_grade = "트레이너";
-			else if (m_grade.equals("trainerW"))
-				m_grade = "트레이너(대기중)";
-			else if (m_grade.equals("client"))
-				m_grade = "일반";
-			else if (m_grade.equals("admin"))
-				m_grade = "관리자";
+				memberDAO = new MemberDAO();
+				String c_code = memberDAO.getC_codeMember(member);
 
-			// 썸네일 이름 가져와서 미리 저장해둠 -> 있으면 파일명, 없으면 null
-			memberDAO = new MemberDAO();
-			mImage.setM_id(m_id);
-			String mi_thum_name = memberDAO.chkMemberPhoto(mImage);
+				memberDAO = new MemberDAO();
+				String m_grade = memberDAO.loginChkGrade(member);
+				if (m_grade.equals("trainer"))
+					m_grade = "트레이너";
+				else if (m_grade.equals("trainerW"))
+					m_grade = "트레이너(대기중)";
+				else if (m_grade.equals("client"))
+					m_grade = "일반";
+				else if (m_grade.equals("admin"))
+					m_grade = "관리자";
 
-			memberDAO = new MemberDAO();
-			int m_coin = memberDAO.getCoinMember(member);
+				// 썸네일 이름 가져와서 미리 저장해둠 -> 있으면 파일명, 없으면 null
+				memberDAO = new MemberDAO();
+				mImage.setM_id(m_id);
+				String mi_thum_name = memberDAO.chkMemberPhoto(mImage);
 
-			session.setAttribute("m_id", m_id);
-			session.setAttribute("m_name", m_name);
-			session.setAttribute("c_code", c_code);
-			session.setAttribute("m_grade", m_grade);
-			session.setAttribute("m_coin", m_coin);
-			session.setAttribute("loginState", "login");
-			session.setAttribute("mi_thum_name", mi_thum_name);
+				memberDAO = new MemberDAO();
+				int m_coin = memberDAO.getCoinMember(member);
 
-			forward.setPath("/index.jsp");
-			return forward;
-		} else {
+				session.setAttribute("m_id", m_id);
+				session.setAttribute("m_name", m_name);
+				session.setAttribute("c_code", c_code);
+				session.setAttribute("m_grade", m_grade);
+				session.setAttribute("m_coin", m_coin);
+				session.setAttribute("loginState", "login");
+				session.setAttribute("mi_thum_name", mi_thum_name);
+
+				forward.setPath("/index.jsp");
+				return forward;
+			} else {
+				return null;
+			}
+		} catch (Exception e) {
+			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
 			return null;
 		}
-
 	}
 
 	// 비밀번호 암호화

@@ -24,31 +24,35 @@ public class RefuseStateAction implements Action {
 		MemberDAO memberDAO = new MemberDAO();
 		MemberPtDTO memberPt = new MemberPtDTO();
 		MemberDTO member = new MemberDTO();
-		
-		int mp_code = Integer.parseInt(request.getParameter("mp_code"));
-		int mp_coin = Integer.parseInt(request.getParameter("mp_coin"));
-		String m_id = request.getParameter("m_id");
-		
-		memberPt.setMp_code(mp_code);
-		member.setM_id(m_id);
-		productDAO.changeMpCode(memberPt,"RE");
-		
-		// 환불할 코인 + 현재 m_id가 갖고 있는 코인 = m_id 코인 값 변경
-		mp_coin += memberDAO.getCoinMember(member);
-		member.setM_coin(mp_coin);
-		memberDAO = new MemberDAO();
-		memberDAO.updateCoin(member);
-		
-		productDAO = new ProductDAO();
-		ArrayList<MemberPtDTO> classList;
-		memberPt.setM_id((String)session.getAttribute("m_id"));
-		classList = productDAO.getMyClientList(memberPt);
-		session.setAttribute("classList", classList);
-		
+
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/manageClient.jsp");
-		
+
+		try {
+			int mp_code = Integer.parseInt(request.getParameter("mp_code"));
+			int mp_coin = Integer.parseInt(request.getParameter("mp_coin"));
+			String m_id = request.getParameter("m_id");
+
+			memberPt.setMp_code(mp_code);
+			member.setM_id(m_id);
+			productDAO.changeMpCode(memberPt, "RE");
+
+			// 환불할 코인 + 현재 m_id가 갖고 있는 코인 = m_id 코인 값 변경
+			mp_coin += memberDAO.getCoinMember(member);
+			member.setM_coin(mp_coin);
+			memberDAO = new MemberDAO();
+			memberDAO.updateCoin(member);
+
+			productDAO = new ProductDAO();
+			ArrayList<MemberPtDTO> classList;
+			memberPt.setM_id((String) session.getAttribute("m_id"));
+			classList = productDAO.getMyClientList(memberPt);
+			session.setAttribute("classList", classList);
+
+			forward.setPath("/com/yju/2wda/team1/view/won/manageClient.jsp");
+		} catch (Exception e) {
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
+		}
 		return forward;
 	}
 

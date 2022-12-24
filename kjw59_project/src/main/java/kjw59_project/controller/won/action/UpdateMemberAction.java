@@ -26,7 +26,7 @@ public class UpdateMemberAction implements Action {
 
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-
+		try {
 		String m_id = (String) session.getAttribute("m_id");
 		String m_name = (String) session.getAttribute("m_name");
 		String m_grade = (String) session.getAttribute("m_grade");
@@ -47,6 +47,10 @@ public class UpdateMemberAction implements Action {
 			forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
 			return forward;
 		} else {
+			return null;
+		}
+		} catch (Exception e) {
+			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
 			return null;
 		}
 	}

@@ -19,7 +19,9 @@ public class ManageApplicationAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session = request.getSession();
-		
+		ActionForward forward = new ActionForward();
+		forward.setRedirect(false);
+
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO();
 		MemberDTO member = new MemberDTO();
@@ -27,20 +29,22 @@ public class ManageApplicationAction implements Action {
 		MemberPtDTO memberPt = new MemberPtDTO();
 
 		ArrayList<CartVO> cartList;
-		memberPt.setM_id((String)session.getAttribute("m_id"));
-		String search = request.getParameter("search");
-		if(search == null) {
-			cartList = productDAO.getMyClassList(memberPt, member, mImage);
-			session.setAttribute("cartList", cartList);
+
+		try {
+			memberPt.setM_id((String) session.getAttribute("m_id"));
+			String search = request.getParameter("search");
+			if (search == null) {
+				cartList = productDAO.getMyClassList(memberPt, member, mImage);
+				session.setAttribute("cartList", cartList);
+			} else {
+				cartList = productDAO.getMyClassList(memberPt, member, mImage, search);
+				session.setAttribute("cartList", cartList);
+			}
+
+			forward.setPath("/com/yju/2wda/team1/view/won/manageApplication.jsp");
+		} catch (Exception e) {
+			forward.setPath("/com/yju/2wda/team1/view/etc/error.jsp");
 		}
-		else {
-			cartList = productDAO.getMyClassList(memberPt, member, mImage, search);
-			session.setAttribute("cartList", cartList);
-		}
-		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("/com/yju/2wda/team1/view/won/manageApplication.jsp");
-		
 		return forward;
 	}
 
