@@ -27,28 +27,28 @@ public class UpdateMemberAction implements Action {
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		try {
-		String m_id = (String) session.getAttribute("m_id");
-		String m_name = (String) session.getAttribute("m_name");
-		String m_grade = (String) session.getAttribute("m_grade");
+			String m_id = (String) session.getAttribute("m_id");
+			String m_name = (String) session.getAttribute("m_name");
+			String m_grade = (String) session.getAttribute("m_grade");
 
-		member.setM_id(m_id);
-		member.setM_name(m_name);
-		member.setM_grade(m_grade);
-		member.setM_pw(encrypt(request.getParameter("m_pw")));
-		member.setM_birth(request.getParameter("m_birth"));
-		member.setM_gender(request.getParameter("m_gender"));
-		member.setM_phone(request.getParameter("m_phone"));
-		member.setC_code(request.getParameter("c_code"));
+			member.setM_id(m_id);
+			member.setM_name(m_name);
+			member.setM_grade(m_grade);
+			member.setM_pw(encrypt(request.getParameter("m_pw")));
+			member.setM_birth(request.getParameter("m_birth"));
+			member.setM_gender(request.getParameter("m_gender"));
+			member.setM_phone(request.getParameter("m_phone"));
+			member.setC_code(request.getParameter("c_code"));
 
-		memberDAO = new MemberDAO();
-		boolean result = memberDAO.updateMember(member);
+			memberDAO = new MemberDAO();
+			boolean result = memberDAO.updateMember(member);
 
-		if (result == true) {
-			forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
-			return forward;
-		} else {
-			return null;
-		}
+			if (result == true) {
+				forward.setPath("/com/yju/2wda/team1/view/won/updateMember.jsp");
+				return forward;
+			} else {
+				return null;
+			}
 		} catch (Exception e) {
 			response.sendRedirect("/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp");
 			return null;
