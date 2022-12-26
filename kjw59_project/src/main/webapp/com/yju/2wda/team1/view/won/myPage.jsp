@@ -62,8 +62,7 @@
 	            <p id="fileName" class="inputCheck" style="color:gray;"></p>
 	            <p id="inputCheck" class="inputCheck"></p>
 	            <div style="display:flex;">
-	          <!--   <input type="button" class="smallBtn" value="저장" onclick="chkFile()"> -->
-	            <button id="submitBtn" class="smallBtn" style="display:none;">저장</button> 
+	           		<button id="submitBtn" class="smallBtn" style="display:none;">저장</button> 
 	            </div>
 	            </div>
             </form>

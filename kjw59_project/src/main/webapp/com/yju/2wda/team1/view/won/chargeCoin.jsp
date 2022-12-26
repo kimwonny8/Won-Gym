@@ -189,11 +189,11 @@ function tossCard() {
 	orderName: '코인 충전',
 	customerName: '<%=m_name%>',
 	
-	//successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
-	//failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	successUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
+	failUrl: 'http://localhost:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
-	successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
-	failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
+	//successUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/won/updateCoin.won?total='+total,
+	//failUrl: 'http://172.26.28.224:8080/kjw59_project/com/yju/2wda/team1/view/etc/error.jsp',
 	
 	})
 	.catch(function (error) {
@@ -230,10 +230,6 @@ function kakaoPay() {
         name : '코인충전',
         amount : money,
         buyer_name : '<%=m_name%>',
-<%--    buyer_email : '<%=email%>',
-        buyer_tel : '<%=phone%>',
-        buyer_addr : '<%=address%>', --%>
-        buyer_postcode : '123-456',
         //m_redirect_url : 'http://www.naver.com's
     }, function(rsp) {
         if ( rsp.success ) {

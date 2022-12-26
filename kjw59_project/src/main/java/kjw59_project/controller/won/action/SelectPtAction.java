@@ -18,9 +18,9 @@ public class SelectPtAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
+
 		HttpSession session = request.getSession();
-		
+
 		request.setCharacterEncoding("utf-8");
 		ProductDAO productDAO = new ProductDAO(); // 상품 내용
 		MemberDTO member = new MemberDTO();
@@ -28,22 +28,20 @@ public class SelectPtAction implements Action {
 		PtDTO pt = new PtDTO();
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		
+
 		/*
-		 *기존엔 하나하나 받아서 체크했지만, try - catch 구문으로 변경
-		 String codeString = request.getParameter("pt_code");
-		 if(!isNumeric(codeString)) { // true면 숫자
-		 forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp"); 
-		 } else {
+		 * 기존엔 하나하나 받아서 체크했지만, try - catch 구문으로 변경 String codeString =
+		 * request.getParameter("pt_code"); if(!isNumeric(codeString)) { // true면 숫자
+		 * forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp"); } else {
 		 */
-		
-		try{
-			int pt_code=Integer.parseInt(request.getParameter("pt_code"));
-			
+
+		try {
+			int pt_code = Integer.parseInt(request.getParameter("pt_code"));
+
 			session.setAttribute("pt_code", pt_code);
 			pt.setPt_code(pt_code);
-			
-			if(productDAO.chkPtCode(pt) == true) {
+
+			if (productDAO.chkPtCode(pt) == true) {
 				ArrayList<AllClassVO> classList;
 				productDAO = new ProductDAO();
 				classList = productDAO.selectClassList(pt, member, mImage);
@@ -51,22 +49,15 @@ public class SelectPtAction implements Action {
 
 				forward.setPath("/com/yju/2wda/team1/view/won/readClass.jsp");
 			}
-			}
-			 catch(Exception e) {
-				forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
-			}
-	
+		} catch (Exception e) {
+			forward.setPath("/com/yju/2wda/team1/view/etc/pageError.jsp");
+		}
+
 		return forward;
 	}
-	
+
 	/*
-	  public static boolean isNumeric(String s) {
-	        try {
-	            Double.parseDouble(s);
-	            return true;
-	        } catch (NumberFormatException e) {
-	            return false;
-	        }
-	    }
+	 * public static boolean isNumeric(String s) { try { Double.parseDouble(s);
+	 * return true; } catch (NumberFormatException e) { return false; } }
 	 */
 }
