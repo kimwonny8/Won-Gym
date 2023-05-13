@@ -4,34 +4,34 @@
 
 [웹프로그래밍 쇼핑몰 제작_2101059김정원](https://prezi.com/view/mLhCHbzCcicx1nkyDbyu/)
 
-# 📌 프로젝트명
+## 📌 프로젝트명
 
 ### WorkOutNow(WON)
 
-# 📌 프로젝트 개요
+## 📌 프로젝트 개요
 
 - 위치기반 트레이너 매칭 및 스케줄, 운동 기록 관리 사이트
 
 
 
-# 📌일정
+## 📌일정
 
 - 11/10 ~11/15  마인드맵, 메뉴, 스토리보드
 - 11/16 ~ 11/17 : DB 설계
 - 11/18 ~ 12/2 : 개발 진행
 - 12/3 ~ 12/9 : 오류 수정
 
-# 📌 스토리보드
+## 📌 스토리보드
 
 [Storyboard.pdf](assets/Storyboard.pdf)
 
-# 📌 ERD
+## 📌 ERD
 
 <img src="assets/Untitled%2014.png" alt="Untitled" style="zoom:67%;" />
 
-# 📌 사용 기술
+## 📌 사용 기술
 
-JSP, 서블릿, MVC(프론트컨트롤러), MariaDB, DBCP, JDBC, JS, CSS, Ajax, JQuery
+JSP, 서블릿, MVC(프론트컨트롤러), MariaDB, JDBC, JS, CSS, Ajax, JQuery
 
 API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256 
 
@@ -45,7 +45,7 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
 
 ![Untitled](assets/Untitled%2019.png)
 
-# 📌 기능 요약
+## 📌 기능 요약
 
 1. 로그인
 2. 회원가입
@@ -133,9 +133,9 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
     - 글 번호 클릭 시 해당 페이지로 이동
     - 삭제
 
-# 📌 화면캡쳐
+## 📌 화면캡쳐
 
-## get 방식 오류 막기 / 준비중 게시판
+### get 방식 오류 막기 / 준비중 게시판
 
 - get방식으로 보낼 때 없는 값이나 이상한 값 들어오면 오류 페이지로 이동하게 만들었음
 - 404, 500 에러를 최대한 내지 않으려고 노력함..
@@ -148,17 +148,17 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
 
 <img src="assets/Untitled%2022.png" alt="Untitled" style="zoom:67%;" />
 
-## 메인
+### 메인
 
 ![Untitled](assets/Untitled%2023.png)
 
 ![Untitled](assets/Untitled%2024.png)
 
-## 로그인
+### 로그인
 
 ![Untitled](assets/Untitled%2025.png)
 
-## 회원가입
+### 회원가입
 
 ![Untitled](assets/Untitled%2026.png)
 
@@ -172,11 +172,11 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
   
     <img src="assets/Untitled%2030.png" alt="Untitled" style="zoom: 67%;" />
 
-## 소개
+### 소개
 
 <img src="assets/Untitled%2031.png" alt="Untitled" style="zoom:67%;" />
 
-## 수업신청 게시판
+### 수업신청 게시판
 
 <img src="assets/Untitled%2032.png" alt="Untitled" style="zoom:67%;" />
 
@@ -184,19 +184,19 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
 
 <img src="assets/Untitled%2033.png" alt="Untitled" style="zoom:67%;" />
 
-## 검색 이용
+### 검색 이용
 
 <img src="assets/Untitled%2034.png" alt="Untitled" style="zoom:67%;" />
 
 <img src="assets/Untitled%2035.png" alt="Untitled" style="zoom:67%;" />
 
-## 장바구니 추가, 동일 상품 있을 시
+### 장바구니 추가, 동일 상품 있을 시
 
 <img src="assets/Untitled%2036.png" alt="Untitled" style="zoom:67%;" />
 
 ![Untitled](assets/Untitled%2037.png)
 
-## 장바구니
+### 장바구니
 
 <img src="assets/Untitled%2038.png" alt="Untitled" style="zoom:67%;" />
 
@@ -206,7 +206,7 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
     
     <img src="assets/Untitled%2040.png" alt="Untitled" style="zoom:67%;" />
 
-## 결제 단계
+### 결제 단계
 
 <img src="assets/Untitled%2041.png" alt="Untitled" style="zoom:67%;" />
 
@@ -216,7 +216,7 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
   
     <img src="assets/Untitled%2043.png" alt="Untitled" style="zoom: 67%;" />
 
-## 마이페이지(사진 변경)
+### 마이페이지(사진 변경)
 
 ![Untitled](assets/Untitled%2044.png)
 
@@ -232,7 +232,7 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
     
     <img src="assets/Untitled%2047.png" alt="Untitled" style="zoom:67%;" />
 
-## 본인 인증 후 회원정보수정, 회원탈퇴
+### 본인 인증 후 회원정보수정, 회원탈퇴
 
 ![Untitled](assets/Untitled%2048.png)
 
@@ -240,7 +240,7 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
 
 <img src="assets/Untitled%2050.png" alt="Untitled" style="zoom:67%;" />
 
-## 코인 충전
+### 코인 충전
 
 - 카카오페이, tosspayments api
 
@@ -260,11 +260,11 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
 
 <img src="assets/Untitled%2057.png" alt="Untitled" style="zoom:67%;" />
 
-## 신청내역관리 - 취소시 자동환불
+### 신청내역관리 - 취소시 자동환불
 
 <img src="assets/Untitled%2058.png" alt="Untitled" style="zoom:67%;" />
 
-## 트레이너 - 신청내역관리/게시물 관리
+### 트레이너 - 신청내역관리/게시물 관리
 
 - 자기한테 들어온 요청 관리
 - 취소 시 코인은 자동환불
@@ -277,7 +277,7 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
 
 <img src="assets/Untitled%2062.png" alt="Untitled" style="zoom:67%;" />
 
-## 트레이너 - 수업신청에서 글쓰기/글 수정/글 삭제
+### 트레이너 - 수업신청에서 글쓰기/글 수정/글 삭제
 
 - api 불러오는 데 1초 정도 소요돼서 로딩 화면을 넣어 구현
 
@@ -293,7 +293,7 @@ API(kakaopay, tosspayments, 카카오지도, ckeditor), SHA-256
   
     <img src="assets/Untitled%2066.png" alt="Untitled" style="zoom:67%;" />
 
-## 관리자모드
+### 관리자모드
 
 - 회원 관리 ⇒ 추방, 등급 변경
     - 트레이너 회원으로 가입시 트레이너 대기중이므로 자격증 정보 확인 후 승인 해줘야함
